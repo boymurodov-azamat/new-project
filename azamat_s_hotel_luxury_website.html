@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome 6 CDN for reliable icons -->
+  <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Tailwind CSS CDN -->
@@ -28,6 +28,8 @@
               600: '#a38456',
               700: '#7e623a',
             },
+            amberManor: '#ff9800',
+            greenBadge: '#2e7d32',
             noir: {
               950: '#07090e',
               900: '#0a0d13',
@@ -47,9 +49,10 @@
   </script>
 
   <style>
-    /* Custom luxury scrollbar & styling */
+    /* Custom luxury scrollbar */
     ::-webkit-scrollbar {
-      width: 7px;
+      width: 6px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
       background: #0a0d13;
@@ -67,40 +70,49 @@
       background: linear-gradient(135deg, #dfba73 0%, #c5a880 50%, #99743c 100%);
     }
     .glass-card {
-      background: rgba(14, 18, 26, 0.78);
+      background: rgba(14, 18, 26, 0.82);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(197, 168, 128, 0.22);
+      border: 1px solid rgba(197, 168, 128, 0.2);
     }
     .glass-nav {
-      background: rgba(10, 13, 19, 0.88);
+      background: rgba(10, 13, 19, 0.92);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(197, 168, 128, 0.18);
+      border-bottom: 1px solid rgba(197, 168, 128, 0.16);
     }
     .hover-gold-glow:hover {
-      box-shadow: 0 10px 25px -4px rgba(197, 168, 128, 0.28);
+      box-shadow: 0 10px 25px -4px rgba(197, 168, 128, 0.3);
+    }
+    /* Modal scroll bar */
+    .modal-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .modal-scroll::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body class="bg-noir-900 text-stone-200 font-sans selection:bg-gold-500 selection:text-noir-950 antialiased overflow-x-hidden">
 
+  <!-- Top Luxury Announcement Bar -->
   <div class="bg-noir-950 border-b border-gold-500/15 text-xs py-2 px-4 sm:px-8 hidden md:block">
     <div class="max-w-7xl mx-auto flex justify-between items-center text-stone-400">
       <div class="flex items-center space-x-6">
-        <!-- Clickable Updated Phone -->
+        <!-- Exact Phone -->
         <a href="tel:+998508868115" class="flex items-center gap-2 hover:text-gold-400 transition-colors group">
           <i class="fa-solid fa-phone text-gold-500 text-[11px] group-hover:scale-110 transition-transform"></i>
           <span class="tracking-wider text-stone-300 group-hover:text-gold-300 font-medium">+998 50 886 81 15</span>
         </a>
-        <!-- Clickable Updated Email -->
+        <!-- Exact Email -->
         <a href="mailto:azamatboymurodov19@gmail.com" class="flex items-center gap-2 hover:text-gold-400 transition-colors group">
           <i class="fa-solid fa-envelope text-gold-500 text-[11px] group-hover:scale-110 transition-transform"></i>
           <span class="text-stone-400 group-hover:text-gold-300">azamatboymurodov19@gmail.com</span>
         </a>
         <span class="flex items-center gap-2 text-stone-400 hidden lg:flex">
           <i class="fa-solid fa-location-dot text-gold-500 text-[11px]"></i>
-          <span>Amir Temur shoh ko'chasi 45, Toshkent</span>
+          <span>Amir Temur shoh ko'chasi 45, Mirobod t., Toshkent</span>
         </span>
       </div>
       <div class="flex items-center space-x-5">
@@ -120,6 +132,7 @@
     </div>
   </div>
 
+  <!-- Main Navbar -->
   <header class="sticky top-0 z-40 glass-nav transition-all duration-300" id="mainHeader">
     <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
       
@@ -137,9 +150,9 @@
       <!-- Desktop Nav Links -->
       <nav class="hidden lg:flex items-center space-x-7 text-xs uppercase tracking-widest text-stone-300 font-medium">
         <a href="#about" class="hover:text-gold-400 transition-colors py-1">Biz Haqimizda</a>
-        <a href="#rooms" class="hover:text-gold-400 transition-colors py-1">Xonalar & Lyukslar</a>
+        <a href="#rooms" class="hover:text-gold-400 transition-colors py-1">Xonalar Katalogi</a>
         <a href="#amenities" class="hover:text-gold-400 transition-colors py-1">Xizmatlar</a>
-        <a href="#dining" class="hover:text-gold-400 transition-colors py-1">Gastronomiya</a>
+        <a href="#dining" class="hover:text-gold-400 transition-colors py-1">Restoran</a>
         <a href="#gallery" class="hover:text-gold-400 transition-colors py-1">Galereya</a>
         <a href="#contact" class="hover:text-gold-400 transition-colors py-1">Aloqa</a>
       </nav>
@@ -161,13 +174,13 @@
       </div>
     </div>
 
-    <!-- Mobile Drawer Navigation -->
+    <!-- Mobile Drawer Menu -->
     <div id="mobileMenu" class="hidden lg:hidden bg-noir-850 border-b border-gold-500/20 px-6 py-6 transition-all duration-300">
       <div class="flex flex-col space-y-4 text-xs font-semibold tracking-widest uppercase text-stone-300">
         <a href="#about" class="py-2.5 border-b border-stone-800 hover:text-gold-400" onclick="toggleMobileMenu()">Biz Haqimizda</a>
-        <a href="#rooms" class="py-2.5 border-b border-stone-800 hover:text-gold-400" onclick="toggleMobileMenu()">Xonalar & Lyukslar</a>
+        <a href="#rooms" class="py-2.5 border-b border-stone-800 hover:text-gold-400" onclick="toggleMobileMenu()">Xonalar Katalogi</a>
         <a href="#amenities" class="py-2.5 border-b border-stone-800 hover:text-gold-400" onclick="toggleMobileMenu()">Xizmatlar</a>
-        <a href="#dining" class="py-2.5 border-b border-stone-800 hover:text-gold-400" onclick="toggleMobileMenu()">Gastronomiya</a>
+        <a href="#dining" class="py-2.5 border-b border-stone-800 hover:text-gold-400" onclick="toggleMobileMenu()">Restoran</a>
         <a href="#gallery" class="py-2.5 border-b border-stone-800 hover:text-gold-400" onclick="toggleMobileMenu()">Galereya</a>
         <a href="#contact" class="py-2.5 border-b border-stone-800 hover:text-gold-400" onclick="toggleMobileMenu()">Aloqa & Manzil</a>
         
@@ -185,8 +198,9 @@
     </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="relative min-h-[92vh] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-20 bg-cover bg-center overflow-hidden" 
-           style="background-image: linear-gradient(to bottom, rgba(10,13,19,0.72) 0%, rgba(10,13,19,0.92) 100%), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2000&auto=format&fit=crop');">
+           style="background-image: linear-gradient(to bottom, rgba(10,13,19,0.74) 0%, rgba(10,13,19,0.92) 100%), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2000&auto=format&fit=crop');">
     
     <div class="max-w-4xl mx-auto text-center space-y-6 pt-12 pb-6">
       <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-gold-500/35 bg-noir-850/80 backdrop-blur-md">
@@ -200,16 +214,16 @@
       </h1>
 
       <p class="max-w-2xl mx-auto text-sm sm:text-base text-stone-300 font-light tracking-wide leading-relaxed">
-        Hotel Manor estetikasida barpo etilgan, zamonaviy me’morchilik va samimiy sharqona mehmondo'stlikni mujassam etgan nufuzli maskan.
+        Hotel Manor estetikasida barpo etilgan, nafis interyer, yuqori xizmat darajasi va samimiy sharqona mehmondo'stlik maskani.
       </p>
 
       <div class="flex flex-wrap items-center justify-center gap-4 pt-3">
         <a href="#rooms" class="px-8 py-3.5 rounded-full border border-gold-500/80 text-gold-300 hover:bg-gold-500 hover:text-noir-900 font-medium text-xs uppercase tracking-widest transition-all">
-          Xonalar bilan tanishish
+          Xonalar Katalogi
         </a>
         <button onclick="openBookingModal()" class="px-8 py-3.5 rounded-full gold-gradient-bg text-noir-950 font-bold text-xs uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all shadow-xl hover-gold-glow flex items-center gap-2">
           <i class="fa-solid fa-sparkles"></i>
-          Band Qilish
+          Hozir Band Qilish
         </button>
       </div>
     </div>
@@ -249,10 +263,10 @@
             <i class="fa-solid fa-bed text-gold-400"></i> Xona toifasi
           </label>
           <select id="heroRoomType" class="w-full bg-noir-850 border border-stone-700 focus:border-gold-500 rounded-lg px-3.5 py-2.5 text-xs text-stone-100 focus:outline-none focus:ring-1 focus:ring-gold-500">
+            <option value="superior">Superior Room ($102)</option>
             <option value="deluxe">Deluxe King Room ($180)</option>
             <option value="executive">Executive Suite ($290)</option>
-            <option value="presidential">Presidential Suite ($550)</option>
-            <option value="penthouse">Royal Penthouse ($890)</option>
+            <option value="presidential">Presidential Royal Suite ($550)</option>
           </select>
         </div>
 
@@ -266,10 +280,213 @@
     </div>
   </section>
 
+  <!-- Rooms Showcase Section -->
+  <section id="rooms" class="py-24 bg-noir-850 border-y border-gold-500/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold">Eksklyuziv Kolleksiya</span>
+          <h2 class="text-3xl sm:text-5xl font-serif text-stone-100 font-light mt-2">
+            Xonalar & <span class="gold-gradient-text italic">Lyukslar Katalogi</span>
+          </h2>
+        </div>
+        <p class="text-stone-400 text-xs sm:text-sm max-w-md">
+          Har qanday xona ustiga bosing — fotosuratlar to'plami, xona o'lchami, qulayliklar va to'liq ma'lumotlar bilan batafsil tanishing.
+        </p>
+      </div>
+
+      <!-- Room Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Room 1: SUPERIOR ROOM (Exact Match to Screenshot) -->
+        <div class="glass-card rounded-2xl overflow-hidden group hover:border-gold-400/80 transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openRoomDetailModal('superior')">
+          <div>
+            <div class="relative h-64 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop" 
+                   alt="Superior Room" 
+                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+              <div class="absolute top-4 right-4 bg-noir-900/90 border border-gold-500/40 text-gold-300 text-xs px-3 py-1 rounded-full font-semibold">
+                US$ 102 <span class="text-[10px] font-normal text-stone-400">/ kecha</span>
+              </div>
+              <div class="absolute top-4 left-4 bg-emerald-700 text-white text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold flex items-center gap-1 shadow">
+                <i class="fa-solid fa-trophy text-[9px]"></i> Eng ko'p sotildi
+              </div>
+            </div>
+            
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-stone-400 text-xs mb-3">
+                <span><i class="fa-solid fa-arrows-up-down-left-right text-gold-400 mr-1"></i> 32 m²</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-user-group text-gold-400 mr-1"></i> 3 gacha joy</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-door-open text-gold-400 mr-1"></i> 1 xona</span>
+              </div>
+
+              <h3 class="font-serif text-2xl text-stone-100 mb-2 group-hover:text-gold-300 transition-colors">SUPERIOR ROOM</h3>
+              <p class="text-stone-400 text-xs line-clamp-2 mb-4 leading-relaxed">
+                Shahar markazidagi keng ikki kishilik xona. Yuqori qulaylik ko'rsatkichi, qulay karavot va zamonaviy dush.
+              </p>
+
+              <div class="flex items-center gap-2 py-3 border-t border-stone-800 text-stone-400 text-xs flex-wrap">
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-wifi text-gold-400 mr-1"></i> Wi-Fi</span>
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-wind text-gold-400 mr-1"></i> Konditsioner</span>
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-vault text-gold-400 mr-1"></i> Seyf</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 pt-0">
+            <button class="w-full py-2.5 rounded-xl border border-gold-500/60 text-gold-400 hover:bg-gold-500 hover:text-noir-900 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+              <i class="fa-regular fa-eye"></i>
+              Batafsil Ko'rish
+            </button>
+          </div>
+        </div>
+
+        <!-- Room 2: DELUXE KING ROOM -->
+        <div class="glass-card rounded-2xl overflow-hidden group hover:border-gold-400/80 transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openRoomDetailModal('deluxe')">
+          <div>
+            <div class="relative h-64 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800&auto=format&fit=crop" 
+                   alt="Deluxe King Room" 
+                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+              <div class="absolute top-4 right-4 bg-noir-900/90 border border-gold-500/40 text-gold-300 text-xs px-3 py-1 rounded-full font-semibold">
+                US$ 180 <span class="text-[10px] font-normal text-stone-400">/ kecha</span>
+              </div>
+              <div class="absolute top-4 left-4 bg-gold-600 text-noir-950 text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold shadow">
+                Premium
+              </div>
+            </div>
+            
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-stone-400 text-xs mb-3">
+                <span><i class="fa-solid fa-arrows-up-down-left-right text-gold-400 mr-1"></i> 42 m²</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-user-group text-gold-400 mr-1"></i> 2-3 kishi</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-bed text-gold-400 mr-1"></i> King Bed</span>
+              </div>
+
+              <h3 class="font-serif text-2xl text-stone-100 mb-2 group-hover:text-gold-300 transition-colors">DELUXE KING ROOM</h3>
+              <p class="text-stone-400 text-xs line-clamp-2 mb-4 leading-relaxed">
+                Nafis sharqona dizayn, Italiya marmar vannasi, Toshkent shahar manzarasi va aqlli xona boshqaruvi.
+              </p>
+
+              <div class="flex items-center gap-2 py-3 border-t border-stone-800 text-stone-400 text-xs flex-wrap">
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-tv text-gold-400 mr-1"></i> Smart TV</span>
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-mug-hot text-gold-400 mr-1"></i> Qahva</span>
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-shower text-gold-400 mr-1"></i> Soch quritgich</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 pt-0">
+            <button class="w-full py-2.5 rounded-xl border border-gold-500/60 text-gold-400 hover:bg-gold-500 hover:text-noir-900 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+              <i class="fa-regular fa-eye"></i>
+              Batafsil Ko'rish
+            </button>
+          </div>
+        </div>
+
+        <!-- Room 3: EXECUTIVE SUITE -->
+        <div class="glass-card rounded-2xl overflow-hidden group hover:border-gold-400/80 transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openRoomDetailModal('executive')">
+          <div>
+            <div class="relative h-64 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop" 
+                   alt="Executive Suite" 
+                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+              <div class="absolute top-4 right-4 bg-noir-900/90 border border-gold-500/40 text-gold-300 text-xs px-3 py-1 rounded-full font-semibold">
+                US$ 290 <span class="text-[10px] font-normal text-stone-400">/ kecha</span>
+              </div>
+              <div class="absolute top-4 left-4 bg-blue-700 text-white text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold shadow">
+                Biznes Lyuks
+              </div>
+            </div>
+            
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-stone-400 text-xs mb-3">
+                <span><i class="fa-solid fa-arrows-up-down-left-right text-gold-400 mr-1"></i> 65 m²</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-door-open text-gold-400 mr-1"></i> 2 xona</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-briefcase text-gold-400 mr-1"></i> Ish xonasi</span>
+              </div>
+
+              <h3 class="font-serif text-2xl text-stone-100 mb-2 group-hover:text-gold-300 transition-colors">EXECUTIVE SUITE</h3>
+              <p class="text-stone-400 text-xs line-clamp-2 mb-4 leading-relaxed">
+                Alohida mehmonxona va yotoqxona. Biznes uchrashuvlar, shaxsiy muzokaralar va qulay hordiq uchun mo'ljallangan.
+              </p>
+
+              <div class="flex items-center gap-2 py-3 border-t border-stone-800 text-stone-400 text-xs flex-wrap">
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-wine-glass text-gold-400 mr-1"></i> Mini-bar</span>
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-bell-concierge text-gold-400 mr-1"></i> Batler</span>
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-couch text-gold-400 mr-1"></i> Mehmonxona</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 pt-0">
+            <button class="w-full py-2.5 rounded-xl border border-gold-500/60 text-gold-400 hover:bg-gold-500 hover:text-noir-900 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+              <i class="fa-regular fa-eye"></i>
+              Batafsil Ko'rish
+            </button>
+          </div>
+        </div>
+
+        <!-- Room 4: PRESIDENTIAL ROYAL SUITE -->
+        <div class="glass-card rounded-2xl overflow-hidden group hover:border-gold-400/80 transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openRoomDetailModal('presidential')">
+          <div>
+            <div class="relative h-64 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop" 
+                   alt="Presidential Royal Suite" 
+                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+              <div class="absolute top-4 right-4 bg-noir-900/90 border border-gold-500/40 text-gold-300 text-xs px-3 py-1 rounded-full font-semibold">
+                US$ 550 <span class="text-[10px] font-normal text-stone-400">/ kecha</span>
+              </div>
+              <div class="absolute top-4 left-4 gold-gradient-bg text-noir-950 text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold shadow">
+                Qirollik Lyuksi
+              </div>
+            </div>
+            
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-stone-400 text-xs mb-3">
+                <span><i class="fa-solid fa-arrows-up-down-left-right text-gold-400 mr-1"></i> 120 m²</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-hot-tub-person text-gold-400 mr-1"></i> Jacuzzi</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-car text-gold-400 mr-1"></i> Maybach</span>
+              </div>
+
+              <h3 class="font-serif text-2xl text-stone-100 mb-2 group-hover:text-gold-300 transition-colors">PRESIDENTIAL SUITE</h3>
+              <p class="text-stone-400 text-xs line-clamp-2 mb-4 leading-relaxed">
+                Keng panoramik zal, jakuzi vannasi, shaxsiy konsyerj hamda aeroportdan bepul VIP Maybach transferi.
+              </p>
+
+              <div class="flex items-center gap-2 py-3 border-t border-stone-800 text-stone-400 text-xs flex-wrap">
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-bath text-gold-400 mr-1"></i> Jakuzi</span>
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-utensils text-gold-400 mr-1"></i> Shved stoli</span>
+                <span class="px-2 py-1 rounded bg-noir-800 text-[11px]"><i class="fa-solid fa-shield-halved text-gold-400 mr-1"></i> Maxfiy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 pt-0">
+            <button class="w-full py-2.5 rounded-xl border border-gold-500/60 text-gold-400 hover:bg-gold-500 hover:text-noir-900 font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+              <i class="fa-regular fa-eye"></i>
+              Batafsil Ko'rish
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
   <section id="about" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       
-      <!-- Visual Showcase -->
       <div class="lg:col-span-6 relative">
         <div class="relative z-10 rounded-2xl overflow-hidden border border-gold-500/30 shadow-2xl">
           <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop" 
@@ -278,22 +495,20 @@
         </div>
         <div class="hidden sm:block absolute -bottom-8 -right-6 z-20 w-3/5 rounded-2xl overflow-hidden border-2 border-gold-500/40 shadow-2xl">
           <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop" 
-               alt="Luxury Bedroom Suite" 
+               alt="Luxury Suite View" 
                class="w-full h-56 object-cover">
         </div>
-        <!-- Luxury Badge -->
         <div class="absolute -top-6 -left-6 z-20 bg-noir-850 border border-gold-500/40 p-4 rounded-xl shadow-xl hidden md:flex items-center gap-3">
           <div class="w-10 h-10 rounded-full bg-gold-500/20 flex items-center justify-center text-gold-400">
             <i class="fa-solid fa-award text-lg"></i>
           </div>
           <div>
-            <p class="text-xs uppercase tracking-widest text-gold-400 font-bold">2026 G'olibi</p>
+            <p class="text-xs uppercase tracking-widest text-gold-400 font-bold">Mukammal Sifat</p>
             <p class="text-[11px] text-stone-300">Toshkentdagi Eng Yaxshi Butik Mehmonxona</p>
           </div>
         </div>
       </div>
 
-      <!-- About Details -->
       <div class="lg:col-span-6 space-y-6">
         <div class="inline-block">
           <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold">Tarix va Falsafa</span>
@@ -302,21 +517,21 @@
 
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif text-stone-100 font-light leading-snug">
           O'zbek Mehmondo'stligi va <br>
-          <span class="gold-gradient-text italic font-normal">Yevropacha Hashamat Uyg'unligi</span>
+          <span class="gold-gradient-text italic font-normal">Yevropacha Dabdaba Uyg'unligi</span>
         </h2>
 
         <p class="text-stone-300 text-sm leading-relaxed">
-          <strong>Azamat's Hotel</strong> — bu Toshkent shahrining eng nufuzli mavzesida qad ko'targan, nozik didli mehmonlar uchun mo'ljallangan oliy toifadagi butik maskan. Biz qulaylik, shaxsiy e'tibor va yuqori darajadagi maxfiylikni kafolatlaymiz.
+          <strong>Azamat's Hotel</strong> — bu Hotel Manor ruhiyatida yaratilgan, nozik didli mehmonlar uchun qulaylik, shaxsiy konsyerj xizmati va eng yuqori darajadagi maxfiylikni taqdim etuvchi oliy toifadagi butik mehmonxona.
         </p>
 
         <p class="text-stone-400 text-xs sm:text-sm leading-relaxed">
-          Italiya karrara marmarlari, tabiiy eman yog'ochidan ishlangan mebellar, shaxsiy konsyerj hamda 24/7 shaxsiy batler xizmati bilan har lahzangiz unutilmas bo'ladi.
+          Har bir detal — to'shaklar matosidan tortib xonadagi ovoz izolyatsiyasigacha sizning xotirjam va farovon dam olishingiz uchun maxsus saralangan.
         </p>
 
         <div class="grid grid-cols-3 gap-4 pt-4 border-t border-stone-800">
           <div>
             <span class="font-serif text-3xl font-light text-gold-400">45</span>
-            <p class="text-[11px] uppercase tracking-wider text-stone-400 mt-1">Nafis Lyukslar</p>
+            <p class="text-[11px] uppercase tracking-wider text-stone-400 mt-1">Hashamatli Xonalar</p>
           </div>
           <div>
             <span class="font-serif text-3xl font-light text-gold-400">24/7</span>
@@ -324,224 +539,23 @@
           </div>
           <div>
             <span class="font-serif text-3xl font-light text-gold-400">100%</span>
-            <p class="text-[11px] uppercase tracking-wider text-stone-400 mt-1">Maxfiylik Kafolati</p>
+            <p class="text-[11px] uppercase tracking-wider text-stone-400 mt-1">Xavfsizlik & Sifat</p>
           </div>
-        </div>
-
-        <div class="pt-2">
-          <a href="#rooms" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-gold-400 hover:text-gold-300 font-semibold">
-            <span>Xonalar kolleksiyasini ko'rish</span>
-            <i class="fa-solid fa-arrow-right text-xs"></i>
-          </a>
         </div>
       </div>
 
     </div>
   </section>
 
-  <section id="rooms" class="py-24 bg-noir-850 border-y border-gold-500/15">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8">
-      
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-        <div>
-          <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold">Eksklyuziv Kolleksiya</span>
-          <h2 class="text-3xl sm:text-5xl font-serif text-stone-100 font-light mt-2">
-            Xonalar & <span class="gold-gradient-text italic">Qirollik Lyukslari</span>
-          </h2>
-        </div>
-        <p class="text-stone-400 text-xs sm:text-sm max-w-md">
-          Har bir xona shinamlik, shovqinsiz akustika, yuqori sifatli to'shaklar va zamonaviy aqlli texnologiyalar bilan ta'minlangan.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        
-        <!-- Room 1: Deluxe King Room -->
-        <div class="glass-card rounded-2xl overflow-hidden group hover:border-gold-400/60 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative h-64 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800&auto=format&fit=crop" 
-                   alt="Deluxe King Room" 
-                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-              <div class="absolute top-4 right-4 bg-noir-900/90 border border-gold-500/40 text-gold-300 text-xs px-3 py-1 rounded-full font-semibold">
-                $180 <span class="text-[10px] font-normal text-stone-400">/ tun</span>
-              </div>
-            </div>
-            
-            <div class="p-6">
-              <div class="flex items-center gap-3 text-stone-400 text-xs mb-3">
-                <span><i class="fa-solid fa-arrows-up-down-left-right text-gold-400 mr-1"></i> 40 m²</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-user text-gold-400 mr-1"></i> 2 Mehmon</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-bed text-gold-400 mr-1"></i> King Bed</span>
-              </div>
-
-              <h3 class="font-serif text-2xl text-stone-100 mb-2 group-hover:text-gold-300 transition-colors">Deluxe King Room</h3>
-              <p class="text-stone-400 text-xs line-clamp-2 mb-4 leading-relaxed">
-                Yumshoq yoritish, marmar vanna va Toshkentning chiroyli shahar manzarasiga ega shinam xona.
-              </p>
-
-              <div class="flex items-center gap-3 py-3 border-t border-stone-800 text-gold-400 text-xs">
-                <span title="Wi-Fi" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-wifi"></i></span>
-                <span title="Smart TV" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-tv"></i></span>
-                <span title="Qahva mashinasi" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-mug-saucer"></i></span>
-                <span title="Konditsioner" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-wind"></i></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="px-6 pb-6 pt-0">
-            <button onclick="selectAndBook('Deluxe King Room', 180)" class="w-full py-2.5 rounded-xl border border-gold-500/50 hover:bg-gold-500 hover:text-noir-900 text-gold-400 font-semibold text-xs uppercase tracking-wider transition-all">
-              Tanlash & Band Qilish
-            </button>
-          </div>
-        </div>
-
-        <!-- Room 2: Executive Suite -->
-        <div class="glass-card rounded-2xl overflow-hidden group hover:border-gold-400/60 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative h-64 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop" 
-                   alt="Executive Suite" 
-                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-              <div class="absolute top-4 right-4 bg-noir-900/90 border border-gold-500/40 text-gold-300 text-xs px-3 py-1 rounded-full font-semibold">
-                $290 <span class="text-[10px] font-normal text-stone-400">/ tun</span>
-              </div>
-              <div class="absolute top-4 left-4 bg-gold-500 text-noir-950 text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold">
-                Mashhur
-              </div>
-            </div>
-            
-            <div class="p-6">
-              <div class="flex items-center gap-3 text-stone-400 text-xs mb-3">
-                <span><i class="fa-solid fa-arrows-up-down-left-right text-gold-400 mr-1"></i> 65 m²</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-users text-gold-400 mr-1"></i> 2-3 Mehmon</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-briefcase text-gold-400 mr-1"></i> Ish stoli</span>
-              </div>
-
-              <h3 class="font-serif text-2xl text-stone-100 mb-2 group-hover:text-gold-300 transition-colors">Executive Suite</h3>
-              <p class="text-stone-400 text-xs line-clamp-2 mb-4 leading-relaxed">
-                Alohida mehmonxona va yotoqxona, biznes vakillari uchun qulay mini-ofis va shaxsiy bar.
-              </p>
-
-              <div class="flex items-center gap-3 py-3 border-t border-stone-800 text-gold-400 text-xs">
-                <span title="Wi-Fi" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-wifi"></i></span>
-                <span title="Mini-bar" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-wine-glass"></i></span>
-                <span title="Batler" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-bell-concierge"></i></span>
-                <span title="Balkon" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-mountain-sun"></i></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="px-6 pb-6 pt-0">
-            <button onclick="selectAndBook('Executive Suite', 290)" class="w-full py-2.5 rounded-xl border border-gold-500/50 bg-gold-500/10 hover:bg-gold-500 hover:text-noir-900 text-gold-400 font-semibold text-xs uppercase tracking-wider transition-all">
-              Tanlash & Band Qilish
-            </button>
-          </div>
-        </div>
-
-        <!-- Room 3: Presidential Suite -->
-        <div class="glass-card rounded-2xl overflow-hidden group hover:border-gold-400/60 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative h-64 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop" 
-                   alt="Presidential Suite" 
-                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-              <div class="absolute top-4 right-4 bg-noir-900/90 border border-gold-500/40 text-gold-300 text-xs px-3 py-1 rounded-full font-semibold">
-                $550 <span class="text-[10px] font-normal text-stone-400">/ tun</span>
-              </div>
-            </div>
-            
-            <div class="p-6">
-              <div class="flex items-center gap-3 text-stone-400 text-xs mb-3">
-                <span><i class="fa-solid fa-arrows-up-down-left-right text-gold-400 mr-1"></i> 110 m²</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-users text-gold-400 mr-1"></i> 4 Mehmon</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-hot-tub-person text-gold-400 mr-1"></i> Jacuzzi</span>
-              </div>
-
-              <h3 class="font-serif text-2xl text-stone-100 mb-2 group-hover:text-gold-300 transition-colors">Presidential Suite</h3>
-              <p class="text-stone-400 text-xs line-clamp-2 mb-4 leading-relaxed">
-                Keng panoramik zal, shaxsiy jakuzi vannasi, ovqatlanish maydoni va shaxsiy batler xizmati.
-              </p>
-
-              <div class="flex items-center gap-3 py-3 border-t border-stone-800 text-gold-400 text-xs">
-                <span title="Jacuzzi" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-bath"></i></span>
-                <span title="Seyf" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-vault"></i></span>
-                <span title="Nonushta bepul" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-utensils"></i></span>
-                <span title="VIP Transfer" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-car"></i></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="px-6 pb-6 pt-0">
-            <button onclick="selectAndBook('Presidential Suite', 550)" class="w-full py-2.5 rounded-xl border border-gold-500/50 hover:bg-gold-500 hover:text-noir-900 text-gold-400 font-semibold text-xs uppercase tracking-wider transition-all">
-              Tanlash & Band Qilish
-            </button>
-          </div>
-        </div>
-
-        <!-- Room 4: Royal Penthouse -->
-        <div class="glass-card rounded-2xl overflow-hidden group hover:border-gold-400/60 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative h-64 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=800&auto=format&fit=crop" 
-                   alt="Royal Penthouse" 
-                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-              <div class="absolute top-4 right-4 bg-noir-900/90 border border-gold-500/40 text-gold-300 text-xs px-3 py-1 rounded-full font-semibold">
-                $890 <span class="text-[10px] font-normal text-stone-400">/ tun</span>
-              </div>
-              <div class="absolute top-4 left-4 gold-gradient-bg text-noir-950 text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold">
-                Royal Elita
-              </div>
-            </div>
-            
-            <div class="p-6">
-              <div class="flex items-center gap-3 text-stone-400 text-xs mb-3">
-                <span><i class="fa-solid fa-arrows-up-down-left-right text-gold-400 mr-1"></i> 180 m²</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-crown text-gold-400 mr-1"></i> 5+ Mehmon</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-spa text-gold-400 mr-1"></i> Shaxsiy Terrasa</span>
-              </div>
-
-              <h3 class="font-serif text-2xl text-stone-100 mb-2 group-hover:text-gold-300 transition-colors">Royal Penthouse</h3>
-              <p class="text-stone-400 text-xs line-clamp-2 mb-4 leading-relaxed">
-                Toshkent osmoni ostidagi shaxsiy ochiq terrasa, sauna, shaxsiy oshpaz va eng yuqori darajadagi dabdaba.
-              </p>
-
-              <div class="flex items-center gap-3 py-3 border-t border-stone-800 text-gold-400 text-xs">
-                <span title="Sauna" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-fire"></i></span>
-                <span title="Terrasa" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-cloud-sun"></i></span>
-                <span title="VIP Transfer" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-car"></i></span>
-                <span title="Shaxsiy Oshpaz" class="p-1.5 rounded-md bg-noir-800"><i class="fa-solid fa-kitchen-set"></i></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="px-6 pb-6 pt-0">
-            <button onclick="selectAndBook('Royal Penthouse', 890)" class="w-full py-2.5 rounded-xl border border-gold-500/50 hover:bg-gold-500 hover:text-noir-900 text-gold-400 font-semibold text-xs uppercase tracking-wider transition-all">
-              Tanlash & Band Qilish
-            </button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="amenities" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto">
+  <!-- Amenities Section -->
+  <section id="amenities" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto border-t border-gold-500/15">
     <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-      <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold">Besh Yulduzli Xizmatlar</span>
+      <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold">Besh Yulduzli Qulayliklar</span>
       <h2 class="text-3xl sm:text-5xl font-serif text-stone-100 font-light">
-        Sizning Rohat-Farog'atingiz Uchun <br><span class="gold-gradient-text italic">Eksklyuziv Imkoniyatlar</span>
+        Siz Uchun Yaratilgan <br><span class="gold-gradient-text italic">Eksklyuziv Imkoniyatlar</span>
       </h2>
       <p class="text-stone-400 text-xs sm:text-sm">
-        Azamat's Hotel da har bir daqiqa sizga yuksak estetik zavq va mukammal xotirjamlik bag'ishlaydi.
+        Azamat's Hotel da har bir daqiqa sizga yuksak estetik zavq bag'ishlaydi.
       </p>
     </div>
 
@@ -553,7 +567,7 @@
         </div>
         <h3 class="font-serif text-2xl text-stone-100 mb-3 group-hover:text-gold-300">Yopiq Isitiluvchi Hovuz</h3>
         <p class="text-stone-400 text-xs sm:text-sm leading-relaxed">
-          Yil bo'yi 29°C qulay haroratda saqlanuvchi, ionlashtirilgan toza suvli panoramik basseyn va dam olish zallari.
+          Yil bo'yi 29°C qulay haroratda saqlanuvchi panoramik basseyn va dam olish zallari.
         </p>
       </div>
 
@@ -563,7 +577,7 @@
         </div>
         <h3 class="font-serif text-2xl text-stone-100 mb-3 group-hover:text-gold-300">Royal Spa & Turk Hamomi</h3>
         <p class="text-stone-400 text-xs sm:text-sm leading-relaxed">
-          Sharqona an'analar va zamonaviy massaj terapiyalari, tabiiy moylar hamda fin saunasi.
+          Sharqona hamom marosimi, tabiiy efir moylari bilan massaj terapiyalari va fin saunasi.
         </p>
       </div>
 
@@ -571,9 +585,9 @@
         <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:bg-gold-500 group-hover:text-noir-900 transition-all">
           <i class="fa-solid fa-utensils text-2xl"></i>
         </div>
-        <h3 class="font-serif text-2xl text-stone-100 mb-3 group-hover:text-gold-300">"L'Azamat" Restorani & Bar</h3>
+        <h3 class="font-serif text-2xl text-stone-100 mb-3 group-hover:text-gold-300">"L'Azamat" Restorani</h3>
         <p class="text-stone-400 text-xs sm:text-sm leading-relaxed">
-          O'rta Yer dengizi va zamonaviy o'zbek fyujn taomlari, sara ichimliklar va sokin jonli musiqa.
+          O'rta Yer dengizi va tansiq o'zbek milliy taomlari, boy sharob kartasi va jonli musiqa.
         </p>
       </div>
 
@@ -581,9 +595,9 @@
         <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:bg-gold-500 group-hover:text-noir-900 transition-all">
           <i class="fa-solid fa-car-side text-2xl"></i>
         </div>
-        <h3 class="font-serif text-2xl text-stone-100 mb-3 group-hover:text-gold-300">VIP Transfer & Haydovchi</h3>
+        <h3 class="font-serif text-2xl text-stone-100 mb-3 group-hover:text-gold-300">VIP Transfer Maybach</h3>
         <p class="text-stone-400 text-xs sm:text-sm leading-relaxed">
-          Aeroport yoki temiryo'l vokzalidan kutib olish uchun Mercedes-Maybach va BMW 7 avtomobillari xizmati.
+          Toshkent xalqaro aeroportidan kutib olish va kuzatib qo'yish uchun shaxsiy premium avtomobillar.
         </p>
       </div>
 
@@ -591,9 +605,9 @@
         <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:bg-gold-500 group-hover:text-noir-900 transition-all">
           <i class="fa-solid fa-dumbbell text-2xl"></i>
         </div>
-        <h3 class="font-serif text-2xl text-stone-100 mb-3 group-hover:text-gold-300">Premium Fitnes Markazi</h3>
+        <h3 class="font-serif text-2xl text-stone-100 mb-3 group-hover:text-gold-300">TechnoGym Fitnes Markazi</h3>
         <p class="text-stone-400 text-xs sm:text-sm leading-relaxed">
-          Eng so'nggi TechnoGym kardio va kuch mashqlari trenajyorlari bilan jihozlangan zal.
+          Italiyaning zamonaviy trenajyorlari bilan jihozlangan 24 soat ochiq sport zali.
         </p>
       </div>
 
@@ -603,13 +617,14 @@
         </div>
         <h3 class="font-serif text-2xl text-stone-100 mb-3 group-hover:text-gold-300">Diplomatik Konferens-Zal</h3>
         <p class="text-stone-400 text-xs sm:text-sm leading-relaxed">
-          Maxfiy muzokaralar, biznes anjumanlar va rasmiy tadbirlar uchun zamonaviy audio-video texnologiyalar.
+          Yuqori darajadagi muzokaralar va anjumanlar uchun multimedia bilan jihozlangan zal.
         </p>
       </div>
 
     </div>
   </section>
 
+  <!-- Dining Section -->
   <section id="dining" class="py-24 bg-noir-850 border-t border-gold-500/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -621,21 +636,21 @@
             <span class="gold-gradient-text italic font-normal">Nafis Taomlar Restorani</span>
           </h2>
           <p class="text-stone-300 text-sm leading-relaxed">
-            Bizning xalqaro darajadagi bosh oshpazimiz siz uchun tayyorlagan mualliflik menyusi. Har bir taom — san'at asari va unutilmas taassurot.
+            Bizning xalqaro darajadagi bosh oshpazimiz taqdim etgan mualliflik taomlari. Har kuni tonggi 07:00 dan 11:00 gacha shohona nonushta (Shved stoli) taqdim etiladi.
           </p>
           
           <ul class="space-y-3 text-xs sm:text-sm text-stone-300">
             <li class="flex items-center gap-3">
               <span class="w-2 h-2 rounded-full bg-gold-500"></span>
-              <span>Dengiz mahsulotlari va O'rta Yer dengizi retseptlari</span>
+              <span>Dengiz mahsulotlari va O'rta Yer dengizi taomlari</span>
             </li>
             <li class="flex items-center gap-3">
               <span class="w-2 h-2 rounded-full bg-gold-500"></span>
-              <span>Milliy tansiq taomlarning zamonaviy fyujn ko'rinishi</span>
+              <span>Milliy tansiq taomlarning zamonaviy ko'rinishi</span>
             </li>
             <li class="flex items-center gap-3">
               <span class="w-2 h-2 rounded-full bg-gold-500"></span>
-              <span>Har kuni 07:00 dan 11:00 gacha shohona nonushta</span>
+              <span>24/7 xonaga taom yetkazib berish (Room service)</span>
             </li>
           </ul>
 
@@ -664,13 +679,13 @@
     </div>
   </section>
 
-  <!-- Photo Gallery Grid -->
+  <!-- Photo Gallery -->
   <section id="gallery" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto">
     <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
       <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold">Vizual Sayohat</span>
       <h2 class="text-3xl sm:text-5xl font-serif text-stone-100 font-light">Mehmonxona Fotogalereyasi</h2>
       <p class="text-stone-400 text-xs sm:text-sm">
-        Azamat's Hotel dagi har bir burchak hashamat va mukammallik ifodasidir.
+        Azamat's Hotel binosi, yotoqxonalari va dam olish maydonlaridan fotolavhalar.
       </p>
     </div>
 
@@ -679,7 +694,7 @@
         <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=600&auto=format&fit=crop" 
              alt="Luxury Room" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
         <div class="absolute inset-0 bg-noir-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center">
-          <span class="text-xs font-serif text-gold-300 uppercase tracking-widest">Lyuks Yotoqxona</span>
+          <span class="text-xs font-serif text-gold-300 uppercase tracking-widest">Lyuks Xona</span>
         </div>
       </div>
 
@@ -693,9 +708,9 @@
 
       <div class="rounded-xl overflow-hidden border border-gold-500/20 group relative h-60">
         <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=600&auto=format&fit=crop" 
-             alt="Tashqi Bino" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+             alt="Bino ko'rinishi" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
         <div class="absolute inset-0 bg-noir-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center">
-          <span class="text-xs font-serif text-gold-300 uppercase tracking-widest">Bosh Bino & Tungi Chiroqlar</span>
+          <span class="text-xs font-serif text-gold-300 uppercase tracking-widest">Bosh Fasadi</span>
         </div>
       </div>
 
@@ -703,36 +718,33 @@
         <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=600&auto=format&fit=crop" 
              alt="Resepshn va Lobby" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
         <div class="absolute inset-0 bg-noir-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center">
-          <span class="text-xs font-serif text-gold-300 uppercase tracking-widest">Resepshn & Kutish Zali</span>
+          <span class="text-xs font-serif text-gold-300 uppercase tracking-widest">Lobby & Qabulxona</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Contact Section -->
   <section id="contact" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto border-t border-gold-500/15">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
       
-      <!-- Contact Info Section exactly as requested in screenshot -->
+      <!-- Contact Cards -->
       <div class="lg:col-span-5 space-y-7">
         <div>
-          <!-- Badge -->
           <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold block mb-2">
             ALOQA & MANZIL
           </span>
-          <!-- Heading -->
           <h2 class="text-4xl sm:text-5xl font-serif text-stone-100 font-light leading-tight">
             Biz bilan <span class="font-serif italic font-normal text-gold-400">Bog'laning</span>
           </h2>
-          <!-- Subtext -->
           <p class="text-stone-300 text-xs sm:text-sm mt-3 leading-relaxed">
             Savollaringiz bormi yoki maxsus transfer buyurtma qilmoqchimisiz? Bizning konsyerj xizmatimiz doimo aloqada.
           </p>
         </div>
 
-        <!-- 3 Luxury Contact Cards -->
         <div class="space-y-4">
           
-          <!-- Card 1: Manzil -->
+          <!-- Manzil -->
           <div class="flex items-start gap-4 p-4 rounded-xl bg-noir-850/80 border border-gold-500/20 hover:border-gold-500/50 transition-all">
             <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 shrink-0 mt-0.5">
               <i class="fa-solid fa-location-dot text-lg"></i>
@@ -745,21 +757,21 @@
             </div>
           </div>
 
-          <!-- Card 2: Telefon / Bron with +998 50 886 81 15 -->
+          <!-- Telefon / Bron -->
           <div class="flex items-start gap-4 p-4 rounded-xl bg-noir-850/80 border border-gold-500/20 hover:border-gold-500/50 transition-all">
             <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 shrink-0 mt-0.5">
               <i class="fa-solid fa-phone text-lg"></i>
             </div>
             <div>
               <h4 class="text-xs uppercase tracking-wider text-gold-400 font-bold mb-1">TELEFON / BRON:</h4>
-              <a href="tel:+998508868115" class="text-stone-100 hover:text-gold-300 text-sm font-semibold tracking-wide transition-colors block">
+              <a href="tel:+998508868115" class="text-stone-100 hover:text-gold-300 text-base font-semibold tracking-wide transition-colors block">
                 +998 50 886 81 15
               </a>
-              <span class="text-[11px] text-stone-400">24/7 Bron qilish va konsyerj</span>
+              <span class="text-[11px] text-stone-400">24/7 Bron qilish va xizmat ko'rsatish</span>
             </div>
           </div>
 
-          <!-- Card 3: Elektron Pochta with azamatboymurodov19@gmail.com -->
+          <!-- Elektron Pochta -->
           <div class="flex items-start gap-4 p-4 rounded-xl bg-noir-850/80 border border-gold-500/20 hover:border-gold-500/50 transition-all">
             <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 shrink-0 mt-0.5">
               <i class="fa-solid fa-envelope text-lg"></i>
@@ -769,15 +781,14 @@
               <a href="mailto:azamatboymurodov19@gmail.com" class="text-stone-100 hover:text-gold-300 text-xs sm:text-sm font-medium transition-colors block break-all">
                 azamatboymurodov19@gmail.com
               </a>
-              <span class="text-[11px] text-stone-400">Rasmiy xatlar va takliflar uchun</span>
+              <span class="text-[11px] text-stone-400">Rasmiy xatlar va takliflar</span>
             </div>
           </div>
 
         </div>
 
-        <!-- Social Media Shortcuts -->
         <div class="pt-2 flex items-center gap-3">
-          <span class="text-xs uppercase tracking-wider text-stone-400">Tarmoqlar:</span>
+          <span class="text-xs uppercase tracking-wider text-stone-400">Ijtimoiy:</span>
           <a href="https://t.me" target="_blank" rel="noreferrer" class="w-9 h-9 rounded-full bg-noir-850 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-noir-900 transition-all" title="Telegram">
             <i class="fa-brands fa-telegram"></i>
           </a>
@@ -792,14 +803,14 @@
 
       <!-- Quick Message Form -->
       <div class="lg:col-span-7 glass-card p-8 rounded-3xl">
-        <h3 class="font-serif text-2xl text-stone-100 mb-2">Onlayn Xabar Qoldirish</h3>
-        <p class="text-xs text-stone-400 mb-6">Murojaatingizni yozib qoldiring, administratorimiz qisqa vaqt ichida siz bilan bog'lanadi.</p>
+        <h3 class="font-serif text-2xl text-stone-100 mb-2">Onlayn Xabar Yuborish</h3>
+        <p class="text-xs text-stone-400 mb-6">Murojaat qoldiring, administratorimiz qisqa vaqt ichida siz bilan bog'lanadi.</p>
         
         <form onsubmit="handleContactSubmit(event)" class="space-y-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs uppercase tracking-wider text-gold-400 font-medium mb-1">To'liq Ismingiz</label>
-              <input type="text" required placeholder="Masalan: Sardor Aliyev" class="w-full bg-noir-850 border border-stone-700 focus:border-gold-500 rounded-xl px-4 py-3 text-xs text-stone-100 focus:outline-none focus:ring-1 focus:ring-gold-500">
+              <input type="text" required placeholder="Masalan: Sardor Rahimov" class="w-full bg-noir-850 border border-stone-700 focus:border-gold-500 rounded-xl px-4 py-3 text-xs text-stone-100 focus:outline-none focus:ring-1 focus:ring-gold-500">
             </div>
             <div>
               <label class="block text-xs uppercase tracking-wider text-gold-400 font-medium mb-1">Telefon Raqamingiz</label>
@@ -807,7 +818,7 @@
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-gold-400 font-medium mb-1">Xabar yoki Istagingiz</label>
+            <label class="block text-xs uppercase tracking-wider text-gold-400 font-medium mb-1">Xabar yoki Savolingiz</label>
             <textarea rows="4" required placeholder="Xonani bron qilish, shaxsiy transfer yoki boshqa savolingiz..." class="w-full bg-noir-850 border border-stone-700 focus:border-gold-500 rounded-xl px-4 py-3 text-xs text-stone-100 focus:outline-none focus:ring-1 focus:ring-gold-500"></textarea>
           </div>
           <button type="submit" class="w-full py-3.5 rounded-xl gold-gradient-bg hover:brightness-110 text-noir-950 font-bold uppercase tracking-widest text-xs transition-all shadow-lg hover-gold-glow flex items-center justify-center gap-2">
@@ -820,11 +831,12 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="bg-noir-950 border-t border-gold-500/20 py-14 px-4 sm:px-8">
     <div class="max-w-7xl mx-auto space-y-10">
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Col 1: Brand -->
+        <!-- Col 1 -->
         <div class="space-y-4">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full border border-gold-500/60 flex items-center justify-center bg-noir-900">
@@ -836,23 +848,23 @@
             </div>
           </div>
           <p class="text-xs text-stone-400 leading-relaxed">
-            Poytaxtning markazida qad ko'targan, oliy toifadagi qulaylik va xizmat ko'rsatish standartlariga ega hashamatli butik mehmonxona.
+            Poytaxt markazidagi Hotel Manor standartlaridagi hashamatli butik maskan.
           </p>
         </div>
 
-        <!-- Col 2: Navigation -->
+        <!-- Col 2 -->
         <div class="space-y-3">
-          <h4 class="text-xs uppercase tracking-widest text-gold-400 font-bold">Tezkor Havolalar</h4>
+          <h4 class="text-xs uppercase tracking-widest text-gold-400 font-bold">Bo'limlar</h4>
           <ul class="space-y-2 text-xs text-stone-400">
             <li><a href="#about" class="hover:text-gold-400 transition-colors">Biz Haqimizda</a></li>
-            <li><a href="#rooms" class="hover:text-gold-400 transition-colors">Xonalar & Narxlar</a></li>
+            <li><a href="#rooms" class="hover:text-gold-400 transition-colors">Xonalar Katalogi</a></li>
             <li><a href="#dining" class="hover:text-gold-400 transition-colors">L'Azamat Restorani</a></li>
-            <li><a href="#amenities" class="hover:text-gold-400 transition-colors">Spa & Basseyn</a></li>
+            <li><a href="#amenities" class="hover:text-gold-400 transition-colors">Basseyn & Spa</a></li>
             <li><a href="#gallery" class="hover:text-gold-400 transition-colors">Fotogalereya</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Direct Contacts with updated info -->
+        <!-- Col 3: Direct info -->
         <div class="space-y-3">
           <h4 class="text-xs uppercase tracking-widest text-gold-400 font-bold">Aloqa Markazi</h4>
           <ul class="space-y-2 text-xs text-stone-300">
@@ -875,10 +887,10 @@
           </ul>
         </div>
 
-        <!-- Col 4: Booking Button & Info -->
+        <!-- Col 4 -->
         <div class="space-y-3">
           <h4 class="text-xs uppercase tracking-widest text-gold-400 font-bold">Xonani Band Qilish</h4>
-          <p class="text-xs text-stone-400">To'g'ridan-to'g'ri saytimiz orqali buyurtma bering va maxsus transferga ega bo'ling.</p>
+          <p class="text-xs text-stone-400">Hozir bron qiling va eng qulay narxlarga ega bo'ling.</p>
           <button onclick="openBookingModal()" class="w-full py-2.5 rounded-xl gold-gradient-bg text-noir-950 font-bold text-xs uppercase tracking-wider hover:brightness-110 transition-all shadow-md">
             Hozir Band Qilish
           </button>
@@ -897,6 +909,168 @@
     </div>
   </footer>
 
+  <!-- ========================================================================= -->
+  <!-- EXACT HOTEL MANOR STYLE ROOM DETAILS MODAL (Matching User Screenshot)    -->
+  <!-- ========================================================================= -->
+  <div id="roomDetailModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto">
+    
+    <!-- Modal Card (White/Crisp Manor Theme as in screenshot) -->
+    <div class="bg-white text-stone-800 w-full max-w-5xl rounded-xl shadow-2xl overflow-hidden relative my-auto flex flex-col max-h-[92vh]">
+      
+      <!-- 1. Header with Room Title & Close Button -->
+      <div class="flex items-center justify-between px-6 py-4 border-b border-stone-200 shrink-0 bg-white">
+        <h2 id="modalDetailTitle" class="text-lg md:text-xl font-semibold tracking-wider text-stone-700 uppercase font-sans">
+          SUPERIOR ROOM
+        </h2>
+        <button onclick="closeRoomDetailModal()" class="text-stone-400 hover:text-stone-800 transition-colors p-1" title="Yopish">
+          <i class="fa-solid fa-xmark text-2xl"></i>
+        </button>
+      </div>
+
+      <!-- 2. Scrollable Body: Mosaic Gallery & Two Column Info -->
+      <div class="overflow-y-auto p-4 sm:p-6 modal-scroll space-y-6">
+        
+        <!-- Photo Mosaic Gallery Grid (Exact layout from screenshot) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2 h-auto lg:h-[350px]">
+          
+          <!-- Left Large Featured Image with Badge -->
+          <div class="lg:col-span-6 relative h-64 lg:h-full rounded-md overflow-hidden bg-stone-100 group">
+            <img id="modalMainImg" 
+                 src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1000&auto=format&fit=crop" 
+                 alt="Main room view" 
+                 class="w-full h-full object-cover">
+            
+            <!-- Green Badge "Eng ko'p sotildi" -->
+            <div id="modalBadge" class="absolute top-3 left-3 bg-[#2e7d32] text-white text-xs font-semibold px-3 py-1 rounded flex items-center gap-1.5 shadow">
+              <i class="fa-solid fa-trophy text-[11px]"></i>
+              <span id="modalBadgeText">Eng ko'p sotildi</span>
+            </div>
+          </div>
+
+          <!-- Right Mosaic Grid of 5-6 Thumbnails -->
+          <div class="lg:col-span-6 grid grid-cols-3 grid-rows-2 gap-2 h-64 lg:h-full">
+            
+            <div class="rounded overflow-hidden bg-stone-100 cursor-pointer relative group" onclick="swapModalImage(this)">
+              <img id="thumb1" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=500&auto=format&fit=crop" alt="Bedroom detail" class="w-full h-full object-cover group-hover:opacity-85 transition">
+            </div>
+
+            <div class="rounded overflow-hidden bg-stone-100 cursor-pointer relative group" onclick="swapModalImage(this)">
+              <img id="thumb2" src="https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=500&auto=format&fit=crop" alt="Beds arrangement" class="w-full h-full object-cover group-hover:opacity-85 transition">
+            </div>
+
+            <div class="rounded overflow-hidden bg-stone-100 cursor-pointer relative group" onclick="swapModalImage(this)">
+              <img id="thumb3" src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=500&auto=format&fit=crop" alt="Bathroom & Marble" class="w-full h-full object-cover group-hover:opacity-85 transition">
+            </div>
+
+            <div class="rounded overflow-hidden bg-stone-100 cursor-pointer relative group" onclick="swapModalImage(this)">
+              <img id="thumb4" src="https://images.unsplash.com/photo-1540518614846-7ede433c4ef5?q=80&w=500&auto=format&fit=crop" alt="Room desk" class="w-full h-full object-cover group-hover:opacity-85 transition">
+            </div>
+
+            <div class="rounded overflow-hidden bg-stone-100 cursor-pointer relative group" onclick="swapModalImage(this)">
+              <img id="thumb5" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=500&auto=format&fit=crop" alt="Amenities" class="w-full h-full object-cover group-hover:opacity-85 transition">
+            </div>
+
+            <div class="rounded overflow-hidden bg-stone-100 cursor-pointer relative group" onclick="swapModalImage(this)">
+              <img id="thumb6" src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=500&auto=format&fit=crop" alt="Coffee set" class="w-full h-full object-cover group-hover:opacity-85 transition">
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Mid Section: Specifications & Description (Two Columns as in screenshot) -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 pt-2">
+          
+          <!-- Left Column: Capacity, Size, and Pill Amenities -->
+          <div class="md:col-span-6 space-y-4">
+            
+            <!-- Capacity text with people icon -->
+            <div class="flex items-start gap-2 text-stone-700 text-xs sm:text-sm">
+              <i class="fa-solid fa-user-group text-stone-500 mt-0.5"></i>
+              <p>
+                <strong id="modalCapacityMain">3 tagacha joy</strong> sig'imi. 3 dan 18 yoshgacha bir bola uchun alohida joysiz mumkin.
+              </p>
+            </div>
+
+            <!-- Size and Room Count -->
+            <div class="flex items-center gap-4 text-stone-600 text-xs sm:text-sm">
+              <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-up-right-and-down-left-from-center text-stone-500"></i>
+                <span id="modalArea">32 m²</span>
+              </span>
+              <span class="flex items-center gap-1.5">
+                <i class="fa-regular fa-square text-stone-500"></i>
+                <span id="modalRoomsCount">1 xona</span>
+              </span>
+            </div>
+
+            <!-- Pill Badges (Wi-Fi, Konditsioner, Seyf, Telefon, Soch quritgich) -->
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-stone-100 text-stone-700 text-xs">
+                <i class="fa-solid fa-wifi text-stone-500"></i> Wi-Fi
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-stone-100 text-stone-700 text-xs">
+                <i class="fa-solid fa-wind text-stone-500"></i> Konditsioner
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-stone-100 text-stone-700 text-xs">
+                <i class="fa-solid fa-vault text-stone-500"></i> Seyf
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-stone-100 text-stone-700 text-xs">
+                <i class="fa-solid fa-phone text-stone-500"></i> Telefon
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-stone-100 text-stone-700 text-xs">
+                <i class="fa-solid fa-shower text-stone-500"></i> Soch quritgich
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-stone-100 text-stone-700 text-xs">
+                <i class="fa-solid fa-tv text-stone-500"></i> Smart TV
+              </span>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Detailed Text Lines -->
+          <div class="md:col-span-6 space-y-2.5 text-stone-600 text-xs sm:text-sm">
+            <p id="modalDescTitle" class="font-medium text-stone-800">
+              SUPERIOR ROOM - shahar markazidagi keng ikki kishilik xona
+            </p>
+            <p>
+              Maydoni: <span id="modalDescArea" class="font-medium text-stone-700">32 m2 (yuqori qulaylik ko'rsatkichi)</span>
+            </p>
+            <p id="modalDescSuitability">
+              Imkoniyatlar: 2 ta asosiy joy (er - xotin yoki biznes sayohatchisi uchun ideal)
+            </p>
+            <p id="modalDescBeds">
+              Uxlash joylari: 1 ta katta ikki kishilik karavot (Qirol/Malika) yoki 2 ta alohida karavot (egizak)
+            </p>
+            <p class="text-stone-500 text-[11px] pt-1">
+              Qo'shimcha: Bepul yuqori tezlikdagi optik internet, choy/qahva jamlanmasi, shaxsiy gigiyena vositalari, 24/7 xona xizmati.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- 3. Bottom Sticky Action Bar (Orange Button as in screenshot) -->
+      <div class="border-t border-stone-200 px-6 py-3.5 bg-stone-50 flex items-center justify-between shrink-0">
+        <div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-xs text-stone-600 font-medium">US$</span>
+            <span id="modalBottomPrice" class="text-2xl font-bold text-stone-800 tracking-tight">102</span>
+            <span class="text-xs text-stone-500 ml-1">dan boshlab</span>
+          </div>
+          <span class="text-[11px] text-stone-500 block -mt-0.5">1 kecha uchun</span>
+        </div>
+
+        <button onclick="bookDirectFromDetailModal()" class="bg-[#ff9800] hover:bg-[#f57c00] active:scale-95 text-white font-semibold text-xs sm:text-sm px-6 sm:px-8 py-3 rounded uppercase tracking-wider transition-all shadow-md">
+          Boshqa sana uchun narxni ko'rish
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Reservation Booking Form Modal -->
   <div id="bookingModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-noir-950/85 backdrop-blur-md">
     <div class="glass-card bg-noir-850 w-full max-w-xl rounded-3xl p-6 sm:p-8 border border-gold-500/40 shadow-2xl relative max-h-[92vh] overflow-y-auto">
       
@@ -919,10 +1093,10 @@
         <div>
           <label class="block text-xs uppercase tracking-wider text-gold-400 font-medium mb-1">Xona toifasi</label>
           <select id="modalRoomSelect" onchange="calculateTotalPrice()" class="w-full bg-noir-900 border border-stone-700 focus:border-gold-500 rounded-xl px-4 py-2.5 text-xs text-stone-100 focus:outline-none">
-            <option value="180" data-name="Deluxe King Room">Deluxe King Room ($180 / tun)</option>
-            <option value="290" data-name="Executive Suite">Executive Suite ($290 / tun)</option>
-            <option value="550" data-name="Presidential Suite">Presidential Suite ($550 / tun)</option>
-            <option value="890" data-name="Royal Penthouse">Royal Penthouse ($890 / tun)</option>
+            <option value="102" data-name="Superior Room">Superior Room (US$ 102 / tun)</option>
+            <option value="180" data-name="Deluxe King Room">Deluxe King Room (US$ 180 / tun)</option>
+            <option value="290" data-name="Executive Suite">Executive Suite (US$ 290 / tun)</option>
+            <option value="550" data-name="Presidential Suite">Presidential Royal Suite (US$ 550 / tun)</option>
           </select>
         </div>
 
@@ -940,7 +1114,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs uppercase tracking-wider text-gold-400 font-medium mb-1">To'liq ismingiz</label>
-            <input type="text" id="modalGuestName" required placeholder="Masalan: Sardor Rahimov" class="w-full bg-noir-900 border border-stone-700 focus:border-gold-500 rounded-xl px-4 py-2.5 text-xs text-stone-100 focus:outline-none">
+            <input type="text" id="modalGuestName" required placeholder="Masalan: Dilshod Rahimov" class="w-full bg-noir-900 border border-stone-700 focus:border-gold-500 rounded-xl px-4 py-2.5 text-xs text-stone-100 focus:outline-none">
           </div>
           <div>
             <label class="block text-xs uppercase tracking-wider text-gold-400 font-medium mb-1">Telefon / Telegram</label>
@@ -950,16 +1124,16 @@
 
         <div>
           <label class="block text-xs uppercase tracking-wider text-gold-400 font-medium mb-1">Maxsus istaklar (ixtiyoriy)</label>
-          <input type="text" id="modalRequests" placeholder="VIP transfer, erta kelish yoki maxsus xona bezagi..." class="w-full bg-noir-900 border border-stone-700 focus:border-gold-500 rounded-xl px-4 py-2.5 text-xs text-stone-100 focus:outline-none">
+          <input type="text" id="modalRequests" placeholder="VIP transfer, erta kirish yoki xona bezagi..." class="w-full bg-noir-900 border border-stone-700 focus:border-gold-500 rounded-xl px-4 py-2.5 text-xs text-stone-100 focus:outline-none">
         </div>
 
         <div class="bg-noir-900/90 border border-gold-500/20 rounded-xl p-4 flex items-center justify-between">
           <div>
             <span class="text-xs text-stone-400 block">Jami hisoblangan narx:</span>
-            <span id="nightsCount" class="text-[11px] text-gold-400 font-medium">1 tun uchun</span>
+            <span id="nightsCount" class="text-[11px] text-gold-400 font-medium">1 kecha uchun</span>
           </div>
           <div class="text-right">
-            <span id="totalPriceDisplay" class="font-serif text-2xl font-bold gold-gradient-text">$180</span>
+            <span id="totalPriceDisplay" class="font-serif text-2xl font-bold gold-gradient-text">US$ 102</span>
           </div>
         </div>
 
@@ -984,7 +1158,171 @@
   </div>
 
   <script>
-    // Set initial date defaults
+    // Detailed Data for each Room (Matching Hotel Manor logic)
+    const roomCatalogData = {
+      superior: {
+        title: "SUPERIOR ROOM",
+        badge: "Eng ko'p sotildi",
+        badgeColor: "#2e7d32",
+        price: 102,
+        area: "32 m²",
+        roomsCount: "1 xona",
+        capacityText: "3 tagacha joy",
+        descTitle: "SUPERIOR ROOM - shahar markazidagi keng ikki kishilik xona",
+        descArea: "32 m2 (yuqori qulaylik ko'rsatkichi)",
+        descSuitability: "Imkoniyatlar: 2 ta asosiy joy (er - xotin yoki biznes sayohatchisi uchun ideal)",
+        descBeds: "Uxlash joylari: 1 ta katta ikki kishilik karavot (Qirol/Malika) yoki 2 ta alohida karavot (egizak)",
+        images: [
+          "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1540518614846-7ede433c4ef5?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=500&auto=format&fit=crop"
+        ]
+      },
+      deluxe: {
+        title: "DELUXE KING ROOM",
+        badge: "⭐ Ommabop Tanlov",
+        badgeColor: "#a38456",
+        price: 180,
+        area: "42 m²",
+        roomsCount: "1 xona",
+        capacityText: "2-3 kishilik",
+        descTitle: "DELUXE KING ROOM - nozik did bilan jihozlangan hashamatli xona",
+        descArea: "42 m2 (panoramik derazalar va sokin atmosfera)",
+        descSuitability: "Imkoniyatlar: Yuqori darajadagi xizmat va shaxsiy dam olish uchun ideal",
+        descBeds: "Uxlash joylari: 1 ta super king-size oropedik karavot",
+        images: [
+          "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1540518614846-7ede433c4ef5?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=500&auto=format&fit=crop"
+        ]
+      },
+      executive: {
+        title: "EXECUTIVE SUITE",
+        badge: "Biznes Toifa",
+        badgeColor: "#1d4ed8",
+        price: 290,
+        area: "65 m²",
+        roomsCount: "2 xona",
+        capacityText: "3-4 kishilik",
+        descTitle: "EXECUTIVE SUITE - alohida mehmonxona va yotoqxonali keng lyuks",
+        descArea: "65 m2 (shaxsiy ish stoli va mini muzokara maydoni)",
+        descSuitability: "Imkoniyatlar: Biznes vakillari, diplomatlar va qulaylikni qadrlovchi oilalar uchun",
+        descBeds: "Uxlash joylari: 1 ta katta King bed + qulay ochiluvchi divan",
+        images: [
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1540518614846-7ede433c4ef5?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=500&auto=format&fit=crop"
+        ]
+      },
+      presidential: {
+        title: "PRESIDENTIAL ROYAL SUITE",
+        badge: "Qirollik Hashamati",
+        badgeColor: "#b45309",
+        price: 550,
+        area: "120 m²",
+        roomsCount: "3 xona",
+        capacityText: "4-5 kishilik",
+        descTitle: "PRESIDENTIAL ROYAL SUITE - Toshkentdagi eng nufuzli suitlardan biri",
+        descArea: "120 m2 (jakuzi vannasi, shaxsiy oshxona, panoramik terrasa)",
+        descSuitability: "Imkoniyatlar: Yuqori martabali mehmonlar uchun to'liq maxfiylik va VIP xizmat",
+        descBeds: "Uxlash joylari: Master bedroom King bed + Ikkinchi mehmon xonasi",
+        images: [
+          "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1540518614846-7ede433c4ef5?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=500&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=500&auto=format&fit=crop"
+        ]
+      }
+    };
+
+    let currentSelectedRoomKey = 'superior';
+
+    // Open Hotel Manor Style Room Details Modal
+    function openRoomDetailModal(roomKey) {
+      const data = roomCatalogData[roomKey] || roomCatalogData.superior;
+      currentSelectedRoomKey = roomKey;
+
+      document.getElementById('modalDetailTitle').innerText = data.title;
+      document.getElementById('modalBadgeText').innerText = data.badge;
+      document.getElementById('modalBadge').style.backgroundColor = data.badgeColor;
+      document.getElementById('modalArea').innerText = data.area;
+      document.getElementById('modalRoomsCount').innerText = data.roomsCount;
+      document.getElementById('modalCapacityMain').innerText = data.capacityText;
+      document.getElementById('modalDescTitle').innerText = data.descTitle;
+      document.getElementById('modalDescArea').innerText = data.descArea;
+      document.getElementById('modalDescSuitability').innerText = data.descSuitability;
+      document.getElementById('modalDescBeds').innerText = data.descBeds;
+      document.getElementById('modalBottomPrice').innerText = data.price;
+
+      // Populate images
+      document.getElementById('modalMainImg').src = data.images[0];
+      for (let i = 1; i <= 6; i++) {
+        const thumb = document.getElementById('thumb' + i);
+        if (thumb && data.images[i]) {
+          thumb.src = data.images[i];
+        }
+      }
+
+      document.getElementById('roomDetailModal').classList.remove('hidden');
+    }
+
+    function closeRoomDetailModal() {
+      document.getElementById('roomDetailModal').classList.add('hidden');
+    }
+
+    // Swap main hero photo on clicking mosaic thumb
+    function swapModalImage(element) {
+      const thumbImg = element.querySelector('img');
+      const mainImg = document.getElementById('modalMainImg');
+      if (thumbImg && mainImg) {
+        const temp = mainImg.src;
+        mainImg.src = thumbImg.src;
+        thumbImg.src = temp;
+      }
+    }
+
+    // Direct transition from Detail Modal to Booking Reservation Form
+    function bookDirectFromDetailModal() {
+      closeRoomDetailModal();
+      const select = document.getElementById('modalRoomSelect');
+      const data = roomCatalogData[currentSelectedRoomKey];
+      
+      // Match selection
+      for (let i = 0; i < select.options.length; i++) {
+        if (parseInt(select.options[i].value, 10) === data.price) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+      openBookingModal();
+    }
+
+    // Booking Checkout Modal open/close
+    function openBookingModal() {
+      document.getElementById('bookingModal').classList.remove('hidden');
+      calculateTotalPrice();
+    }
+
+    function closeBookingModal() {
+      document.getElementById('bookingModal').classList.add('hidden');
+    }
+
+    // Date defaults setup
     function setupDefaultDates() {
       const today = new Date();
       const tomorrow = new Date();
@@ -1015,7 +1353,7 @@
       }
     }
 
-    // Toggle Mobile Drawer
+    // Toggle Mobile Navbar
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
       if (menu) menu.classList.toggle('hidden');
@@ -1026,34 +1364,10 @@
       mobileMenuBtn.addEventListener('click', toggleMobileMenu);
     }
 
-    // Modal Control
-    function openBookingModal() {
-      const modal = document.getElementById('bookingModal');
-      modal.classList.remove('hidden');
-      calculateTotalPrice();
-    }
-
-    function closeBookingModal() {
-      const modal = document.getElementById('bookingModal');
-      modal.classList.add('hidden');
-    }
-
-    // Selection helper from cards
-    function selectAndBook(roomName, price) {
-      const modalSelect = document.getElementById('modalRoomSelect');
-      for (let i = 0; i < modalSelect.options.length; i++) {
-        if (modalSelect.options[i].getAttribute('data-name') === roomName) {
-          modalSelect.selectedIndex = i;
-          break;
-        }
-      }
-      openBookingModal();
-    }
-
-    // Automated Price Calculation
+    // Calculate reservation total
     function calculateTotalPrice() {
       const select = document.getElementById('modalRoomSelect');
-      const pricePerNight = parseInt(select.value, 10) || 180;
+      const pricePerNight = parseInt(select.value, 10) || 102;
 
       const inVal = document.getElementById('modalCheckIn').value;
       const outVal = document.getElementById('modalCheckOut').value;
@@ -1070,11 +1384,11 @@
       }
 
       const total = pricePerNight * nights;
-      document.getElementById('nightsCount').innerText = `${nights} tun uchun`;
-      document.getElementById('totalPriceDisplay').innerText = `$${total}`;
+      document.getElementById('nightsCount').innerText = `${nights} kecha uchun`;
+      document.getElementById('totalPriceDisplay').innerText = `US$ ${total}`;
     }
 
-    // Non-blocking Toast Notification
+    // Non-blocking Toast notification
     function showNotification(title, message) {
       const toast = document.getElementById('toastNotification');
       document.getElementById('toastTitle').innerText = title;
@@ -1090,7 +1404,7 @@
       }, 5000);
     }
 
-    // Booking Submission Handler
+    // Reservation submit
     function handleReservationSubmit(e) {
       e.preventDefault();
       const guestName = document.getElementById('modalGuestName').value;
@@ -1101,13 +1415,13 @@
       closeBookingModal();
       showNotification(
         "Bron Qabul Qilindi!", 
-        `Hurmatli ${guestName}, ${roomName} (${total}) uchun buyurtmangiz qabul qilindi. Tez orada +998 50 886 81 15 raqamidan siz bilan bog'lanamiz.`
+        `Hurmatli ${guestName}, ${roomName} (${total}) uchun so'rovingiz qabul qilindi. Tez orada +998 50 886 81 15 raqamidan bog'lanamiz.`
       );
       document.getElementById('reservationForm').reset();
       setupDefaultDates();
     }
 
-    // Hero Quick Availability Search
+    // Hero search handler
     function handleHeroSearch(e) {
       e.preventDefault();
       const checkIn = document.getElementById('heroCheckIn').value;
@@ -1118,23 +1432,31 @@
       document.getElementById('modalCheckOut').value = checkOut;
 
       const modalSelect = document.getElementById('modalRoomSelect');
-      if (roomType === 'deluxe') modalSelect.selectedIndex = 0;
-      if (roomType === 'executive') modalSelect.selectedIndex = 1;
-      if (roomType === 'presidential') modalSelect.selectedIndex = 2;
-      if (roomType === 'penthouse') modalSelect.selectedIndex = 3;
+      if (roomType === 'superior') modalSelect.selectedIndex = 0;
+      if (roomType === 'deluxe') modalSelect.selectedIndex = 1;
+      if (roomType === 'executive') modalSelect.selectedIndex = 2;
+      if (roomType === 'presidential') modalSelect.selectedIndex = 3;
 
       openBookingModal();
     }
 
-    // Contact Form submission
+    // Contact form submit
     function handleContactSubmit(e) {
       e.preventDefault();
       showNotification(
         "Xabaringiz Yuborildi!", 
-        "Murojaatingiz uchun rahmat! Konsyerjimiz qisqa fursatda siz bilan bog'lanadi."
+        "Murojaatingiz uchun tashakkur! Konsyerjimiz qisqa fursatda siz bilan bog'lanadi."
       );
       e.target.reset();
     }
+
+    // Close modal on Escape key or backdrop click
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeRoomDetailModal();
+        closeBookingModal();
+      }
+    });
 
     window.addEventListener('DOMContentLoaded', () => {
       setupDefaultDates();
