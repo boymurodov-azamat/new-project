@@ -71,6 +71,11 @@
       font-weight: 700;
       border-bottom: 2px solid #c5a880;
     }
+    /* Luxury date picker icon in dark mode */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.8) sepia(1) saturate(3) hue-rotate(355deg);
+      cursor: pointer;
+    }
   </style>
 </head>
 <body class="bg-obsidian-950 text-gray-200 antialiased selection:bg-gold-500 selection:text-black">
@@ -512,95 +517,103 @@
   </footer>
 
 
-  <!-- ========================================================================= -->
-  <!-- YANGI HOTEL MANOR USLUBIDAGI BRON QILISH VA QIDIRUV MODALI (SKRINSHOTDAGI) -->
-  <!-- ========================================================================= -->
-  <div id="bookingSearchModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-    <div class="bg-[#fcfaf5] text-[#2c323f] w-full max-w-2xl rounded-2xl shadow-2xl border border-gold-500/30 overflow-hidden relative my-auto animate-fadeIn">
+  <!-- ========================================================================================================= -->
+  <!-- YANGILANGAN: SAYT DIZAYNIGA (LUXURY OBSIDIAN & GOLD) MOSLASHTIRILGAN BRON QIDIRUV MODALI (SKRINSHOTDAGI) -->
+  <!-- ========================================================================================================= -->
+  <div id="bookingSearchModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-[#10141d] text-gray-200 w-full max-w-2xl rounded-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-gold-500/40 overflow-hidden relative my-auto animate-fadeIn">
       
-      <!-- Modal Header -->
-      <div class="px-6 py-5 border-b border-[#ebdcc4] flex justify-between items-center bg-[#f7f2e7]">
-        <h3 class="font-sans text-base sm:text-lg font-medium text-[#3b4352] text-center w-full" data-i18n="booking_modal_header">
-          Kelish, jo'nash sanasi va mehmonlar sonini tanlang
-        </h3>
-        <button onclick="closeBookingSearchModal()" class="text-gray-400 hover:text-gray-700 text-2xl leading-none absolute right-5 top-5">&times;</button>
+      <!-- Modal Header (Hashamatli qora-obsidian dizayn) -->
+      <div class="px-6 py-5 border-b border-white/10 flex justify-between items-center bg-[#0a0d14]/90">
+        <div class="w-full text-center pr-6 pl-2">
+          <span class="text-[10px] uppercase tracking-[0.25em] text-gold-400 font-semibold block mb-0.5">AZAMAT'S HOTEL — RESERVATION</span>
+          <h3 class="font-serif text-base sm:text-lg font-bold text-white tracking-wide" data-i18n="booking_modal_header">
+            Kelish, jo'nash sanasi va mehmonlar sonini tanlang
+          </h3>
+        </div>
+        <button onclick="closeBookingSearchModal()" class="text-gray-400 hover:text-gold-400 text-2xl leading-none absolute right-5 top-5 transition">&times;</button>
       </div>
 
       <!-- Modal Body -->
       <form onsubmit="handleSearchAndProceedBooking(event)" class="p-6 sm:p-8 space-y-6">
         
-        <!-- Sanalar (Kelish sanasi va Jo'nash sanasi) -->
+        <!-- Sanalar (Kelish va Jo'nash sanasi) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
-            <label class="block text-xs font-medium text-[#4a5568] mb-1.5" data-i18n="lbl_checkin">Kelish sanasi</label>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-gold-400 mb-2" data-i18n="lbl_checkin">Kelish sanasi</label>
             <div class="relative">
-              <input type="date" required id="searchCheckinDate" class="w-full bg-white border border-[#d6dbe1] rounded-lg px-4 py-3 text-sm text-[#2d3748] font-medium focus:outline-none focus:border-[#e67e22] transition shadow-sm cursor-pointer">
+              <input type="date" required id="searchCheckinDate" class="w-full bg-[#161c28] border border-white/10 rounded-xl px-4 py-3 text-sm text-white font-medium focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/50 transition shadow-inner cursor-pointer">
             </div>
           </div>
           <div>
-            <label class="block text-xs font-medium text-[#4a5568] mb-1.5" data-i18n="lbl_checkout">Jo'nash sanasi</label>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-gold-400 mb-2" data-i18n="lbl_checkout">Jo'nash sanasi</label>
             <div class="relative">
-              <input type="date" required id="searchCheckoutDate" class="w-full bg-white border border-[#d6dbe1] rounded-lg px-4 py-3 text-sm text-[#2d3748] font-medium focus:outline-none focus:border-[#e67e22] transition shadow-sm cursor-pointer">
+              <input type="date" required id="searchCheckoutDate" class="w-full bg-[#161c28] border border-white/10 rounded-xl px-4 py-3 text-sm text-white font-medium focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/50 transition shadow-inner cursor-pointer">
             </div>
           </div>
         </div>
 
-        <hr class="border-[#ebdcc4]">
+        <hr class="border-white/10">
 
         <!-- Xona Sig'imi bo'limi -->
         <div>
-          <div class="mb-3">
-            <span class="block text-sm font-semibold text-[#2d3748]" data-i18n="lbl_capacity_title">Xona sig'imi</span>
-            <span class="block text-[11px] text-[#718096] mt-0.5" data-i18n="lbl_capacity_sub">
+          <div class="mb-3.5">
+            <span class="block text-sm font-serif font-bold text-white tracking-wide" data-i18n="lbl_capacity_title">Xona sig'imi</span>
+            <span class="block text-xs text-gray-400 mt-1" data-i18n="lbl_capacity_sub">
               Kattalar 18 yosh va kattaroq. Bolalar 1 yosh dan kichik qabul qilinmaydilar
             </span>
           </div>
 
-          <!-- Dropdownlar qatori -->
+          <!-- Tanlovlar qatori -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             
-            <!-- Kattalar soni -->
+            <!-- Kattalar soni (Luxury Dark Select) -->
             <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                <i class="fas fa-user text-xs"></i>
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gold-400">
+                <i class="fas fa-user-friends text-xs"></i>
               </div>
-              <select id="searchAdultsSelect" class="w-full bg-white border border-[#d6dbe1] rounded-lg pl-9 pr-8 py-3 text-sm text-[#2d3748] font-medium focus:outline-none focus:border-[#e67e22] appearance-none transition shadow-sm cursor-pointer">
+              <select id="searchAdultsSelect" class="w-full bg-[#161c28] border border-white/10 rounded-xl pl-10 pr-9 py-3 text-sm text-white font-medium focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/50 appearance-none transition shadow-inner cursor-pointer">
                 <option value="1">1 kattalar</option>
-                <option value="2" selected>2 kattalar</option>
+                <option value="2">2 kattalar</option>
                 <option value="3">3 kattalar</option>
                 <option value="4">4 kattalar</option>
                 <option value="5">5 kattalar</option>
-                <option value="6">6 kattalar</option>
+                <option value="6" selected>6 kattalar</option>
               </select>
-              <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400">
+              <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-gold-400">
                 <i class="fas fa-chevron-down text-xs"></i>
               </div>
             </div>
 
             <!-- Bolalar maydoni -->
-            <div class="space-y-2" id="childrenContainer">
-              <!-- Birinchi default bola bloki (Skrinshotdagi kabi) -->
-              <div id="childBadge1" class="flex items-center justify-between bg-white border border-[#d6dbe1] rounded-lg px-4 py-3 text-sm text-[#2d3748] shadow-sm">
-                <span class="flex items-center gap-2">
-                  <i class="fas fa-child text-gray-400 text-xs"></i>
-                  <span id="childBadgeLabel" data-i18n="child_2yo">Bola 2 yosh</span>
+            <div class="space-y-2.5" id="childrenContainer">
+              <!-- Birinchi default bola kartasi (Dark luxury) -->
+              <div id="childBadge1" class="flex items-center justify-between bg-[#161c28] border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-200 shadow-inner">
+                <span class="flex items-center gap-2.5">
+                  <i class="fas fa-child text-gold-400 text-xs"></i>
+                  <span id="childBadgeLabel" class="font-medium" data-i18n="child_2yo">Bola (4 yosh)</span>
                 </span>
-                <button type="button" onclick="removeChildBadge()" class="text-orange-500 hover:text-red-600 transition text-sm">
+                <button type="button" onclick="removeChildBadge()" class="text-gold-500 hover:text-red-400 transition text-sm px-1">
                   <i class="fas fa-times"></i>
                 </button>
               </div>
 
-              <!-- + Bolalar sonini qo'shish tugmasi -->
+              <!-- + Bolalar sonini qo'shish -->
               <div class="relative">
-                <select id="addChildSelect" onchange="handleAddChild(this)" class="w-full bg-white border border-[#d6dbe1] rounded-lg px-4 py-2.5 text-xs text-[#4a5568] font-medium focus:outline-none focus:border-[#e67e22] appearance-none transition shadow-sm cursor-pointer">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gold-400">
+                  <i class="fas fa-plus text-xs"></i>
+                </div>
+                <select id="addChildSelect" onchange="handleAddChild(this)" class="w-full bg-[#161c28]/70 border border-dashed border-white/20 rounded-xl pl-9 pr-8 py-2.5 text-xs text-gray-300 font-medium focus:outline-none focus:border-gold-500 appearance-none transition cursor-pointer hover:border-gold-500/50">
                   <option value="" selected data-i18n="add_child_btn">+ Bolalar sonini qo'shish</option>
                   <option value="1">Bola (1 yosh)</option>
                   <option value="2">Bola (2 yosh)</option>
                   <option value="3">Bola (3 yosh)</option>
-                  <option value="4">Bola (4-7 yosh)</option>
-                  <option value="8">Bola (8-12 yosh)</option>
+                  <option value="4">Bola (4 yosh)</option>
+                  <option value="5">Bola (5 yosh)</option>
+                  <option value="6">Bola (6 yosh)</option>
+                  <option value="7">Bola (7-12 yosh)</option>
                 </select>
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400">
+                <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-gold-400">
                   <i class="fas fa-chevron-down text-xs"></i>
                 </div>
               </div>
@@ -609,19 +622,19 @@
           </div>
         </div>
 
-        <!-- Qo'shimcha xona kerak linki -->
+        <!-- Qo'shimcha xona kerak linki (Tilla rangda) -->
         <div class="pt-1">
-          <button type="button" onclick="handleAddExtraRoom()" class="text-[#c07d3b] hover:text-[#a06328] font-semibold text-xs transition flex items-center gap-1">
-            <span data-i18n="extra_room_text">Qo'shimcha <span class="font-bold underline" id="extraRoomCount">yana 1</span> xona kerak</span>
-            <i class="fas fa-plus text-[10px]"></i>
+          <button type="button" onclick="handleAddExtraRoom()" class="text-gold-400 hover:text-gold-300 font-medium text-xs transition flex items-center gap-1.5 group">
+            <span data-i18n="extra_room_text">Qo'shimcha <span class="font-bold underline decoration-gold-500" id="extraRoomCount">yana 1</span> xona kerak</span>
+            <i class="fas fa-plus text-[10px] group-hover:rotate-90 transition duration-300"></i>
           </button>
         </div>
 
-        <hr class="border-[#ebdcc4]">
+        <hr class="border-white/10">
 
-        <!-- Qidiruv / Bron qilish tugmasi (Aynan skrinshotdagi olovrang) -->
+        <!-- Qidirish tugmasi (Hashamatli olovrang-tilla tugma) -->
         <div>
-          <button type="submit" class="w-full py-3.5 bg-[#e67e22] hover:bg-[#d35400] text-white font-bold text-sm tracking-wider uppercase rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+          <button type="submit" class="w-full py-4 bg-gradient-to-r from-[#d97316] via-[#e67e22] to-[#c5a880] hover:brightness-110 text-white font-bold text-xs uppercase tracking-[0.2em] rounded-xl shadow-xl transition-all transform hover:-translate-y-0.5">
             <span data-i18n="btn_search_submit">QIDIRISH</span>
           </button>
         </div>
@@ -758,7 +771,6 @@
     const TG_BOT_TOKEN = "8852482012:AAF465eFFLhmHO9URR1uiS5g5YyQLZWWATQ";
     const TG_CHAT_ID = "6069578884";
 
-    // Telegramga xabar jo'natuvchi funksiya
     async function sendTelegramMessage(text) {
       try {
         const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage?chat_id=${TG_CHAT_ID}&text=${encodeURIComponent(text)}`;
@@ -771,7 +783,7 @@
       }
     }
 
-    // 1. Aloqa formasi (Xabar yuborish)
+    // Aloqa formasi (Xabar yuborish)
     async function handleContactFormSubmit(e) {
       e.preventDefault();
       const form = e.target;
@@ -811,13 +823,12 @@
     }
 
     // ==========================================
-    // SKRINSHOTDAGI BRON QIDIRUVINI BOSHQARISH
+    // LUXURY BRON QIDIRUVINI BOSHQARISH
     // ==========================================
     let extraRoomsCount = 1;
-    let selectedChildren = ["Bola 2 yosh"];
+    let selectedChildren = ["Bola (4 yosh)"];
 
     function openBookingSearchModal() {
-      // Ertangi va undan keyingi sanalarni avtomatik to'ldirish
       const today = new Date();
       const tomorrow = new Date(today);
       tomorrow.setDate(tomorrow.getDate() + 1);
@@ -855,16 +866,15 @@
       const label = `Bola (${age} yosh)`;
       selectedChildren.push(label);
 
-      // Vizual ko'rsatish
       const container = document.getElementById('childrenContainer');
       const newBadge = document.createElement('div');
-      newBadge.className = "flex items-center justify-between bg-white border border-[#d6dbe1] rounded-lg px-4 py-2 text-xs text-[#2d3748] shadow-sm";
+      newBadge.className = "flex items-center justify-between bg-[#161c28] border border-white/10 rounded-xl px-4 py-2.5 text-xs text-gray-200 shadow-inner";
       newBadge.innerHTML = `
         <span class="flex items-center gap-2">
-          <i class="fas fa-child text-gray-400 text-xs"></i>
+          <i class="fas fa-child text-gold-400 text-xs"></i>
           <span>${label}</span>
         </span>
-        <button type="button" class="text-orange-500 hover:text-red-600 transition" onclick="this.parentElement.remove(); selectedChildren = selectedChildren.filter(c => c !== '${label}');">
+        <button type="button" class="text-gold-500 hover:text-red-400 transition" onclick="this.parentElement.remove(); selectedChildren = selectedChildren.filter(c => c !== '${label}');">
           <i class="fas fa-times"></i>
         </button>
       `;
@@ -885,7 +895,6 @@
       const adults = document.getElementById('searchAdultsSelect').value;
       const childrenInfo = selectedChildren.length > 0 ? selectedChildren.join(', ') : "Bolalarsiz";
 
-      // Telegramga yangi bron qidiruv xabari yuboriladi
       const telegramText = 
 `🛎 YANGI BRON QIDIRUVI — Azamat's Hotel
 
@@ -900,13 +909,11 @@
       sendTelegramMessage(telegramText);
 
       closeBookingSearchModal();
-      
-      // Xonalar katalogi sahifasiga yo'naltirish
       navigateTo('rooms');
       showToast("Xonalar tanlandi", `${checkin} dan ${checkout} gacha mos xonalar saralandi!`);
     }
 
-    // XARITA MODALINI BOSHQARISH
+    // XARITA MODALI
     function openMapModal() {
       document.getElementById('mapSelectModal').classList.remove('hidden');
     }
@@ -1006,7 +1013,7 @@
         lbl_checkout: "Jo'nash sanasi",
         lbl_capacity_title: "Xona sig'imi",
         lbl_capacity_sub: "Kattalar 18 yosh va kattaroq. Bolalar 1 yosh dan kichik qabul qilinmaydilar",
-        child_2yo: "Bola 2 yosh",
+        child_2yo: "Bola (4 yosh)",
         add_child_btn: "+ Bolalar sonini qo'shish",
         extra_room_text: "Qo'shimcha yana 1 xona kerak",
         btn_search_submit: "QIDIRISH"
@@ -1100,7 +1107,7 @@
         lbl_checkout: "Дата выезда",
         lbl_capacity_title: "Вместимость номера",
         lbl_capacity_sub: "Взрослые от 18 лет. Дети до 1 года не принимаются",
-        child_2yo: "Ребенок 2 года",
+        child_2yo: "Ребенок (4 года)",
         add_child_btn: "+ Добавить ребенка",
         extra_room_text: "Нужен еще 1 дополнительный номер",
         btn_search_submit: "НАЙТИ НОМЕРА"
@@ -1194,7 +1201,7 @@
         lbl_checkout: "Departure date",
         lbl_capacity_title: "Room occupancy",
         lbl_capacity_sub: "Adults 18 years and older. Children under 1 year are not accommodated",
-        child_2yo: "Child 2 years old",
+        child_2yo: "Child (4 years old)",
         add_child_btn: "+ Add child",
         extra_room_text: "Need 1 additional room",
         btn_search_submit: "SEARCH ROOMS"
@@ -1290,7 +1297,7 @@
         },
         descTitle: {
           uz: "EXECUTIVE ROYAL SUITE - hashamatning eng yuqori namunasi",
-          ru: "EXECUTIVE ROYAL SUITE - высший стандарт эксклюзивного отдыха",
+          ru: "EXECUTIVE ROYAL SUITE - высший standard эксклюзивного отдыха",
           en: "EXECUTIVE ROYAL SUITE - pinnacle of boutique luxury and prestige"
         },
         descCapacity: {
