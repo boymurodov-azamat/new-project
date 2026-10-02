@@ -71,7 +71,6 @@
       font-weight: 700;
       border-bottom: 2px solid #c5a880;
     }
-    /* Luxury date picker icon in dark mode */
     input[type="date"]::-webkit-calendar-picker-indicator {
       filter: invert(0.8) sepia(1) saturate(3) hue-rotate(355deg);
       cursor: pointer;
@@ -98,7 +97,7 @@
         </button>
         <span class="hidden md:inline text-gray-600">|</span>
         
-        <!-- Til tanlash (UZ | RU | EN) -->
+        <!-- Language Switcher -->
         <div class="flex items-center gap-2 text-xs font-semibold tracking-wider">
           <i class="fas fa-globe text-gold-400 text-xs"></i>
           <button onclick="setLanguage('uz')" class="lang-btn hover:text-gold-400 px-1 py-0.5 transition" data-lang="uz">UZ</button>
@@ -125,7 +124,7 @@
         </div>
       </a>
 
-      <!-- Desktop Menyu -->
+      <!-- Desktop Menu Items -->
       <nav class="hidden lg:flex items-center space-x-7 text-xs font-semibold uppercase tracking-[0.16em]">
         <button onclick="navigateTo('about')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="about" data-i18n="menu_about">BIZ HAQIMIZDA</button>
         <button onclick="navigateTo('rooms')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="rooms" data-i18n="menu_rooms">XONALAR KATALOGI</button>
@@ -135,7 +134,7 @@
         <button onclick="navigateTo('contact')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="contact" data-i18n="menu_contact">ALOQA</button>
       </nav>
 
-      <!-- Tepada Xona Band Qilish tugmasi -->
+      <!-- Fast Action Button -->
       <div class="flex items-center gap-3">
         <button onclick="openBookingSearchModal()" class="hidden sm:inline-block px-5 py-2.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-black font-semibold text-xs tracking-wider uppercase rounded shadow-lg transition-all" data-i18n="btn_book_room">
           Xona Band Qilish
@@ -146,7 +145,7 @@
       </div>
     </div>
 
-    <!-- Mobile Dropdown -->
+    <!-- Mobile Menu -->
     <div id="mobileMenu" class="hidden lg:hidden bg-obsidian-900 border-b border-white/10 px-6 py-6 space-y-4">
       <div class="flex items-center justify-between pb-3 border-b border-white/10 text-xs">
         <span class="text-gray-400 font-semibold" data-i18n="select_language">Tilni tanlang:</span>
@@ -170,8 +169,7 @@
     </div>
   </header>
 
-
-  <!-- ==================== SAHIFA 1: BIZ HAQIMIZDA (ABOUT) ==================== -->
+  <!-- ==================== PAGE 1: ABOUT US ==================== -->
   <main id="page-about" class="page-section active">
     <section class="relative py-28 md:py-36 bg-cover bg-center overflow-hidden" style="background-image: linear-gradient(rgba(7,9,13,0.85), rgba(7,9,13,0.92)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
@@ -228,8 +226,7 @@
     <div class="page-bottom-contact"></div>
   </main>
 
-
-  <!-- ==================== SAHIFA 2: XONALAR KATALOGI (ROOMS) ==================== -->
+  <!-- ==================== PAGE 2: ROOM DIRECTORY ==================== -->
   <main id="page-rooms" class="page-section">
     <section class="relative py-24 bg-cover bg-center" style="background-image: linear-gradient(rgba(7,9,13,0.88), rgba(7,9,13,0.95)), url('https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
@@ -246,8 +243,7 @@
     <div class="page-bottom-contact"></div>
   </main>
 
-
-  <!-- ==================== SAHIFA 3: XIZMATLAR (SERVICES) ==================== -->
+  <!-- ==================== PAGE 3: SERVICES ==================== -->
   <main id="page-services" class="page-section">
     <section class="relative py-24 bg-cover bg-center" style="background-image: linear-gradient(rgba(7,9,13,0.88), rgba(7,9,13,0.95)), url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
@@ -264,8 +260,7 @@
     <div class="page-bottom-contact"></div>
   </main>
 
-
-  <!-- ==================== SAHIFA 4: RESTORAN (RESTAURANT) ==================== -->
+  <!-- ==================== PAGE 4: RESTAURANT ==================== -->
   <main id="page-restaurant" class="page-section">
     <section class="relative py-28 bg-cover bg-center" style="background-image: linear-gradient(rgba(7,9,13,0.85), rgba(7,9,13,0.92)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
@@ -319,8 +314,7 @@
     <div class="page-bottom-contact"></div>
   </main>
 
-
-  <!-- ==================== SAHIFA 5: GALEREYA (GALLERY) ==================== -->
+  <!-- ==================== PAGE 5: GALLERY ==================== -->
   <main id="page-gallery" class="page-section">
     <section class="relative py-24 bg-cover bg-center" style="background-image: linear-gradient(rgba(7,9,13,0.88), rgba(7,9,13,0.95)), url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
@@ -374,8 +368,7 @@
     <div class="page-bottom-contact"></div>
   </main>
 
-
-  <!-- ==================== SAHIFA 6: ALOQA (CONTACT) ==================== -->
+  <!-- ==================== PAGE 6: CONTACT ==================== -->
   <main id="page-contact" class="page-section">
     <section class="relative py-24 bg-cover bg-center" style="background-image: linear-gradient(rgba(7,9,13,0.88), rgba(7,9,13,0.95)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
@@ -388,14 +381,13 @@
     <div class="page-bottom-contact"></div>
   </main>
 
-
-  <!-- ==================== PASTKI ALOQA BO'LIMI TEMPLATE ==================== -->
+  <!-- ==================== CONTACT SECTION TEMPLATE ==================== -->
   <template id="contact-section-template">
     <section class="border-t border-white/10 bg-obsidian-900/90 py-16 sm:py-24 px-4 sm:px-8">
       <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          <!-- Chap tomon: Kartalar -->
+          <!-- Contact Cards -->
           <div class="lg:col-span-6 space-y-6">
             <div>
               <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold block mb-2" data-i18n="contact_tag">ALOQA &amp; MANZIL</span>
@@ -408,8 +400,7 @@
             </div>
 
             <div class="space-y-4 pt-2">
-              
-              <!-- MANZIL KARTASI -->
+              <!-- Location Card -->
               <div onclick="openMapModal()" class="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-gold-500/50 hover:bg-gold-500/[0.03] transition-all cursor-pointer group shadow-sm">
                 <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl shrink-0 group-hover:scale-105 transition">
                   <i class="fas fa-map-marker-alt"></i>
@@ -427,7 +418,7 @@
                 </div>
               </div>
 
-              <!-- TELEFON -->
+              <!-- Phone Card -->
               <div class="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-gold-500/40 transition">
                 <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl shrink-0">
                   <i class="fas fa-phone-alt"></i>
@@ -440,7 +431,7 @@
                 </div>
               </div>
 
-              <!-- EMAIL -->
+              <!-- Email Card -->
               <div class="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-gold-500/40 transition">
                 <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl shrink-0">
                   <i class="fas fa-envelope"></i>
@@ -455,7 +446,7 @@
             </div>
           </div>
 
-          <!-- O'ng tomon: Form -->
+          <!-- Message Form -->
           <div class="lg:col-span-6 bg-obsidian-950/80 border border-white/10 rounded-2xl p-6 sm:p-8">
             <h3 class="font-serif text-xl font-bold text-white mb-2" data-i18n="form_title">Xabar Yuborish</h3>
             <p class="text-gray-400 text-xs mb-6" data-i18n="form_subtitle">Konsyerjimiz 15 daqiqa ichida siz bilan bog'lanadi.</p>
@@ -516,14 +507,13 @@
     </div>
   </footer>
 
-
   <!-- ========================================================================================================= -->
-  <!-- YANGILANGAN: SAYT DIZAYNIGA (LUXURY OBSIDIAN & GOLD) MOSLASHTIRILGAN BRON QIDIRUV MODALI (SKRINSHOTDAGI) -->
+  <!-- DYNAMIC MULTI-ROOM BOOKING SEARCH MODAL (LUXURY OBSIDIAN & GOLD)                                         -->
   <!-- ========================================================================================================= -->
   <div id="bookingSearchModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div class="bg-[#10141d] text-gray-200 w-full max-w-2xl rounded-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-gold-500/40 overflow-hidden relative my-auto animate-fadeIn">
       
-      <!-- Modal Header (Hashamatli qora-obsidian dizayn) -->
+      <!-- Modal Header -->
       <div class="px-6 py-5 border-b border-white/10 flex justify-between items-center bg-[#0a0d14]/90">
         <div class="w-full text-center pr-6 pl-2">
           <span class="text-[10px] uppercase tracking-[0.25em] text-gold-400 font-semibold block mb-0.5">AZAMAT'S HOTEL — RESERVATION</span>
@@ -537,7 +527,7 @@
       <!-- Modal Body -->
       <form onsubmit="handleSearchAndProceedBooking(event)" class="p-6 sm:p-8 space-y-6">
         
-        <!-- Sanalar (Kelish va Jo'nash sanasi) -->
+        <!-- Arrival and Departure Dates -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-gold-400 mb-2" data-i18n="lbl_checkin">Kelish sanasi</label>
@@ -555,84 +545,24 @@
 
         <hr class="border-white/10">
 
-        <!-- Xona Sig'imi bo'limi -->
-        <div>
-          <div class="mb-3.5">
-            <span class="block text-sm font-serif font-bold text-white tracking-wide" data-i18n="lbl_capacity_title">Xona sig'imi</span>
-            <span class="block text-xs text-gray-400 mt-1" data-i18n="lbl_capacity_sub">
-              Kattalar 18 yosh va kattaroq. Bolalar 1 yosh dan kichik qabul qilinmaydilar
-            </span>
-          </div>
-
-          <!-- Tanlovlar qatori -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            
-            <!-- Kattalar soni (Luxury Dark Select) -->
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gold-400">
-                <i class="fas fa-user-friends text-xs"></i>
-              </div>
-              <select id="searchAdultsSelect" class="w-full bg-[#161c28] border border-white/10 rounded-xl pl-10 pr-9 py-3 text-sm text-white font-medium focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/50 appearance-none transition shadow-inner cursor-pointer">
-                <option value="1">1 kattalar</option>
-                <option value="2">2 kattalar</option>
-                <option value="3">3 kattalar</option>
-                <option value="4">4 kattalar</option>
-                <option value="5">5 kattalar</option>
-                <option value="6" selected>6 kattalar</option>
-              </select>
-              <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-gold-400">
-                <i class="fas fa-chevron-down text-xs"></i>
-              </div>
-            </div>
-
-            <!-- Bolalar maydoni -->
-            <div class="space-y-2.5" id="childrenContainer">
-              <!-- Birinchi default bola kartasi (Dark luxury) -->
-              <div id="childBadge1" class="flex items-center justify-between bg-[#161c28] border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-200 shadow-inner">
-                <span class="flex items-center gap-2.5">
-                  <i class="fas fa-child text-gold-400 text-xs"></i>
-                  <span id="childBadgeLabel" class="font-medium" data-i18n="child_2yo">Bola (4 yosh)</span>
-                </span>
-                <button type="button" onclick="removeChildBadge()" class="text-gold-500 hover:text-red-400 transition text-sm px-1">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-
-              <!-- + Bolalar sonini qo'shish -->
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gold-400">
-                  <i class="fas fa-plus text-xs"></i>
-                </div>
-                <select id="addChildSelect" onchange="handleAddChild(this)" class="w-full bg-[#161c28]/70 border border-dashed border-white/20 rounded-xl pl-9 pr-8 py-2.5 text-xs text-gray-300 font-medium focus:outline-none focus:border-gold-500 appearance-none transition cursor-pointer hover:border-gold-500/50">
-                  <option value="" selected data-i18n="add_child_btn">+ Bolalar sonini qo'shish</option>
-                  <option value="1">Bola (1 yosh)</option>
-                  <option value="2">Bola (2 yosh)</option>
-                  <option value="3">Bola (3 yosh)</option>
-                  <option value="4">Bola (4 yosh)</option>
-                  <option value="5">Bola (5 yosh)</option>
-                  <option value="6">Bola (6 yosh)</option>
-                  <option value="7">Bola (7-12 yosh)</option>
-                </select>
-                <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-gold-400">
-                  <i class="fas fa-chevron-down text-xs"></i>
-                </div>
-              </div>
-            </div>
-
-          </div>
+        <!-- Dynamic Multi-Rooms Container -->
+        <div id="roomsDynamicList" class="space-y-6">
+          <!-- Rooms will be rendered here dynamically -->
         </div>
 
-        <!-- Qo'shimcha xona kerak linki (Tilla rangda) -->
+        <!-- Add Extra Room Button -->
         <div class="pt-1">
-          <button type="button" onclick="handleAddExtraRoom()" class="text-gold-400 hover:text-gold-300 font-medium text-xs transition flex items-center gap-1.5 group">
-            <span data-i18n="extra_room_text">Qo'shimcha <span class="font-bold underline decoration-gold-500" id="extraRoomCount">yana 1</span> xona kerak</span>
-            <i class="fas fa-plus text-[10px] group-hover:rotate-90 transition duration-300"></i>
+          <button type="button" onclick="addNewRoom()" class="text-gold-400 hover:text-gold-300 font-semibold text-xs tracking-wider transition flex items-center gap-2 group">
+            <span class="w-6 h-6 rounded-full border border-gold-500/40 flex items-center justify-center text-xs group-hover:bg-gold-500 group-hover:text-black transition">
+              <i class="fas fa-plus text-[10px]"></i>
+            </span>
+            <span data-i18n="btn_add_room">Qo'shimcha yana 1 xona kerak +</span>
           </button>
         </div>
 
         <hr class="border-white/10">
 
-        <!-- Qidirish tugmasi (Hashamatli olovrang-tilla tugma) -->
+        <!-- Search Action Button -->
         <div>
           <button type="submit" class="w-full py-4 bg-gradient-to-r from-[#d97316] via-[#e67e22] to-[#c5a880] hover:brightness-110 text-white font-bold text-xs uppercase tracking-[0.2em] rounded-xl shadow-xl transition-all transform hover:-translate-y-0.5">
             <span data-i18n="btn_search_submit">QIDIRISH</span>
@@ -643,8 +573,7 @@
     </div>
   </div>
 
-
-  <!-- ==================== XARITANI TANLASH MODALI ==================== -->
+  <!-- ==================== MAP SERVICE SELECTION MODAL ==================== -->
   <div id="mapSelectModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-[#12151c] border border-gold-500/40 rounded-2xl w-full max-w-sm p-6 text-center shadow-2xl relative">
       <button onclick="closeMapModal()" class="absolute top-3 right-4 text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
@@ -687,7 +616,6 @@
       </p>
     </div>
   </div>
-
 
   <!-- ==================== HOTEL MANOR ROOM DETAILS MODAL ==================== -->
   <div id="roomDetailsModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
@@ -754,7 +682,6 @@
     </div>
   </div>
 
-
   <!-- TOAST NOTIFICATION -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#12151c] border border-gold-500/40 text-white px-6 py-4 rounded-xl shadow-2xl transform translate-y-24 opacity-0 transition duration-300 flex items-center gap-3">
     <i class="fas fa-check-circle text-gold-400 text-xl" id="toastIcon"></i>
@@ -764,10 +691,9 @@
     </div>
   </div>
 
-
   <!-- ==================== JAVASCRIPT ==================== -->
   <script>
-    // TELEGRAM BOT SOZLAMALARI:
+    // TELEGRAM CONFIGURATION
     const TG_BOT_TOKEN = "8852482012:AAF465eFFLhmHO9URR1uiS5g5YyQLZWWATQ";
     const TG_CHAT_ID = "6069578884";
 
@@ -783,7 +709,7 @@
       }
     }
 
-    // Aloqa formasi (Xabar yuborish)
+    // Contact form submit
     async function handleContactFormSubmit(e) {
       e.preventDefault();
       const form = e.target;
@@ -822,11 +748,159 @@
       }
     }
 
-    // ==========================================
-    // LUXURY BRON QIDIRUVINI BOSHQARISH
-    // ==========================================
-    let extraRoomsCount = 1;
-    let selectedChildren = ["Bola (4 yosh)"];
+    // =========================================================================
+    // DYNAMIC MULTI-ROOM STATE & RENDERING ENGINE
+    // =========================================================================
+    let bookingRooms = [];
+
+    // Fresh default initialization
+    function resetBookingRoomsToDefault() {
+      bookingRooms = [
+        {
+          id: 1,
+          adults: 2,
+          children: []
+        }
+      ];
+      renderBookingRooms();
+    }
+
+    function renderBookingRooms() {
+      const container = document.getElementById('roomsDynamicList');
+      if (!container) return;
+
+      const t = translations[currentLang];
+
+      container.innerHTML = bookingRooms.map((room, index) => {
+        const roomNum = index + 1;
+        const canDelete = bookingRooms.length > 1;
+
+        return `
+          <div class="bg-[#141924] border border-white/10 rounded-2xl p-5 relative shadow-inner space-y-4" id="roomBlock_${room.id}">
+            <!-- Room Header with Room Title and Delete Action -->
+            <div class="flex items-center justify-between pb-3 border-b border-white/5">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-gold-500/20 text-gold-400 font-bold text-xs flex items-center justify-center font-serif">${roomNum}</span>
+                <span class="font-serif font-bold text-white tracking-wide text-sm">${t.room_title_prefix} ${roomNum}</span>
+              </div>
+              ${canDelete ? `
+                <button type="button" onclick="deleteRoom(${room.id})" class="text-xs text-red-400 hover:text-red-300 bg-red-500/10 hover:bg-red-500/20 px-2.5 py-1 rounded-lg border border-red-500/30 transition flex items-center gap-1.5">
+                  <i class="fas fa-trash-alt text-[10px]"></i>
+                  <span>${t.delete_room_btn}</span>
+                </button>
+              ` : `
+                <span class="text-[11px] text-gray-500 italic">${t.primary_room}</span>
+              `}
+            </div>
+
+            <!-- Capacity notice -->
+            <div class="text-[11px] text-gray-400 leading-tight">
+              ${t.lbl_capacity_sub}
+            </div>
+
+            <!-- Adults and Children Selection Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              
+              <!-- Adults Selector -->
+              <div class="relative flex items-center">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center justify-center pointer-events-none text-gold-400">
+                  <i class="fas fa-user-friends text-xs"></i>
+                </div>
+                <select onchange="updateRoomAdults(${room.id}, this.value)" class="w-full bg-[#1b2230] border border-white/10 rounded-xl pl-10 pr-9 py-3 text-xs sm:text-sm text-white font-medium focus:outline-none focus:border-gold-500 appearance-none transition shadow-inner cursor-pointer">
+                  <option value="1" ${room.adults === 1 ? 'selected' : ''}>1 ${t.adults_suffix}</option>
+                  <option value="2" ${room.adults === 2 ? 'selected' : ''}>2 ${t.adults_suffix}</option>
+                  <option value="3" ${room.adults === 3 ? 'selected' : ''}>3 ${t.adults_suffix}</option>
+                  <option value="4" ${room.adults === 4 ? 'selected' : ''}>4 ${t.adults_suffix}</option>
+                  <option value="5" ${room.adults === 5 ? 'selected' : ''}>5 ${t.adults_suffix}</option>
+                  <option value="6" ${room.adults === 6 ? 'selected' : ''}>6 ${t.adults_suffix}</option>
+                </select>
+                <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center justify-center pointer-events-none text-gold-400">
+                  <i class="fas fa-chevron-down text-xs"></i>
+                </div>
+              </div>
+
+              <!-- Children Container -->
+              <div class="space-y-2">
+                <!-- Added Children Badges -->
+                ${room.children.map((child, cIdx) => `
+                  <div class="flex items-center justify-between bg-[#1b2230] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-gray-200 shadow-inner">
+                    <span class="flex items-center gap-2">
+                      <i class="fas fa-child text-gold-400 text-xs"></i>
+                      <span>${child}</span>
+                    </span>
+                    <button type="button" onclick="removeChildFromRoom(${room.id}, ${cIdx})" class="text-gold-500 hover:text-red-400 transition text-sm px-1">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                `).join('')}
+
+                <!-- Add Child Dropdown -->
+                <div class="relative flex items-center">
+                  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center justify-center pointer-events-none text-gold-400">
+                    <i class="fas fa-plus text-xs"></i>
+                  </div>
+                  <select onchange="addChildToRoom(${room.id}, this)" class="w-full bg-[#1b2230]/70 border border-dashed border-white/20 rounded-xl pl-9 pr-8 py-2.5 text-xs text-gray-300 font-medium focus:outline-none focus:border-gold-500 appearance-none transition cursor-pointer hover:border-gold-500/50">
+                    <option value="" selected>${t.add_child_btn}</option>
+                    <option value="1">${t.child_word} (1 yosh)</option>
+                    <option value="2">${t.child_word} (2 yosh)</option>
+                    <option value="3">${t.child_word} (3 yosh)</option>
+                    <option value="4">${t.child_word} (4 yosh)</option>
+                    <option value="5">${t.child_word} (5 yosh)</option>
+                    <option value="6">${t.child_word} (6 yosh)</option>
+                    <option value="7">${t.child_word} (7-12 yosh)</option>
+                  </select>
+                  <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center justify-center pointer-events-none text-gold-400">
+                    <i class="fas fa-chevron-down text-xs"></i>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function addNewRoom() {
+      const nextId = bookingRooms.length ? Math.max(...bookingRooms.map(r => r.id)) + 1 : 1;
+      bookingRooms.push({
+        id: nextId,
+        adults: 2,
+        children: []
+      });
+      renderBookingRooms();
+      showToast("Xona qo'shildi", `${bookingRooms.length}-xona ro'yxatga kiritildi`);
+    }
+
+    function deleteRoom(roomId) {
+      if (bookingRooms.length <= 1) return;
+      bookingRooms = bookingRooms.filter(r => r.id !== roomId);
+      renderBookingRooms();
+    }
+
+    function updateRoomAdults(roomId, val) {
+      const room = bookingRooms.find(r => r.id === roomId);
+      if (room) room.adults = parseInt(val, 10);
+    }
+
+    function addChildToRoom(roomId, selectElem) {
+      const val = selectElem.value;
+      if (!val) return;
+      const t = translations[currentLang];
+      const room = bookingRooms.find(r => r.id === roomId);
+      if (room) {
+        room.children.push(`${t.child_word} (${val} yosh)`);
+        renderBookingRooms();
+      }
+    }
+
+    function removeChildFromRoom(roomId, childIndex) {
+      const room = bookingRooms.find(r => r.id === roomId);
+      if (room) {
+        room.children.splice(childIndex, 1);
+        renderBookingRooms();
+      }
+    }
 
     function openBookingSearchModal() {
       const today = new Date();
@@ -845,6 +919,9 @@
         checkoutInput.value = afterTomorrow.toISOString().split('T')[0];
       }
 
+      // Always reset to clean default on open
+      resetBookingRoomsToDefault();
+
       document.getElementById('bookingSearchModal').classList.remove('hidden');
     }
 
@@ -852,68 +929,37 @@
       document.getElementById('bookingSearchModal').classList.add('hidden');
     }
 
-    function removeChildBadge() {
-      const badge = document.getElementById('childBadge1');
-      if (badge) {
-        badge.style.display = 'none';
-        selectedChildren = [];
-      }
-    }
-
-    function handleAddChild(select) {
-      if (!select.value) return;
-      const age = select.value;
-      const label = `Bola (${age} yosh)`;
-      selectedChildren.push(label);
-
-      const container = document.getElementById('childrenContainer');
-      const newBadge = document.createElement('div');
-      newBadge.className = "flex items-center justify-between bg-[#161c28] border border-white/10 rounded-xl px-4 py-2.5 text-xs text-gray-200 shadow-inner";
-      newBadge.innerHTML = `
-        <span class="flex items-center gap-2">
-          <i class="fas fa-child text-gold-400 text-xs"></i>
-          <span>${label}</span>
-        </span>
-        <button type="button" class="text-gold-500 hover:text-red-400 transition" onclick="this.parentElement.remove(); selectedChildren = selectedChildren.filter(c => c !== '${label}');">
-          <i class="fas fa-times"></i>
-        </button>
-      `;
-      container.insertBefore(newBadge, select.parentElement);
-      select.value = "";
-    }
-
-    function handleAddExtraRoom() {
-      extraRoomsCount++;
-      document.getElementById('extraRoomCount').innerText = `yana ${extraRoomsCount}`;
-      showToast("Qo'shildi", `${extraRoomsCount}-xona qidiruv ro'yxatiga kiritildi.`);
-    }
-
     async function handleSearchAndProceedBooking(e) {
       e.preventDefault();
       const checkin = document.getElementById('searchCheckinDate').value;
       const checkout = document.getElementById('searchCheckoutDate').value;
-      const adults = document.getElementById('searchAdultsSelect').value;
-      const childrenInfo = selectedChildren.length > 0 ? selectedChildren.join(', ') : "Bolalarsiz";
+
+      // Construct detailed breakdown of all selected rooms
+      let roomsSummary = bookingRooms.map((r, i) => {
+        const chInfo = r.children.length ? r.children.join(', ') : "bolalarsiz";
+        return `   • <b>Xona ${i + 1}:</b> ${r.adults} kattalar, ${chInfo}`;
+      }).join('\n');
 
       const telegramText = 
-`🛎 YANGI BRON QIDIRUVI — Azamat's Hotel
+`🛎 <b>YANGI BRON QIDIRUVI — Azamat's Hotel</b>
 
-📅 Kelish: ${checkin}
-📅 Jo'nash: ${checkout}
-👥 Kattalar: ${adults} nafar
-👶 Bolalar: ${childrenInfo}
-🚪 Xonalar soni: ${extraRoomsCount} ta xona kerak
+📅 <b>Kelish:</b> ${checkin}
+📅 <b>Jo'nash:</b> ${checkout}
+🚪 <b>Jami xonalar:</b> ${bookingRooms.length} ta xona
 
-🔍 Mijoz mavjud xonalar katalogini ko'rmoqda.`;
+📋 <b>Xonalar taqsimoti:</b>
+${roomsSummary}
+
+🔍 <i>Mijoz hozir katalogdagi xonalarni ko'rmoqda.</i>`;
 
       sendTelegramMessage(telegramText);
 
       closeBookingSearchModal();
       navigateTo('rooms');
-      showToast("Xonalar tanlandi", `${checkin} dan ${checkout} gacha mos xonalar saralandi!`);
+      showToast("Qidiruv yakunlandi", `${bookingRooms.length} ta xona uchun eng yaxshi takliflar ochildi!`);
     }
 
-    // XARITA MODALI
+    // MAP MODAL
     function openMapModal() {
       document.getElementById('mapSelectModal').classList.remove('hidden');
     }
@@ -922,7 +968,7 @@
       document.getElementById('mapSelectModal').classList.add('hidden');
     }
 
-    // 3 TILLIK LUG'AT
+    // TRANSLATIONS
     const translations = {
       uz: {
         top_location: "Mirobod tumani, Toshkent",
@@ -1011,12 +1057,15 @@
         booking_modal_header: "Kelish, jo'nash sanasi va mehmonlar sonini tanlang",
         lbl_checkin: "Kelish sanasi",
         lbl_checkout: "Jo'nash sanasi",
-        lbl_capacity_title: "Xona sig'imi",
         lbl_capacity_sub: "Kattalar 18 yosh va kattaroq. Bolalar 1 yosh dan kichik qabul qilinmaydilar",
-        child_2yo: "Bola (4 yosh)",
         add_child_btn: "+ Bolalar sonini qo'shish",
-        extra_room_text: "Qo'shimcha yana 1 xona kerak",
-        btn_search_submit: "QIDIRISH"
+        btn_add_room: "Qo'shimcha yana 1 xona kerak +",
+        btn_search_submit: "QIDIRISH",
+        room_title_prefix: "Xona",
+        delete_room_btn: "Xonani o'chirish",
+        primary_room: "Asosiy xona",
+        adults_suffix: "kattalar",
+        child_word: "Bola"
       },
       ru: {
         top_location: "Мирабадский район, Ташкент",
@@ -1105,12 +1154,15 @@
         booking_modal_header: "Выберите даты заезда, выезда и количество гостей",
         lbl_checkin: "Дата заезда",
         lbl_checkout: "Дата выезда",
-        lbl_capacity_title: "Вместимость номера",
         lbl_capacity_sub: "Взрослые от 18 лет. Дети до 1 года не принимаются",
-        child_2yo: "Ребенок (4 года)",
         add_child_btn: "+ Добавить ребенка",
-        extra_room_text: "Нужен еще 1 дополнительный номер",
-        btn_search_submit: "НАЙТИ НОМЕРА"
+        btn_add_room: "Добавить еще 1 номер +",
+        btn_search_submit: "НАЙТИ НОМЕРА",
+        room_title_prefix: "Номер",
+        delete_room_btn: "Удалить номер",
+        primary_room: "Основной номер",
+        adults_suffix: "взрослых",
+        child_word: "Ребенок"
       },
       en: {
         top_location: "Mirobod District, Tashkent",
@@ -1199,16 +1251,19 @@
         booking_modal_header: "Select arrival, departure dates and number of guests",
         lbl_checkin: "Arrival date",
         lbl_checkout: "Departure date",
-        lbl_capacity_title: "Room occupancy",
         lbl_capacity_sub: "Adults 18 years and older. Children under 1 year are not accommodated",
-        child_2yo: "Child (4 years old)",
         add_child_btn: "+ Add child",
-        extra_room_text: "Need 1 additional room",
-        btn_search_submit: "SEARCH ROOMS"
+        btn_add_room: "Add 1 extra room +",
+        btn_search_submit: "SEARCH ROOMS",
+        room_title_prefix: "Room",
+        delete_room_btn: "Delete room",
+        primary_room: "Primary room",
+        adults_suffix: "adults",
+        child_word: "Child"
       }
     };
 
-    // XONALAR BAZASI
+    // ROOMS DATA
     const roomsDataMulti = {
       superior: {
         id: 'superior',
@@ -1409,6 +1464,7 @@
 
       renderRoomCards();
       renderServices();
+      renderBookingRooms();
 
       if (!document.getElementById('roomDetailsModal').classList.contains('hidden')) {
         openRoomDetails(currentSelectedRoomId);
@@ -1598,6 +1654,7 @@
       injectBottomContactSections();
       setLanguage(currentLang);
       navigateTo('about');
+      resetBookingRoomsToDefault();
     });
   </script>
 </body>
