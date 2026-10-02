@@ -46,14 +46,6 @@
       color: #e2e8f0;
       font-family: 'Montserrat', sans-serif;
     }
-    .gold-gradient-text {
-      background: linear-gradient(135deg, #f7ecd5 0%, #c5a880 50%, #8e7046 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .gold-border-gradient {
-      border-image: linear-gradient(to right, #c5a880, #8e7046) 1;
-    }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -74,6 +66,11 @@
       display: block;
       opacity: 1;
     }
+    .lang-btn.active {
+      color: #c5a880;
+      font-weight: 700;
+      border-bottom: 2px solid #c5a880;
+    }
   </style>
 </head>
 <body class="bg-obsidian-950 text-gray-200 antialiased selection:bg-gold-500 selection:text-black">
@@ -89,15 +86,25 @@
           <i class="fas fa-envelope text-gold-500 text-[10px]"></i> azamatboymurodov19@gmail.com
         </a>
       </div>
-      <div class="flex items-center gap-4 text-[11px] tracking-wider uppercase">
-        <span class="text-gold-500 font-medium"><i class="fas fa-map-marker-alt mr-1"></i> Mirobod tumani, Toshkent</span>
+      
+      <div class="flex items-center gap-6 text-[11px] tracking-wider uppercase">
+        <span class="text-gold-500 font-medium"><i class="fas fa-map-marker-alt mr-1"></i> <span data-i18n="top_location">Mirobod tumani, Toshkent</span></span>
         <span class="hidden md:inline text-gray-600">|</span>
-        <span class="hidden md:inline">5-Star Luxury Boutique Hotel</span>
+        
+        <!-- Tilni tanlash bloki (UZ | RU | EN) -->
+        <div class="flex items-center gap-2 text-xs font-semibold tracking-wider">
+          <i class="fas fa-globe text-gold-400 text-xs"></i>
+          <button onclick="setLanguage('uz')" class="lang-btn hover:text-gold-400 px-1 py-0.5 transition" data-lang="uz">UZ</button>
+          <span class="text-gray-600">|</span>
+          <button onclick="setLanguage('ru')" class="lang-btn hover:text-gold-400 px-1 py-0.5 transition" data-lang="ru">RU</button>
+          <span class="text-gray-600">|</span>
+          <button onclick="setLanguage('en')" class="lang-btn hover:text-gold-400 px-1 py-0.5 transition" data-lang="en">EN</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- NAVIGATION BAR (Rasmda ko'rsatilgan menyu) -->
+  <!-- NAVIGATION BAR (Asosiy menyu) -->
   <header class="sticky top-0 z-40 bg-obsidian-950/95 backdrop-blur-md border-b border-white/10 shadow-2xl transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex items-center justify-between">
       <!-- Logo -->
@@ -111,82 +118,92 @@
         </div>
       </a>
 
-      <!-- Desktop Menu Items (Skrinshotdagi kabi) -->
-      <nav class="hidden lg:flex items-center space-x-8 text-xs font-semibold uppercase tracking-[0.16em]">
-        <button onclick="navigateTo('about')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="about">BIZ HAQIMIZDA</button>
-        <button onclick="navigateTo('rooms')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="rooms">XONALAR KATALOGI</button>
-        <button onclick="navigateTo('services')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="services">XIZMATLAR</button>
-        <button onclick="navigateTo('restaurant')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="restaurant">RESTORAN</button>
-        <button onclick="navigateTo('gallery')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="gallery">GALEREYA</button>
-        <button onclick="navigateTo('contact')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="contact">ALOQA</button>
+      <!-- Desktop Menyu elementlari -->
+      <nav class="hidden lg:flex items-center space-x-7 text-xs font-semibold uppercase tracking-[0.16em]">
+        <button onclick="navigateTo('about')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="about" data-i18n="menu_about">BIZ HAQIMIZDA</button>
+        <button onclick="navigateTo('rooms')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="rooms" data-i18n="menu_rooms">XONALAR KATALOGI</button>
+        <button onclick="navigateTo('services')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="services" data-i18n="menu_services">XIZMATLAR</button>
+        <button onclick="navigateTo('restaurant')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="restaurant" data-i18n="menu_restaurant">RESTORAN</button>
+        <button onclick="navigateTo('gallery')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="gallery" data-i18n="menu_gallery">GALEREYA</button>
+        <button onclick="navigateTo('contact')" class="nav-item hover:text-gold-400 transition py-1 text-gray-300" data-page="contact" data-i18n="menu_contact">ALOQA</button>
       </nav>
 
-      <!-- Action Button -->
-      <div class="flex items-center gap-4">
-        <button onclick="openBookingModal('Superior Room', 102)" class="hidden sm:inline-block px-5 py-2.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-black font-semibold text-xs tracking-wider uppercase rounded shadow-lg shadow-gold-500/10 transition-all transform hover:-translate-y-0.5">
+      <!-- Tezkor bron tugmasi va Mobil menyu belgisi -->
+      <div class="flex items-center gap-3">
+        <button onclick="openBookingModal('Superior Room', 102)" class="hidden sm:inline-block px-5 py-2.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-black font-semibold text-xs tracking-wider uppercase rounded shadow-lg transition-all" data-i18n="btn_book_room">
           Xona Band Qilish
         </button>
-        <!-- Mobile Hamburger -->
+        <!-- Mobile hamburger -->
         <button onclick="toggleMobileMenu()" class="lg:hidden text-2xl text-gold-400 focus:outline-none p-1">
           <i id="menuIcon" class="fas fa-bars"></i>
         </button>
       </div>
     </div>
 
-    <!-- Mobile Dropdown -->
+    <!-- Mobile Dropdown menyusi -->
     <div id="mobileMenu" class="hidden lg:hidden bg-obsidian-900 border-b border-white/10 px-6 py-6 space-y-4">
-      <button onclick="navigateTo('about')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300">Biz Haqimizda</button>
-      <button onclick="navigateTo('rooms')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300">Xonalar Katalogi</button>
-      <button onclick="navigateTo('services')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300">Xizmatlar</button>
-      <button onclick="navigateTo('restaurant')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300">Restoran</button>
-      <button onclick="navigateTo('gallery')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300">Galereya</button>
-      <button onclick="navigateTo('contact')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300">Aloqa</button>
+      <!-- Mobile til tanlash -->
+      <div class="flex items-center justify-between pb-3 border-b border-white/10 text-xs">
+        <span class="text-gray-400 font-semibold" data-i18n="select_language">Tilni tanlang:</span>
+        <div class="flex items-center gap-3">
+          <button onclick="setLanguage('uz')" class="lang-btn hover:text-gold-400" data-lang="uz">UZ</button>
+          <button onclick="setLanguage('ru')" class="lang-btn hover:text-gold-400" data-lang="ru">RU</button>
+          <button onclick="setLanguage('en')" class="lang-btn hover:text-gold-400" data-lang="en">EN</button>
+        </div>
+      </div>
+      <button onclick="navigateTo('about')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300" data-i18n="menu_about">Biz Haqimizda</button>
+      <button onclick="navigateTo('rooms')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300" data-i18n="menu_rooms">Xonalar Katalogi</button>
+      <button onclick="navigateTo('services')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300" data-i18n="menu_services">Xizmatlar</button>
+      <button onclick="navigateTo('restaurant')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300" data-i18n="menu_restaurant">Restoran</button>
+      <button onclick="navigateTo('gallery')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300" data-i18n="menu_gallery">Galereya</button>
+      <button onclick="navigateTo('contact')" class="block w-full text-left py-2 text-sm tracking-wider uppercase hover:text-gold-400 text-gray-300" data-i18n="menu_contact">Aloqa</button>
       <div class="pt-4 border-t border-white/10">
-        <button onclick="openBookingModal('Superior Room', 102)" class="w-full py-3 bg-gold-500 text-black font-bold text-xs uppercase tracking-widest rounded text-center">
-          Xonani Band Qilish
+        <button onclick="openBookingModal('Superior Room', 102)" class="w-full py-3 bg-gold-500 text-black font-bold text-xs uppercase tracking-widest rounded text-center" data-i18n="btn_book_room">
+          Xona Band Qilish
         </button>
       </div>
     </div>
   </header>
 
+
   <!-- ==================== SAHIFA 1: BIZ HAQIMIZDA (ABOUT) ==================== -->
   <main id="page-about" class="page-section active">
-    <!-- Hero / Banner -->
+    <!-- Banner -->
     <section class="relative py-28 md:py-36 bg-cover bg-center overflow-hidden" style="background-image: linear-gradient(rgba(7,9,13,0.85), rgba(7,9,13,0.92)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
-        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3">Toshkent Yuragidagi Hashamat</span>
-        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-white font-bold mb-6">Azamat's Hotel Haqida</h1>
-        <p class="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed font-light">
+        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3" data-i18n="about_tag">Toshkent Yuragidagi Hashamat</span>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-white font-bold mb-6" data-i18n="about_title">Azamat's Hotel Haqida</h1>
+        <p class="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed font-light" data-i18n="about_subtitle">
           Sharqona mehmondo'stlik va Yevropa nafisligi uyg'unlashgan premium toifadagi butik mehmonxona.
         </p>
       </div>
     </section>
 
-    <!-- Content Story -->
+    <!-- Tarix va tavsif -->
     <section class="py-20 px-4 sm:px-8 max-w-7xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div>
-          <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold">Bizning Falsafamiz</span>
-          <h2 class="font-serif text-3xl sm:text-4xl text-white font-bold mt-2 mb-6">Har Bir Mehmon Biz Uchun Oliy Martabali</h2>
-          <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-6 font-light">
-            Hotel Manor me'moriy an'analaridan ilhomlangan holda tashkil topgan <strong class="text-gold-400 font-medium">Azamat's Hotel</strong> har bir mehmon uchun shaxsiy va unutilmas tajriba yaratishga intiladi.
+          <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold" data-i18n="philosophy_tag">Bizning Falsafamiz</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white font-bold mt-2 mb-6" data-i18n="philosophy_title">Har Bir Mehmon Biz Uchun Oliy Martabali</h2>
+          <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-6 font-light" data-i18n="philosophy_p1">
+            Hotel Manor me'moriy an'analaridan ilhomlangan holda tashkil topgan Azamat's Hotel har bir mehmon uchun shaxsiy va unutilmas tajriba yaratishga intiladi.
           </p>
-          <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-8 font-light">
-            Toshkentning eng nufuzli Mirobod tumanida joylashgan mehmonxonamiz xalqaro aeroportga 10 daqiqalik masofada bo'lib, biznes sayohatchilar va qulaylikni qadrlovchi sayyohlar uchun ideal maskandir.
+          <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-8 font-light" data-i18n="philosophy_p2">
+            Toshkentning eng nufuzli Mirobod tumanida joylashgan mehmonxonamiz xalqaro aeroportga 10 daqiqalik masofada bo'lib, biznes sayohatchilar va qulaylikni qadrlovchi mehmonlar uchun ajoyib maskandir.
           </p>
           
           <div class="grid grid-cols-3 gap-6 pt-6 border-t border-white/10 text-center">
             <div>
               <span class="block font-serif text-3xl text-gold-400 font-bold">48+</span>
-              <span class="text-xs uppercase tracking-wider text-gray-400">Eksklyuziv Xonalar</span>
+              <span class="text-xs uppercase tracking-wider text-gray-400" data-i18n="stat_rooms">Eksklyuziv Xonalar</span>
             </div>
             <div>
               <span class="block font-serif text-3xl text-gold-400 font-bold">24/7</span>
-              <span class="text-xs uppercase tracking-wider text-gray-400">Konsyerj Xizmati</span>
+              <span class="text-xs uppercase tracking-wider text-gray-400" data-i18n="stat_concierge">Konsyerj Xizmati</span>
             </div>
             <div>
               <span class="block font-serif text-3xl text-gold-400 font-bold">9.8</span>
-              <span class="text-xs uppercase tracking-wider text-gray-400">Mehmonlar Bahosi</span>
+              <span class="text-xs uppercase tracking-wider text-gray-400" data-i18n="stat_rating">Mehmonlar Bahosi</span>
             </div>
           </div>
         </div>
@@ -200,30 +217,28 @@
       </div>
     </section>
 
-    <!-- Qo'shilgan pastki aloqa bo'limi -->
+    <!-- Pastki aloqa qismi -->
     <div class="page-bottom-contact"></div>
   </main>
 
 
   <!-- ==================== SAHIFA 2: XONALAR KATALOGI (ROOMS) ==================== -->
   <main id="page-rooms" class="page-section">
-    <!-- Header banner -->
     <section class="relative py-24 bg-cover bg-center" style="background-image: linear-gradient(rgba(7,9,13,0.88), rgba(7,9,13,0.95)), url('https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
-        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3">Royal Qulaylik</span>
-        <h1 class="font-serif text-4xl sm:text-5xl text-white font-bold mb-4">Xonalar Katalogi</h1>
-        <p class="text-gray-300 max-w-xl mx-auto text-sm">Har bir xona shinamlik, yuqori sifatli to'shaklar va sokin muhit bilan jihozlangan.</p>
+        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3" data-i18n="rooms_tag">Royal Qulaylik</span>
+        <h1 class="font-serif text-4xl sm:text-5xl text-white font-bold mb-4" data-i18n="rooms_title">Xonalar Katalogi</h1>
+        <p class="text-gray-300 max-w-xl mx-auto text-sm" data-i18n="rooms_subtitle">Har bir xona shinamlik, yuqori sifatli to'shaklar va sokin muhit bilan jihozlangan.</p>
       </div>
     </section>
 
-    <!-- Rooms List Section -->
     <section class="py-16 px-4 sm:px-8 max-w-7xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="roomsContainer">
-        <!-- Room Cards will be injected via JS or rendered -->
+        <!-- Dinamik xonalar JS orqali joylanadi -->
       </div>
     </section>
 
-    <!-- Qo'shilgan pastki aloqa bo'limi -->
+    <!-- Pastki aloqa qismi -->
     <div class="page-bottom-contact"></div>
   </main>
 
@@ -232,77 +247,19 @@
   <main id="page-services" class="page-section">
     <section class="relative py-24 bg-cover bg-center" style="background-image: linear-gradient(rgba(7,9,13,0.88), rgba(7,9,13,0.95)), url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
-        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3">5 Yulduzli Servis</span>
-        <h1 class="font-serif text-4xl sm:text-5xl text-white font-bold mb-4">Premium Xizmatlarimiz</h1>
-        <p class="text-gray-300 max-w-xl mx-auto text-sm">Sizning rohatlanishingiz va qulayligingiz uchun barcha sharoitlar yaratilgan.</p>
+        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3" data-i18n="services_tag">5 Yulduzli Servis</span>
+        <h1 class="font-serif text-4xl sm:text-5xl text-white font-bold mb-4" data-i18n="services_title">Premium Xizmatlarimiz</h1>
+        <p class="text-gray-300 max-w-xl mx-auto text-sm" data-i18n="services_subtitle">Sizning rohatlanishingiz va qulayligingiz uchun barcha sharoitlar yaratilgan.</p>
       </div>
     </section>
 
     <section class="py-16 px-4 sm:px-8 max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Service 1 -->
-        <div class="bg-obsidian-900/80 border border-white/10 rounded-2xl p-8 hover:border-gold-500/40 transition">
-          <div class="w-14 h-14 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-6">
-            <i class="fas fa-spa"></i>
-          </div>
-          <h3 class="font-serif text-xl font-bold text-white mb-3">Hashamatli Spa &amp; Sauna</h3>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">Fin saunasi, turk hamomi va shifobaxsh massaj muolajalari orqali toliqishni unuting.</p>
-          <span class="text-xs text-gold-400 font-semibold tracking-wider uppercase">08:00 - 23:00 Har kuni</span>
-        </div>
-
-        <!-- Service 2 -->
-        <div class="bg-obsidian-900/80 border border-white/10 rounded-2xl p-8 hover:border-gold-500/40 transition">
-          <div class="w-14 h-14 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-6">
-            <i class="fas fa-car-side"></i>
-          </div>
-          <h3 class="font-serif text-xl font-bold text-white mb-3">VIP Aeroport Transferi</h3>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">Mercedes-Benz S-Class va Maybach avtomobillarida aeroportdan kutib olish va kuzatish.</p>
-          <span class="text-xs text-gold-400 font-semibold tracking-wider uppercase">24/7 Buyurtma asosida</span>
-        </div>
-
-        <!-- Service 3 -->
-        <div class="bg-obsidian-900/80 border border-white/10 rounded-2xl p-8 hover:border-gold-500/40 transition">
-          <div class="w-14 h-14 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-6">
-            <i class="fas fa-swimming-pool"></i>
-          </div>
-          <h3 class="font-serif text-xl font-bold text-white mb-3">Yopiq Isitiluvchi Hovuz</h3>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">Yil davomida bir xil haroratda saqlanuvchi, ultra-filtrlangan yopiq suv havzasi.</p>
-          <span class="text-xs text-gold-400 font-semibold tracking-wider uppercase">Mehmonlar uchun bepul</span>
-        </div>
-
-        <!-- Service 4 -->
-        <div class="bg-obsidian-900/80 border border-white/10 rounded-2xl p-8 hover:border-gold-500/40 transition">
-          <div class="w-14 h-14 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-6">
-            <i class="fas fa-concierge-bell"></i>
-          </div>
-          <h3 class="font-serif text-xl font-bold text-white mb-3">Shaxsiy Konsyerj 24/7</h3>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">Shaharning eng yaxshi joylariga chiptalar, ekskursiyalar va shaxsiy talablarni bajarish.</p>
-          <span class="text-xs text-gold-400 font-semibold tracking-wider uppercase">Har doim mavjud</span>
-        </div>
-
-        <!-- Service 5 -->
-        <div class="bg-obsidian-900/80 border border-white/10 rounded-2xl p-8 hover:border-gold-500/40 transition">
-          <div class="w-14 h-14 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-6">
-            <i class="fas fa-dumbbell"></i>
-          </div>
-          <h3 class="font-serif text-xl font-bold text-white mb-3">Fitness &amp; Gym Center</h3>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">Technogym trenajyorlari bilan jihozlangan premium sport zali va individual murabbiy.</p>
-          <span class="text-xs text-gold-400 font-semibold tracking-wider uppercase">24 Soat ochiq</span>
-        </div>
-
-        <!-- Service 6 -->
-        <div class="bg-obsidian-900/80 border border-white/10 rounded-2xl p-8 hover:border-gold-500/40 transition">
-          <div class="w-14 h-14 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-6">
-            <i class="fas fa-briefcase"></i>
-          </div>
-          <h3 class="font-serif text-xl font-bold text-white mb-3">Konferens Zallari</h3>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">Yuqori darajadagi biznes uchrashuvlar, brifinglar va taqdimotlar uchun zamonaviy zal.</p>
-          <span class="text-xs text-gold-400 font-semibold tracking-wider uppercase">80 kishilik sig'im</span>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="servicesGrid">
+        <!-- Xizmat kartalari JS orqali tarjima bilan render qilinadi -->
       </div>
     </section>
 
-    <!-- Qo'shilgan pastki aloqa bo'limi -->
+    <!-- Pastki aloqa qismi -->
     <div class="page-bottom-contact"></div>
   </main>
 
@@ -311,10 +268,10 @@
   <main id="page-restaurant" class="page-section">
     <section class="relative py-28 bg-cover bg-center" style="background-image: linear-gradient(rgba(7,9,13,0.85), rgba(7,9,13,0.92)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
-        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3">Gastronomik San'at</span>
-        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-white font-bold mb-4">"L'Azamat" Restorani</h1>
-        <p class="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base font-light">
-          Xalqaro O'rtayer dengizi taomlari va nafis o'zbek milliy oshxonasining betakror sintezi.
+        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3" data-i18n="restaurant_tag">Gastronomik San'at</span>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-white font-bold mb-4" data-i18n="restaurant_title">"L'Azamat" Restorani</h1>
+        <p class="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base font-light" data-i18n="restaurant_subtitle">
+          Xalqaro O'rtayer dengizi taomlari va nafis milliy oshxonaning betakror sintezi.
         </p>
       </div>
     </section>
@@ -322,18 +279,18 @@
     <section class="py-16 px-4 sm:px-8 max-w-7xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
         <div class="space-y-6">
-          <span class="text-xs uppercase tracking-widest text-gold-400 font-semibold">Michelin Tajribasi</span>
-          <h2 class="font-serif text-3xl font-bold text-white">Nafis Ta'mlar va Mualliflik Menusi</h2>
-          <p class="text-gray-400 text-sm leading-relaxed font-light">
-            Har kuni ertalab mehmonlarimiz uchun yangi pishirilgan kruassanlar, sharq shirinliklari va qizil ikrali shved stoli tortiq etiladi. Kechqurun esa jonli royal musiqasi ostida ajoyib kechki ovqatdan bahramand bo'lasiz.
+          <span class="text-xs uppercase tracking-widest text-gold-400 font-semibold" data-i18n="rest_exp_tag">Michelin Tajribasi</span>
+          <h2 class="font-serif text-3xl font-bold text-white" data-i18n="rest_exp_title">Nafis Ta'mlar va Mualliflik Menyusi</h2>
+          <p class="text-gray-400 text-sm leading-relaxed font-light" data-i18n="rest_exp_desc">
+            Har kuni ertalab yangi pishirilgan pishiriqlar, shved stoli tortiq etiladi. Kechqurun esa jonli musiqasi ostida ajoyib oqshom o'tkazasiz.
           </p>
           <div class="flex items-center gap-6 pt-4">
             <div class="border-l-2 border-gold-500 pl-4">
-              <span class="block text-white font-medium text-sm">Nonushta (Shved stoli)</span>
+              <span class="block text-white font-medium text-sm" data-i18n="rest_breakfast">Nonushta (Shved stoli)</span>
               <span class="text-xs text-gold-400">07:00 — 11:00</span>
             </div>
             <div class="border-l-2 border-gold-500 pl-4">
-              <span class="block text-white font-medium text-sm">A La Carte Kechki Ovqat</span>
+              <span class="block text-white font-medium text-sm" data-i18n="rest_dinner">A La Carte Kechki Ovqat</span>
               <span class="text-xs text-gold-400">18:00 — 23:30</span>
             </div>
           </div>
@@ -344,22 +301,22 @@
         </div>
       </div>
 
-      <!-- Restoranda stol band qilish -->
+      <!-- Restoranda stol band qilish bloki -->
       <div class="bg-gradient-to-r from-obsidian-900 to-obsidian-800 border border-gold-500/30 rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto">
-        <h3 class="font-serif text-2xl sm:text-3xl text-white font-bold mb-3">Restoranda Stol Band Qiling</h3>
-        <p class="text-gray-400 text-sm mb-6 max-w-xl mx-auto">Maxsus oqshom yoki biznes tushlik uchun qulay stolni oldindan buyurtma bering.</p>
+        <h3 class="font-serif text-2xl sm:text-3xl text-white font-bold mb-3" data-i18n="rest_book_title">Restoranda Stol Band Qiling</h3>
+        <p class="text-gray-400 text-sm mb-6 max-w-xl mx-auto" data-i18n="rest_book_subtitle">Maxsus oqshom yoki biznes tushlik uchun qulay stolni oldindan buyurtma bering.</p>
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
           <a href="tel:+998508868115" class="px-8 py-3.5 bg-gold-500 hover:bg-gold-400 text-black font-semibold text-xs uppercase tracking-widest rounded transition flex items-center gap-2">
             <i class="fas fa-phone-alt"></i> +998 50 886 81 15
           </a>
-          <button onclick="openBookingModal('L\'Azamat Restoran Stoli', 0)" class="px-8 py-3.5 border border-gold-500/50 hover:bg-white/5 text-gold-400 text-xs uppercase tracking-widest rounded transition">
+          <button onclick="openBookingModal('L\'Azamat Restoran Stoli', 0)" class="px-8 py-3.5 border border-gold-500/50 hover:bg-white/5 text-gold-400 text-xs uppercase tracking-widest rounded transition" data-i18n="rest_book_online">
             Onlayn Band Qilish
           </button>
         </div>
       </div>
     </section>
 
-    <!-- Qo'shilgan pastki aloqa bo'limi -->
+    <!-- Pastki aloqa qismi -->
     <div class="page-bottom-contact"></div>
   </main>
 
@@ -368,9 +325,9 @@
   <main id="page-gallery" class="page-section">
     <section class="relative py-24 bg-cover bg-center" style="background-image: linear-gradient(rgba(7,9,13,0.88), rgba(7,9,13,0.95)), url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
-        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3">Fotolavhalar</span>
-        <h1 class="font-serif text-4xl sm:text-5xl text-white font-bold mb-4">Mehmonxona Galereyasi</h1>
-        <p class="text-gray-300 max-w-xl mx-auto text-sm">Azamat's Hotel mehmonxonasining har bir burchagidagi hashamat va nafislik.</p>
+        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3" data-i18n="gallery_tag">Fotolavhalar</span>
+        <h1 class="font-serif text-4xl sm:text-5xl text-white font-bold mb-4" data-i18n="gallery_title">Mehmonxona Galereyasi</h1>
+        <p class="text-gray-300 max-w-xl mx-auto text-sm" data-i18n="gallery_subtitle">Azamat's Hotel mehmonxonasining har bir burchagidagi hashamat va nafislik.</p>
       </div>
     </section>
 
@@ -379,112 +336,114 @@
         <div class="group relative overflow-hidden rounded-xl border border-white/10 aspect-[4/3]">
           <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Room" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-6">
-            <span class="text-sm font-serif text-white">Superior Deluxe Xona</span>
+            <span class="text-sm font-serif text-white" data-i18n="gal_img1">Superior Deluxe Xona</span>
           </div>
         </div>
         <div class="group relative overflow-hidden rounded-xl border border-white/10 aspect-[4/3]">
           <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Lobby" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-6">
-            <span class="text-sm font-serif text-white">Asosiy Katta Lobby</span>
+            <span class="text-sm font-serif text-white" data-i18n="gal_img2">Asosiy Katta Lobby</span>
           </div>
         </div>
         <div class="group relative overflow-hidden rounded-xl border border-white/10 aspect-[4/3]">
           <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" alt="Pool" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-6">
-            <span class="text-sm font-serif text-white">Yopiq Isitiluvchi Hovuz</span>
+            <span class="text-sm font-serif text-white" data-i18n="gal_img3">Yopiq Isitiluvchi Hovuz</span>
           </div>
         </div>
         <div class="group relative overflow-hidden rounded-xl border border-white/10 aspect-[4/3]">
           <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Restaurant" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-6">
-            <span class="text-sm font-serif text-white">L'Azamat Restorani</span>
+            <span class="text-sm font-serif text-white" data-i18n="gal_img4">L'Azamat Restorani</span>
           </div>
         </div>
         <div class="group relative overflow-hidden rounded-xl border border-white/10 aspect-[4/3]">
           <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80" alt="Suite Room" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-6">
-            <span class="text-sm font-serif text-white">Presidential Suite Panoramasi</span>
+            <span class="text-sm font-serif text-white" data-i18n="gal_img5">Presidential Suite</span>
           </div>
         </div>
         <div class="group relative overflow-hidden rounded-xl border border-white/10 aspect-[4/3]">
           <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Spa" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-6">
-            <span class="text-sm font-serif text-white">Spa &amp; Relaks Zona</span>
+            <span class="text-sm font-serif text-white" data-i18n="gal_img6">Spa &amp; Relaks Zona</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Qo'shilgan pastki aloqa bo'limi -->
+    <!-- Pastki aloqa qismi -->
     <div class="page-bottom-contact"></div>
   </main>
 
 
-  <!-- ==================== SAHIFA 6: ALOQA (CONTACT - ASOSIY) ==================== -->
+  <!-- ==================== SAHIFA 6: ALOQA (CONTACT) ==================== -->
   <main id="page-contact" class="page-section">
     <section class="relative py-24 bg-cover bg-center" style="background-image: linear-gradient(rgba(7,9,13,0.88), rgba(7,9,13,0.95)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=80');">
       <div class="max-w-5xl mx-auto px-4 text-center">
-        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3">24/7 Xizmatingizdamiz</span>
-        <h1 class="font-serif text-4xl sm:text-5xl text-white font-bold mb-4">Aloqa &amp; Manzil</h1>
-        <p class="text-gray-300 max-w-xl mx-auto text-sm">Savollaringiz bormi yoki bron qilishda yordam kerakmi? Biz doimo tayyormiz.</p>
+        <span class="text-xs uppercase tracking-[0.3em] text-gold-400 font-semibold block mb-3" data-i18n="contact_hero_tag">24/7 Xizmatingizdamiz</span>
+        <h1 class="font-serif text-4xl sm:text-5xl text-white font-bold mb-4" data-i18n="contact_hero_title">Aloqa &amp; Manzil</h1>
+        <p class="text-gray-300 max-w-xl mx-auto text-sm" data-i18n="contact_hero_subtitle">Savollaringiz bormi yoki bron qilishda yordam kerakmi? Biz doimo tayyormiz.</p>
       </div>
     </section>
 
-    <!-- Aloqa bo'limi -->
+    <!-- Pastki aloqa qismi -->
     <div class="page-bottom-contact"></div>
   </main>
 
 
-  <!-- ==================== BARCHA SAHIFALAR PASIDA CHIQADIGAN ALOQA SHABLONI (TEMPLATE) ==================== -->
+  <!-- ==================== BARCHA SAHIFALAR PASIDAGI ALOQA BO'LIMI TEMPLATE ==================== -->
   <template id="contact-section-template">
     <section class="border-t border-white/10 bg-obsidian-900/90 py-16 sm:py-24 px-4 sm:px-8">
       <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          <!-- Chap tomon: Skrinshotdagi aynan "Biz bilan Bog'laning" bloki -->
+          <!-- Chap tomon: Skrinshotdagi aynan "Biz bilan Bog'laning" kartalari -->
           <div class="lg:col-span-6 space-y-6">
             <div>
-              <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold block mb-2">ALOQA &amp; MANZIL</span>
-              <h2 class="font-serif text-3xl sm:text-4xl text-white font-bold">Biz bilan <span class="italic font-normal text-gold-400 font-serif">Bog'laning</span></h2>
-              <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+              <span class="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold block mb-2" data-i18n="contact_tag">ALOQA &amp; MANZIL</span>
+              <h2 class="font-serif text-3xl sm:text-4xl text-white font-bold">
+                <span data-i18n="contact_title_1">Biz bilan</span> <span class="italic font-normal text-gold-400 font-serif" data-i18n="contact_title_2">Bog'laning</span>
+              </h2>
+              <p class="text-gray-400 text-sm mt-3 leading-relaxed" data-i18n="contact_desc">
                 Savollaringiz bormi yoki maxsus transfer buyurtma qilmoqchimisiz? Bizning konsyerj xizmatimiz doimo aloqada.
               </p>
             </div>
 
             <div class="space-y-4 pt-2">
-              <!-- Manzil kartasi -->
+              <!-- Manzil -->
               <div class="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-gold-500/40 transition">
                 <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl shrink-0">
                   <i class="fas fa-map-marker-alt"></i>
                 </div>
                 <div>
-                  <span class="text-[11px] uppercase tracking-widest text-gold-400 font-semibold block mb-1">MANZIL:</span>
-                  <p class="text-gray-300 text-sm leading-relaxed">
+                  <span class="text-[11px] uppercase tracking-widest text-gold-400 font-semibold block mb-1" data-i18n="label_address">MANZIL:</span>
+                  <p class="text-gray-300 text-sm leading-relaxed" data-i18n="val_address">
                     Amir Temur shoh ko'chasi 45, Mirobod tumani, Toshkent, O'zbekiston
                   </p>
                 </div>
               </div>
 
-              <!-- Telefon kartasi -->
+              <!-- Telefon -->
               <div class="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-gold-500/40 transition">
                 <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl shrink-0">
                   <i class="fas fa-phone-alt"></i>
                 </div>
                 <div>
-                  <span class="text-[11px] uppercase tracking-widest text-gold-400 font-semibold block mb-1">TELEFON / BRON:</span>
+                  <span class="text-[11px] uppercase tracking-widest text-gold-400 font-semibold block mb-1" data-i18n="label_phone">TELEFON / BRON:</span>
                   <a href="tel:+998508868115" class="text-gray-200 text-base font-medium hover:text-gold-400 transition block">
                     +998 50 886 81 15
                   </a>
                 </div>
               </div>
 
-              <!-- Pochta kartasi -->
+              <!-- Email -->
               <div class="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-gold-500/40 transition">
                 <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xl shrink-0">
                   <i class="fas fa-envelope"></i>
                 </div>
                 <div>
-                  <span class="text-[11px] uppercase tracking-widest text-gold-400 font-semibold block mb-1">ELEKTRON POCHTA:</span>
+                  <span class="text-[11px] uppercase tracking-widest text-gold-400 font-semibold block mb-1" data-i18n="label_email">ELEKTRON POCHTA:</span>
                   <a href="mailto:azamatboymurodov19@gmail.com" class="text-gray-200 text-sm md:text-base font-medium hover:text-gold-400 transition block break-all">
                     azamatboymurodov19@gmail.com
                   </a>
@@ -493,36 +452,36 @@
             </div>
           </div>
 
-          <!-- O'ng tomon: To'g'ridan-to'g'ri xabar jo'natish formasi -->
+          <!-- O'ng tomon: Xabar qoldirish -->
           <div class="lg:col-span-6 bg-obsidian-950/80 border border-white/10 rounded-2xl p-6 sm:p-8">
-            <h3 class="font-serif text-xl font-bold text-white mb-2">Xabar Yuborish</h3>
-            <p class="text-gray-400 text-xs mb-6">Konsyerjimiz 15 daqiqa ichida siz bilan bog'lanadi.</p>
+            <h3 class="font-serif text-xl font-bold text-white mb-2" data-i18n="form_title">Xabar Yuborish</h3>
+            <p class="text-gray-400 text-xs mb-6" data-i18n="form_subtitle">Konsyerjimiz 15 daqiqa ichida siz bilan bog'lanadi.</p>
             
             <form onsubmit="handleMessageSubmit(event)" class="space-y-4">
               <div>
-                <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1.5 font-medium">Ism-familiyangiz</label>
-                <input type="text" required placeholder="Masalan: Sardor Aliyev" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500 transition">
+                <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1.5 font-medium" data-i18n="form_name">Ism-familiyangiz</label>
+                <input type="text" required placeholder="Azamat" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500 transition">
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1.5 font-medium">Telefon raqam</label>
+                  <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1.5 font-medium" data-i18n="form_phone">Telefon raqam</label>
                   <input type="tel" required placeholder="+998 90 ..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500 transition">
                 </div>
                 <div>
-                  <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1.5 font-medium">Mavzu</label>
-                  <select class="w-full bg-obsidian-900 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-gold-500 transition">
-                    <option>Xona bron qilish</option>
-                    <option>VIP Transfer</option>
-                    <option>Restoran stoli</option>
-                    <option>Tadbirlar va konferensiya</option>
+                  <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1.5 font-medium" data-i18n="form_topic">Mavzu</label>
+                  <select class="w-full bg-obsidian-900 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-gold-500 transition" id="formTopicSelect">
+                    <option value="1">Xona bron qilish</option>
+                    <option value="2">VIP Transfer</option>
+                    <option value="3">Restoran stoli</option>
+                    <option value="4">Tadbirlar va konferensiya</option>
                   </select>
                 </div>
               </div>
               <div>
-                <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1.5 font-medium">Xabaringiz yoki maxsus tilaklaringiz</label>
-                <textarea rows="3" placeholder="Sizga qanday yordam bera olamiz?" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold-500 transition"></textarea>
+                <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1.5 font-medium" data-i18n="form_msg">Xabaringiz yoki maxsus tilaklaringiz</label>
+                <textarea rows="3" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold-500 transition"></textarea>
               </div>
-              <button type="submit" class="w-full py-3 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-black font-bold text-xs uppercase tracking-widest rounded shadow-lg transition">
+              <button type="submit" class="w-full py-3 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-black font-bold text-xs uppercase tracking-widest rounded shadow-lg transition" data-i18n="btn_send">
                 Yuborish
               </button>
             </form>
@@ -541,15 +500,15 @@
         <span class="font-serif text-white tracking-widest uppercase font-semibold">AZAMAT'S HOTEL</span>
       </div>
       <div class="flex flex-wrap justify-center gap-6 text-gray-400">
-        <button onclick="navigateTo('about')" class="hover:text-gold-400">Biz Haqimizda</button>
-        <button onclick="navigateTo('rooms')" class="hover:text-gold-400">Xonalar Katalogi</button>
-        <button onclick="navigateTo('services')" class="hover:text-gold-400">Xizmatlar</button>
-        <button onclick="navigateTo('restaurant')" class="hover:text-gold-400">Restoran</button>
-        <button onclick="navigateTo('gallery')" class="hover:text-gold-400">Galereya</button>
-        <button onclick="navigateTo('contact')" class="hover:text-gold-400">Aloqa</button>
+        <button onclick="navigateTo('about')" class="hover:text-gold-400" data-i18n="menu_about">Biz Haqimizda</button>
+        <button onclick="navigateTo('rooms')" class="hover:text-gold-400" data-i18n="menu_rooms">Xonalar Katalogi</button>
+        <button onclick="navigateTo('services')" class="hover:text-gold-400" data-i18n="menu_services">Xizmatlar</button>
+        <button onclick="navigateTo('restaurant')" class="hover:text-gold-400" data-i18n="menu_restaurant">Restoran</button>
+        <button onclick="navigateTo('gallery')" class="hover:text-gold-400" data-i18n="menu_gallery">Galereya</button>
+        <button onclick="navigateTo('contact')" class="hover:text-gold-400" data-i18n="menu_contact">Aloqa</button>
       </div>
       <div>
-        <p>&copy; 2026 Azamat's Hotel. Barcha huquqlar himoyalangan.</p>
+        <p>&copy; 2026 Azamat's Hotel. <span data-i18n="footer_rights">Barcha huquqlar himoyalangan.</span></p>
       </div>
     </div>
   </footer>
@@ -559,7 +518,7 @@
   <div id="roomDetailsModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
     <div class="bg-[#181c24] text-gray-200 w-full max-w-5xl rounded-xl shadow-2xl border border-white/10 overflow-hidden relative my-auto animate-fadeIn">
       
-      <!-- Top Bar -->
+      <!-- Modal Top Bar -->
       <div class="flex justify-between items-center px-6 py-4 border-b border-white/10 bg-[#12151c]">
         <h3 id="modalRoomTitle" class="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white uppercase">SUPERIOR ROOM</h3>
         <button onclick="closeRoomModal()" class="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
@@ -567,65 +526,62 @@
 
       <!-- Main Body -->
       <div class="p-6 max-h-[75vh] overflow-y-auto custom-scrollbar">
-        <!-- Photo Mosaic Grid (Aynan skrinshotdagi tuzilishda) -->
+        <!-- Photo Mosaic Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 mb-6">
-          <!-- Big Left Image -->
           <div class="lg:col-span-7 relative group overflow-hidden rounded-lg">
-            <span class="absolute top-3 left-3 bg-[#107c41] text-white text-[11px] font-semibold px-3 py-1 rounded shadow-md z-10 flex items-center gap-1.5">
-              <i class="fas fa-trophy text-xs"></i> Eng ko'p sotildi
+            <span id="modalBadgeText" class="absolute top-3 left-3 bg-[#107c41] text-white text-[11px] font-semibold px-3 py-1 rounded shadow-md z-10 flex items-center gap-1.5">
+              <i class="fas fa-trophy text-xs"></i> <span data-i18n="badge_bestseller">Eng ko'p sotildi</span>
             </span>
             <img id="modalMainImg" src="" alt="Room Main View" class="w-full h-72 sm:h-96 object-cover transition duration-500">
           </div>
 
-          <!-- Right Grid (6 ta mini surat) -->
-          <div class="lg:col-span-5 grid grid-cols-3 gap-2" id="modalThumbnailsGrid">
-            <!-- Dynamic thumbnails injected -->
-          </div>
+          <!-- Right Grid 6 thumbnails -->
+          <div class="lg:col-span-5 grid grid-cols-3 gap-2" id="modalThumbnailsGrid"></div>
         </div>
 
-        <!-- Specifications & Details (2 columns) -->
+        <!-- Specifications & Details (2 ustun) -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-white/10 text-xs sm:text-sm">
-          <!-- Left specs -->
+          <!-- Chap ustun -->
           <div class="space-y-3">
             <div class="flex items-center gap-2 text-gray-300 font-medium">
               <i class="fas fa-user-friends text-gold-400 text-sm"></i>
-              <span id="modalCapacity">3 tagacha joy sig'imi. 3 dan 18 yoshgacha bir bola uchun alohida joysiz mumkin.</span>
+              <span id="modalCapacity"></span>
             </div>
             <div class="flex items-center gap-4 text-gray-400">
-              <span class="flex items-center gap-1.5"><i class="fas fa-vector-square text-gold-400"></i> <span id="modalArea">32 m²</span></span>
-              <span class="flex items-center gap-1.5"><i class="fas fa-door-open text-gold-400"></i> <span id="modalRoomsCount">1 xona</span></span>
+              <span class="flex items-center gap-1.5"><i class="fas fa-vector-square text-gold-400"></i> <span id="modalArea"></span></span>
+              <span class="flex items-center gap-1.5"><i class="fas fa-door-open text-gold-400"></i> <span id="modalRoomsCount"></span></span>
             </div>
 
             <!-- Amenities Badges -->
-            <div class="flex flex-wrap gap-2 pt-3" id="modalAmenitiesList">
+            <div class="flex flex-wrap gap-2 pt-3">
               <span class="bg-white/5 border border-white/10 px-2.5 py-1 rounded text-[11px] text-gray-300 flex items-center gap-1.5"><i class="fas fa-wifi text-gold-400"></i> Wi-Fi</span>
-              <span class="bg-white/5 border border-white/10 px-2.5 py-1 rounded text-[11px] text-gray-300 flex items-center gap-1.5"><i class="fas fa-snowflake text-gold-400"></i> Konditsioner</span>
-              <span class="bg-white/5 border border-white/10 px-2.5 py-1 rounded text-[11px] text-gray-300 flex items-center gap-1.5"><i class="fas fa-shield-alt text-gold-400"></i> Seyf</span>
-              <span class="bg-white/5 border border-white/10 px-2.5 py-1 rounded text-[11px] text-gray-300 flex items-center gap-1.5"><i class="fas fa-phone text-gold-400"></i> Telefon</span>
-              <span class="bg-white/5 border border-white/10 px-2.5 py-1 rounded text-[11px] text-gray-300 flex items-center gap-1.5"><i class="fas fa-wind text-gold-400"></i> Soch quritgich</span>
+              <span class="bg-white/5 border border-white/10 px-2.5 py-1 rounded text-[11px] text-gray-300 flex items-center gap-1.5"><i class="fas fa-snowflake text-gold-400"></i> <span data-i18n="amenity_ac">Konditsioner</span></span>
+              <span class="bg-white/5 border border-white/10 px-2.5 py-1 rounded text-[11px] text-gray-300 flex items-center gap-1.5"><i class="fas fa-shield-alt text-gold-400"></i> <span data-i18n="amenity_safe">Seyf</span></span>
+              <span class="bg-white/5 border border-white/10 px-2.5 py-1 rounded text-[11px] text-gray-300 flex items-center gap-1.5"><i class="fas fa-phone text-gold-400"></i> <span data-i18n="amenity_phone">Telefon</span></span>
+              <span class="bg-white/5 border border-white/10 px-2.5 py-1 rounded text-[11px] text-gray-300 flex items-center gap-1.5"><i class="fas fa-wind text-gold-400"></i> <span data-i18n="amenity_hairdryer">Soch quritgich</span></span>
             </div>
           </div>
 
-          <!-- Right Description -->
+          <!-- O'ng ustun -->
           <div class="space-y-2 text-gray-300 leading-relaxed font-light">
-            <p id="modalDescTitle" class="font-semibold text-white">SUPERIOR ROOM - shahar markazidagi keng ikki kishilik xona</p>
-            <p><strong>Maydoni:</strong> <span id="modalDescArea">32 m2 (yuqori qulaylik ko'rsatkichi)</span></p>
-            <p><strong>Imkoniyatlar:</strong> 2 ta asosiy joy (er-xotin yoki biznes sayohatchisi uchun ideal)</p>
-            <p><strong>Uxlash joylari:</strong> 1 ta katta ikki kishilik karavot (Qirol/Malika) yoki 2 ta alohida karavot (egizak)</p>
+            <p id="modalDescTitle" class="font-semibold text-white"></p>
+            <p><strong><span data-i18n="label_area">Maydoni:</span></strong> <span id="modalDescArea"></span></p>
+            <p><strong><span data-i18n="label_capacity">Imkoniyatlar:</span></strong> <span id="modalDescCapacity"></span></p>
+            <p><strong><span data-i18n="label_beds">Uxlash joylari:</span></strong> <span id="modalDescBeds"></span></p>
           </div>
         </div>
       </div>
 
-      <!-- Bottom Sticky Bar (Skrinshotdagi o'ng pastki to'q sariq tugmali dizayn) -->
+      <!-- Pastki Panel -->
       <div class="border-t border-white/10 px-6 py-4 bg-[#12151c] flex flex-col sm:flex-row justify-between items-center gap-4">
         <div class="text-center sm:text-left">
           <div class="text-sm text-gray-400">
-            <span class="text-xl sm:text-2xl font-bold text-white">US$ <span id="modalPrice">102</span></span> dan boshlab
+            <span class="text-xl sm:text-2xl font-bold text-white">US$ <span id="modalPrice">102</span></span> <span data-i18n="price_from">dan boshlab</span>
           </div>
-          <span class="text-[11px] text-gray-400 block">1 kecha uchun barcha soliqlar kiritilgan</span>
+          <span class="text-[11px] text-gray-400 block" data-i18n="tax_included">1 kecha uchun barcha soliqlar kiritilgan</span>
         </div>
         
-        <button id="modalBookBtn" onclick="proceedToBookingFromDetails()" class="w-full sm:w-auto px-8 py-3 bg-[#e67e22] hover:bg-[#d35400] text-white font-bold text-xs uppercase tracking-wider rounded transition shadow-lg">
+        <button id="modalBookBtn" onclick="proceedToBookingFromDetails()" class="w-full sm:w-auto px-8 py-3 bg-[#e67e22] hover:bg-[#d35400] text-white font-bold text-xs uppercase tracking-wider rounded transition shadow-lg" data-i18n="btn_check_dates">
           Boshqa sana uchun narxni ko'rish
         </button>
       </div>
@@ -633,51 +589,51 @@
   </div>
 
 
-  <!-- ==================== ONLAYN BRON QILISH MODAL (BOOKING POPUP) ==================== -->
+  <!-- ==================== ONLAYN BRON QILISH MODALI ==================== -->
   <div id="bookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-obsidian-900 border border-gold-500/30 rounded-2xl w-full max-w-lg p-6 sm:p-8 relative shadow-2xl">
       <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
       <div class="text-center mb-6">
-        <span class="text-xs uppercase tracking-widest text-gold-400 font-semibold block mb-1">Xona Band Qilish</span>
+        <span class="text-xs uppercase tracking-widest text-gold-400 font-semibold block mb-1" data-i18n="modal_book_tag">Xona Band Qilish</span>
         <h3 id="bookingRoomName" class="font-serif text-2xl text-white font-bold">Superior Room</h3>
       </div>
 
       <form onsubmit="handleFinalBooking(event)" class="space-y-4 text-xs">
         <div>
-          <label class="block text-gray-400 uppercase tracking-wider mb-1 font-semibold">Ism va Familiya</label>
-          <input type="text" required placeholder="Masalan: Azamat Boymurodov" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold-500">
+          <label class="block text-gray-400 uppercase tracking-wider mb-1 font-semibold" data-i18n="book_fullname">Ism va Familiya</label>
+          <input type="text" required placeholder="Azamat" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold-500">
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-gray-400 uppercase tracking-wider mb-1 font-semibold">Telefon</label>
+            <label class="block text-gray-400 uppercase tracking-wider mb-1 font-semibold" data-i18n="book_phone">Telefon</label>
             <input type="tel" required value="+998" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold-500">
           </div>
           <div>
-            <label class="block text-gray-400 uppercase tracking-wider mb-1 font-semibold">Mehmonlar</label>
+            <label class="block text-gray-400 uppercase tracking-wider mb-1 font-semibold" data-i18n="book_guests">Mehmonlar</label>
             <select class="w-full bg-obsidian-950 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold-500">
-              <option>1 kishi</option>
-              <option selected>2 kishi</option>
-              <option>3 kishi</option>
+              <option>1</option>
+              <option selected>2</option>
+              <option>3</option>
             </select>
           </div>
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-gray-400 uppercase tracking-wider mb-1 font-semibold">Kirish sanasi</label>
+            <label class="block text-gray-400 uppercase tracking-wider mb-1 font-semibold" data-i18n="book_checkin">Kirish sanasi</label>
             <input type="date" required id="bookingCheckin" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold-500">
           </div>
           <div>
-            <label class="block text-gray-400 uppercase tracking-wider mb-1 font-semibold">Chiqish sanasi</label>
+            <label class="block text-gray-400 uppercase tracking-wider mb-1 font-semibold" data-i18n="book_checkout">Chiqish sanasi</label>
             <input type="date" required id="bookingCheckout" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-gold-500">
           </div>
         </div>
 
         <div class="p-3 rounded-lg bg-gold-500/10 border border-gold-500/20 text-center">
-          <span class="text-gray-300">Tezkor bron qilish uchun konsyerj raqami:</span>
+          <span class="text-gray-300" data-i18n="book_notice">Tezkor bron qilish uchun konsyerj raqami:</span>
           <span class="block text-gold-400 font-bold text-sm mt-0.5">+998 50 886 81 15</span>
         </div>
 
-        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-black font-bold text-xs uppercase tracking-widest rounded shadow-xl transition">
+        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-black font-bold text-xs uppercase tracking-widest rounded shadow-xl transition" data-i18n="book_btn_confirm">
           Bronni Tasdiqlash
         </button>
       </form>
@@ -694,18 +650,314 @@
   </div>
 
 
-  <!-- ==================== JAVASCRIPT ==================== -->
+  <!-- ==================== JAVASCRIPT VA 3 TILLIK TRANSLATIONS ==================== -->
   <script>
-    // Xonalar haqida boy ma'lumotlar bazasi
-    const roomsData = [
-      {
+    // Til lug'atlari (UZ, RU, EN)
+    const translations = {
+      uz: {
+        top_location: "Mirobod tumani, Toshkent",
+        select_language: "Tilni tanlang:",
+        menu_about: "BIZ HAQIMIZDA",
+        menu_rooms: "XONALAR KATALOGI",
+        menu_services: "XIZMATLAR",
+        menu_restaurant: "RESTORAN",
+        menu_gallery: "GALEREYA",
+        menu_contact: "ALOQA",
+        btn_book_room: "Xona Band Qilish",
+        about_tag: "Toshkent Yuragidagi Hashamat",
+        about_title: "Azamat's Hotel Haqida",
+        about_subtitle: "Sharqona mehmondo'stlik va Yevropa nafisligi uyg'unlashgan premium toifadagi butik mehmonxona.",
+        philosophy_tag: "Bizning Falsafamiz",
+        philosophy_title: "Har Bir Mehmon Biz Uchun Oliy Martabali",
+        philosophy_p1: "Hotel Manor me'moriy an'analaridan ilhomlangan holda tashkil topgan Azamat's Hotel har bir mehmon uchun shaxsiy va unutilmas tajriba yaratishga intiladi.",
+        philosophy_p2: "Toshkentning eng nufuzli Mirobod tumanida joylashgan mehmonxonamiz xalqaro aeroportga 10 daqiqalik masofada bo'lib, biznes sayohatchilar va qulaylikni qadrlovchi mehmonlar uchun ajoyib maskandir.",
+        stat_rooms: "Eksklyuziv Xonalar",
+        stat_concierge: "Konsyerj Xizmati",
+        stat_rating: "Mehmonlar Bahosi",
+        rooms_tag: "Royal Qulaylik",
+        rooms_title: "Xonalar Katalogi",
+        rooms_subtitle: "Har bir xona shinamlik, yuqori sifatli to'shaklar va sokin muhit bilan jihozlangan.",
+        services_tag: "5 Yulduzli Servis",
+        services_title: "Premium Xizmatlarimiz",
+        services_subtitle: "Sizning rohatlanishingiz va qulayligingiz uchun barcha sharoitlar yaratilgan.",
+        restaurant_tag: "Gastronomik San'at",
+        restaurant_title: "\"L'Azamat\" Restorani",
+        restaurant_subtitle: "Xalqaro O'rtayer dengizi taomlari va nafis milliy oshxonaning betakror sintezi.",
+        rest_exp_tag: "Michelin Tajribasi",
+        rest_exp_title: "Nafis Ta'mlar va Mualliflik Menyusi",
+        rest_exp_desc: "Har kuni ertalab yangi pishirilgan pishiriqlar, shved stoli tortiq etiladi. Kechqurun esa jonli musiqasi ostida ajoyib oqshom o'tkazasiz.",
+        rest_breakfast: "Nonushta (Shved stoli)",
+        rest_dinner: "A La Carte Kechki Ovqat",
+        rest_book_title: "Restoranda Stol Band Qiling",
+        rest_book_subtitle: "Maxsus oqshom yoki biznes tushlik uchun qulay stolni oldindan buyurtma bering.",
+        rest_book_online: "Onlayn Band Qilish",
+        gallery_tag: "Fotolavhalar",
+        gallery_title: "Mehmonxona Galereyasi",
+        gallery_subtitle: "Azamat's Hotel mehmonxonasining har bir burchagidagi hashamat va nafislik.",
+        gal_img1: "Superior Deluxe Xona",
+        gal_img2: "Asosiy Katta Lobby",
+        gal_img3: "Yopiq Isitiluvchi Hovuz",
+        gal_img4: "L'Azamat Restorani",
+        gal_img5: "Presidential Suite",
+        gal_img6: "Spa & Relaks Zona",
+        contact_hero_tag: "24/7 Xizmatingizdamiz",
+        contact_hero_title: "Aloqa & Manzil",
+        contact_hero_subtitle: "Savollaringiz bormi yoki bron qilishda yordam kerakmi? Biz doimo tayyormiz.",
+        contact_tag: "ALOQA & MANZIL",
+        contact_title_1: "Biz bilan",
+        contact_title_2: "Bog'laning",
+        contact_desc: "Savollaringiz bormi yoki maxsus transfer buyurtma qilmoqchimisiz? Bizning konsyerj xizmatimiz doimo aloqada.",
+        label_address: "MANZIL:",
+        val_address: "Amir Temur shoh ko'chasi 45, Mirobod tumani, Toshkent, O'zbekiston",
+        label_phone: "TELEFON / BRON:",
+        label_email: "ELEKTRON POCHTA:",
+        form_title: "Xabar Yuborish",
+        form_subtitle: "Konsyerjimiz 15 daqiqa ichida siz bilan bog'lanadi.",
+        form_name: "Ism-familiyangiz",
+        form_phone: "Telefon raqam",
+        form_topic: "Mavzu",
+        form_msg: "Xabaringiz yoki maxsus tilaklaringiz",
+        btn_send: "Yuborish",
+        footer_rights: "Barcha huquqlar himoyalangan.",
+        badge_bestseller: "Eng ko'p sotildi",
+        amenity_ac: "Konditsioner",
+        amenity_safe: "Seyf",
+        amenity_phone: "Telefon",
+        amenity_hairdryer: "Soch quritgich",
+        label_area: "Maydoni:",
+        label_capacity: "Imkoniyatlar:",
+        label_beds: "Uxlash joylari:",
+        price_from: "dan boshlab",
+        tax_included: "1 kecha uchun barcha soliqlar kiritilgan",
+        btn_check_dates: "Boshqa sana uchun narxni ko'rish",
+        modal_book_tag: "Xona Band Qilish",
+        book_fullname: "Ism va Familiya",
+        book_phone: "Telefon",
+        book_guests: "Mehmonlar",
+        book_checkin: "Kirish sanasi",
+        book_checkout: "Chiqish sanasi",
+        book_notice: "Tezkor bron qilish uchun konsyerj raqami:",
+        book_btn_confirm: "Bronni Tasdiqlash",
+        toast_success: "Muvaffaqiyatli!",
+        toast_booking_msg: "Konsyerjimiz +998 50 886 81 15 raqami orqali siz bilan bog'lanadi.",
+        toast_contact_msg: "Xabaringiz yuborildi! Tez orada siz bilan bog'lanamiz.",
+        card_details_btn: "Batafsil",
+        card_book_btn: "Band qilish",
+        per_night: "/ tun"
+      },
+      ru: {
+        top_location: "Мирабадский район, Ташкент",
+        select_language: "Выберите язык:",
+        menu_about: "О НАС",
+        menu_rooms: "КАТАЛОГ НОМЕРОВ",
+        menu_services: "УСЛУГИ",
+        menu_restaurant: "РЕСТОРАН",
+        menu_gallery: "ГАЛЕРЕЯ",
+        menu_contact: "КОНТАКТЫ",
+        btn_book_room: "Забронировать",
+        about_tag: "Роскошь в сердце Ташкента",
+        about_title: "Об отеле Azamat's Hotel",
+        about_subtitle: "Бутик-отель премиум-класса, сочетающий восточное гостеприимство и европейскую утонченность.",
+        philosophy_tag: "Наша философия",
+        philosophy_title: "Каждый гость для нас — привилегированная персона",
+        philosophy_p1: "Вдохновленный архитектурными традициями Hotel Manor, Azamat's Hotel стремится создать персонализированный и незабываемый опыт для каждого гостя.",
+        philosophy_p2: "Расположенный в престижном Мирабадском районе Ташкента, наш отель находится всего в 10 минутах от международного аэропорта — идеальный выбор для деловых путешественников и ценителей комфорта.",
+        stat_rooms: "Эксклюзивных номеров",
+        stat_concierge: "Консьерж 24/7",
+        stat_rating: "Оценка гостей",
+        rooms_tag: "Королевский уют",
+        rooms_title: "Каталог Номеров",
+        rooms_subtitle: "Каждый номер оборудован для абсолютного уюта, отдыха и спокойного сна.",
+        services_tag: "5-звездочный сервис",
+        services_title: "Премиальные Услуги",
+        services_subtitle: "Все условия для вашего идеального отдыха и максимального комфорта.",
+        restaurant_tag: "Гастрономическое искусство",
+        restaurant_title: "Ресторан \"L'Azamat\"",
+        restaurant_subtitle: "Изысканное сочетание средиземноморской кухни и лучших восточных традиций.",
+        rest_exp_tag: "Опыт Мишлен",
+        rest_exp_title: "Изысканные вкусы и авторское меню",
+        rest_exp_desc: "Каждое утро сервируется богатый шведский стол со свежей выпечкой. По вечерам вас ждет ужин под аккомпанемент живой музыки.",
+        rest_breakfast: "Завтрак (Шведский стол)",
+        rest_dinner: "A La Carte Ужин",
+        rest_book_title: "Забронировать столик",
+        rest_book_subtitle: "Забронируйте столик заранее для делового обеда или романтического вечера.",
+        rest_book_online: "Забронировать онлайн",
+        gallery_tag: "Фотохроника",
+        gallery_title: "Галерея Отеля",
+        gallery_subtitle: "Роскошь и внимание к деталям в каждом уголке Azamat's Hotel.",
+        gal_img1: "Номер Superior Deluxe",
+        gal_img2: "Главное просторное лобби",
+        gal_img3: "Крытый бассейн с подогревом",
+        gal_img4: "Ресторан L'Azamat",
+        gal_img5: "Presidential Suite",
+        gal_img6: "Зона Spa & Релакса",
+        contact_hero_tag: "К вашим услугам 24/7",
+        contact_hero_title: "Контакты и Локация",
+        contact_hero_subtitle: "Есть вопросы или требуется помощь с бронированием? Мы всегда на связи.",
+        contact_tag: "СВЯЗЬ И АДРЕС",
+        contact_title_1: "Свяжитесь",
+        contact_title_2: "с Нами",
+        contact_desc: "У вас есть вопросы или вы хотите заказать индивидуальный трансфер? Наша служба консьержа всегда на связи.",
+        label_address: "АДРЕС:",
+        val_address: "Проспект Амира Темура 45, Мирабадский район, Ташкент, Узбекистан",
+        label_phone: "ТЕЛЕФОН / БРОНЬ:",
+        label_email: "ЭЛЕКТРОННАЯ ПОЧТА:",
+        form_title: "Отправить сообщение",
+        form_subtitle: "Наш консьерж свяжется с вами в течение 15 минут.",
+        form_name: "Ваше имя",
+        form_phone: "Номер телефона",
+        form_topic: "Тема обращения",
+        form_msg: "Ваше сообщение или пожелания",
+        btn_send: "Отправить",
+        footer_rights: "Все права защищены.",
+        badge_bestseller: "Хит продаж",
+        amenity_ac: "Кондиционер",
+        amenity_safe: "Сейф",
+        amenity_phone: "Телефон",
+        amenity_hairdryer: "Фен",
+        label_area: "Площадь:",
+        label_capacity: "Вместимость:",
+        label_beds: "Спальные места:",
+        price_from: "от",
+        tax_included: "Все налоги включены за 1 ночь",
+        btn_check_dates: "Посмотреть цену на другие даты",
+        modal_book_tag: "Бронирование номера",
+        book_fullname: "Имя и Фамилия",
+        book_phone: "Телефон",
+        book_guests: "Гости",
+        book_checkin: "Дата заезда",
+        book_checkout: "Дата выезда",
+        book_notice: "Для быстрого бронирования свяжитесь с консьержем:",
+        book_btn_confirm: "Подтвердить бронирование",
+        toast_success: "Успешно!",
+        toast_booking_msg: "Наш консьерж свяжется с вами по номеру +998 50 886 81 15.",
+        toast_contact_msg: "Сообщение отправлено! Мы свяжемся с вами в ближайшее время.",
+        card_details_btn: "Подробнее",
+        card_book_btn: "Бронь",
+        per_night: "/ ночь"
+      },
+      en: {
+        top_location: "Mirobod District, Tashkent",
+        select_language: "Select language:",
+        menu_about: "ABOUT US",
+        menu_rooms: "ROOM DIRECTORY",
+        menu_services: "SERVICES",
+        menu_restaurant: "RESTAURANT",
+        menu_gallery: "GALLERY",
+        menu_contact: "CONTACT",
+        btn_book_room: "Book a Room",
+        about_tag: "Luxury in the Heart of Tashkent",
+        about_title: "About Azamat's Hotel",
+        about_subtitle: "A boutique luxury hotel harmoniously blending Eastern hospitality and European elegance.",
+        philosophy_tag: "Our Philosophy",
+        philosophy_title: "Every Guest is a Dignitary to Us",
+        philosophy_p1: "Drawing architectural inspiration from Hotel Manor, Azamat's Hotel is committed to delivering a bespoke and memorable stay for every guest.",
+        philosophy_p2: "Located in Tashkent's prestigious Mirobod district, just 10 minutes from the international airport, our hotel is the premier choice for business travelers and luxury seekers.",
+        stat_rooms: "Exclusive Rooms",
+        stat_concierge: "24/7 Concierge",
+        stat_rating: "Guest Rating",
+        rooms_tag: "Royal Comfort",
+        rooms_title: "Room Directory",
+        rooms_subtitle: "Each room is designed with bespoke furnishing, plush bedding, and an atmosphere of tranquil luxury.",
+        services_tag: "5-Star Hospitality",
+        services_title: "Premium Services",
+        services_subtitle: "Every detail meticulously curated for your ultimate relaxation and utmost convenience.",
+        restaurant_tag: "Culinary Art",
+        restaurant_title: "\"L'Azamat\" Restaurant",
+        restaurant_subtitle: "An exquisite symphony of Mediterranean gastronomy and authentic oriental flavors.",
+        rest_exp_tag: "Michelin Heritage",
+        rest_exp_title: "Exquisite Flavors & Signature Menu",
+        rest_exp_desc: "Every morning opens with an artisan buffet and fresh bakery. In the evening, savor gourmet dining complemented by live grand piano melodies.",
+        rest_breakfast: "Breakfast (Artisan Buffet)",
+        rest_dinner: "A La Carte Fine Dining",
+        rest_book_title: "Reserve a Table",
+        rest_book_subtitle: "Book your table in advance for an exquisite dinner or business lunch.",
+        rest_book_online: "Book Online",
+        gallery_tag: "Photo Showcase",
+        gallery_title: "Hotel Gallery",
+        gallery_subtitle: "Discover pure sophistication across every corner of Azamat's Hotel.",
+        gal_img1: "Superior Deluxe Room",
+        gal_img2: "Grand Hotel Lobby",
+        gal_img3: "Heated Indoor Pool",
+        gal_img4: "L'Azamat Restaurant",
+        gal_img5: "Presidential Suite",
+        gal_img6: "Spa & Wellness Lounge",
+        contact_hero_tag: "At Your Service 24/7",
+        contact_hero_title: "Contact & Location",
+        contact_hero_subtitle: "Have questions or need bespoke booking assistance? We are always here to assist.",
+        contact_tag: "CONTACT & LOCATION",
+        contact_title_1: "Get in",
+        contact_title_2: "Touch",
+        contact_desc: "Have inquiries or wish to reserve a private chauffeur transfer? Our concierge desk is at your service 24/7.",
+        label_address: "ADDRESS:",
+        val_address: "Amir Temur Avenue 45, Mirobod District, Tashkent, Uzbekistan",
+        label_phone: "PHONE / RESERVATIONS:",
+        label_email: "EMAIL ADDRESS:",
+        form_title: "Send a Message",
+        form_subtitle: "Our concierge will respond within 15 minutes.",
+        form_name: "Your Full Name",
+        form_phone: "Phone Number",
+        form_topic: "Subject",
+        form_msg: "Your message or bespoke request",
+        btn_send: "Submit Inquiry",
+        footer_rights: "All rights reserved.",
+        badge_bestseller: "Most Popular",
+        amenity_ac: "Air Conditioning",
+        amenity_safe: "Private Safe",
+        amenity_phone: "Direct Phone",
+        amenity_hairdryer: "Hairdryer",
+        label_area: "Area:",
+        label_capacity: "Capacity:",
+        label_beds: "Bedding:",
+        price_from: "starting from",
+        tax_included: "All taxes included per 1 night",
+        btn_check_dates: "Check Prices for Other Dates",
+        modal_book_tag: "Reserve Room",
+        book_fullname: "Full Name",
+        book_phone: "Phone Number",
+        book_guests: "Guests",
+        book_checkin: "Check-in Date",
+        book_checkout: "Check-out Date",
+        book_notice: "For instantaneous booking assistance:",
+        book_btn_confirm: "Confirm Reservation",
+        toast_success: "Success!",
+        toast_booking_msg: "Our concierge will contact you via +998 50 886 81 15 to finalize your reservation.",
+        toast_contact_msg: "Message received! We will be in touch shortly.",
+        card_details_btn: "Details",
+        card_book_btn: "Book",
+        per_night: "/ night"
+      }
+    };
+
+    // Ko'p tilli xonalar ma'lumotlari
+    const roomsDataMulti = {
+      superior: {
         id: 'superior',
-        title: 'Superior Room',
         price: 102,
         area: '32 m²',
-        roomsCount: '1 xona',
-        capacity: "3 tagacha joy sig'imi. 3 dan 18 yoshgacha bir bola uchun alohida joysiz mumkin.",
-        badge: "Eng ko'p sotildi",
+        roomsCount: { uz: '1 xona', ru: '1 комната', en: '1 room' },
+        title: { uz: 'Superior Room', ru: 'Superior Room', en: 'Superior Room' },
+        badge: { uz: "Eng ko'p sotildi", ru: "Хит продаж", en: "Most Popular" },
+        capacity: {
+          uz: "3 tagacha joy sig'imi. 3 dan 18 yoshgacha bir bola uchun alohida joysiz mumkin.",
+          ru: "Вместимость до 3 гостей. Дети от 3 до 18 лет могут размещаться без доп. места.",
+          en: "Up to 3 guests capacity. Children from 3 to 18 years can stay using existing beds."
+        },
+        descTitle: {
+          uz: "SUPERIOR ROOM - shahar markazidagi keng ikki kishilik xona",
+          ru: "SUPERIOR ROOM - просторный двухместный номер в центре города",
+          en: "SUPERIOR ROOM - spacious double room in the city center"
+        },
+        descCapacity: {
+          uz: "2 ta asosiy joy (er-xotin yoki biznes sayohatchisi uchun ideal)",
+          ru: "2 основных места (идеально для пары или делового путешественника)",
+          en: "2 primary guests (ideal for couples or corporate travelers)"
+        },
+        descBeds: {
+          uz: "1 ta katta ikki kishilik karavot (King) yoki 2 ta alohida karavot (Twin)",
+          ru: "1 большая двуспальная кровать (King) или 2 раздельные (Twin)",
+          en: "1 King-size bed or 2 twin separate single beds"
+        },
         images: [
           'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80',
           'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=600&q=80',
@@ -714,17 +966,35 @@
           'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80',
           'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=600&q=80',
           'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80'
-        ],
-        desc: "SUPERIOR ROOM-shahar markazidagi keng ikki kishilik xona. Yuqori darajadagi qulaylik va akustik izolyatsiya."
+        ]
       },
-      {
+      deluxe: {
         id: 'deluxe',
-        title: 'Deluxe King Room',
         price: 145,
         area: '42 m²',
-        roomsCount: '1 katta studiya xona',
-        capacity: "3 tagacha mehmon. Keng King-size karavot va shahar panoramasi.",
-        badge: "Tavsiya etiladi",
+        roomsCount: { uz: '1 katta studiya xona', ru: '1 большая студия', en: '1 grand studio room' },
+        title: { uz: 'Deluxe King Room', ru: 'Deluxe King Room', en: 'Deluxe King Room' },
+        badge: { uz: "Tavsiya etiladi", ru: "Рекомендуем", en: "Recommended" },
+        capacity: {
+          uz: "3 tagacha mehmon. Keng King-size karavot va shahar panoramasi.",
+          ru: "До 3 гостей. Просторная кровать King-size и панорама города.",
+          en: "Up to 3 guests. Grand King-size bed and panoramic skyline view."
+        },
+        descTitle: {
+          uz: "DELUXE KING ROOM - yuqori qavatdagi panoramali hashamatli xona",
+          ru: "DELUXE KING ROOM - роскошный номер на верхних этажах с панорамой",
+          en: "DELUXE KING ROOM - high-floor luxury accommodation with panorama"
+        },
+        descCapacity: {
+          uz: "Qulay yumshoq mebellar, ish stoli va mini-bar",
+          ru: "Удобная мягкая мебель, рабочая зона и мини-бар",
+          en: "Bespoke plush armchair lounge, executive desk, and minibar"
+        },
+        descBeds: {
+          uz: "1 ta ultra-komfort King-size to'shak",
+          ru: "1 ультра-комфортная кровать King-size",
+          en: "1 ultra-comfortable King-size luxury bed"
+        },
         images: [
           'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80',
           'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80',
@@ -732,17 +1002,35 @@
           'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80',
           'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=600&q=80',
           'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=600&q=80'
-        ],
-        desc: "DELUXE KING ROOM - qulay ish stoli, yumshoq dam olish mebellari va marmar hammom bilan ta'minlangan."
+        ]
       },
-      {
+      suite: {
         id: 'suite',
-        title: 'Executive Royal Suite',
         price: 240,
         area: '68 m²',
-        roomsCount: '2 xona (Yotoqxona + Mehmonxona)',
-        capacity: "4 tagacha joy sig'imi. Alohida mehmon kutish zali va shaxsiy minibar.",
-        badge: "VIP Luxury",
+        roomsCount: { uz: '2 xona (Yotoq + Mehmonxona)', ru: '2 комнаты (Спальня + Гостиная)', en: '2 rooms (Bedroom + Living suite)' },
+        title: { uz: 'Executive Royal Suite', ru: 'Executive Royal Suite', en: 'Executive Royal Suite' },
+        badge: { uz: "VIP Luxury", ru: "VIP Люкс", en: "VIP Luxury" },
+        capacity: {
+          uz: "4 tagacha joy sig'imi. Alohida mehmon kutish zali va shaxsiy jakuzi.",
+          ru: "Вместимость до 4 гостей. Отдельная гостиная и джакузи.",
+          en: "Up to 4 guests. Separate lavish salon and personal jacuzzi."
+        },
+        descTitle: {
+          uz: "EXECUTIVE ROYAL SUITE - hashamatning eng yuqori namunasi",
+          ru: "EXECUTIVE ROYAL SUITE - высший стандарт эксклюзивного отдыха",
+          en: "EXECUTIVE ROYAL SUITE - pinnacle of boutique luxury and prestige"
+        },
+        descCapacity: {
+          uz: "Bepul aeroport transferi (Maybach) va 24/7 shaxsiy konsyerj kiritilgan",
+          ru: "Включен трансфер на Maybach и персональный консьерж 24/7",
+          en: "Includes complimentary Maybach chauffeur and 24/7 personal butler"
+        },
+        descBeds: {
+          uz: "1 ta Grand King-size karavot + mehmonxonada divan-karavot",
+          ru: "1 кровать Grand King-size + раскладной диван в гостиной",
+          en: "1 Grand King-size master bed + convertible luxury sofa bed"
+        },
         images: [
           'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80',
           'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80',
@@ -750,21 +1038,116 @@
           'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=600&q=80',
           'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80',
           'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=600&q=80'
-        ],
-        desc: "EXECUTIVE ROYAL SUITE - hashamat va shaxsiy dabdabaning eng yuqori namunasi. Shaxsiy jakuzi va bepul transfer xizmati kiritilgan."
+        ]
+      }
+    };
+
+    // Xizmatlar ro'yxati (3 tilda)
+    const servicesList = [
+      {
+        icon: 'fas fa-spa',
+        title: { uz: "Hashamatli Spa & Sauna", ru: "Спа и Сауна Премиум", en: "Luxury Spa & Sauna" },
+        desc: { 
+          uz: "Fin saunasi, turk hamomi va shifobaxsh massaj muolajalari.", 
+          ru: "Финская сауна, турецкий хаммам и авторские массажные программы.", 
+          en: "Finnish dry sauna, Turkish hammam, and therapeutic massage treatments." 
+        },
+        tag: { uz: "08:00 - 23:00 Har kuni", ru: "08:00 - 23:00 Ежедневно", en: "08:00 - 23:00 Daily" }
+      },
+      {
+        icon: 'fas fa-car-side',
+        title: { uz: "VIP Aeroport Transferi", ru: "VIP Трансфер из Аэропорта", en: "VIP Airport Chauffeur" },
+        desc: { 
+          uz: "Mercedes-Benz S-Class va Maybach avtomobillarida qulay kutib olish.", 
+          ru: "Встреча и трансфер на автомобилях Mercedes-Benz S-Class и Maybach.", 
+          en: "Premium meet & greet services with Mercedes-Benz S-Class and Maybach." 
+        },
+        tag: { uz: "24/7 Buyurtma asosida", ru: "24/7 По заказу", en: "24/7 On Demand" }
+      },
+      {
+        icon: 'fas fa-swimming-pool',
+        title: { uz: "Yopiq Isitiluvchi Hovuz", ru: "Крытый Бассейн с Подогревом", en: "Heated Indoor Pool" },
+        desc: { 
+          uz: "Yil davomida bir xil haroratda saqlanuvchi, ultra-filtrlangan suv havzasi.", 
+          ru: "Круглогодичный бассейн с постоянным подогревом и фильтрацией воды.", 
+          en: "Year-round temperature-controlled pool with advanced multi-tier filtration." 
+        },
+        tag: { uz: "Mehmonlar uchun bepul", ru: "Бесплатно для гостей", en: "Complimentary for guests" }
+      },
+      {
+        icon: 'fas fa-concierge-bell',
+        title: { uz: "Shaxsiy Konsyerj 24/7", ru: "Персональный Консьерж 24/7", en: "24/7 Dedicated Concierge" },
+        desc: { 
+          uz: "Teatr chiptalari, ekskursiyalar va shaxsiy talablarni zudlik bilan bajarish.", 
+          ru: "Билеты на лучшие мероприятия, экскурсии и решение любых вопросов.", 
+          en: "Bespoke city tours, fine event reservations, and individualized requests." 
+        },
+        tag: { uz: "Har doim xizmatingizda", ru: "Всегда к услугам", en: "Always available" }
+      },
+      {
+        icon: 'fas fa-dumbbell',
+        title: { uz: "Fitness & Gym Center", ru: "Фитнес-клуб Technogym", en: "Technogym Fitness Club" },
+        desc: { 
+          uz: "Eng so'nggi Technogym uskunalari bilan jihozlangan fitnes zal.", 
+          ru: "Оснащенный передовыми тренажерами зал для поддержания тонуса.", 
+          en: "State-of-the-art Italian Technogym equipment with certified trainers." 
+        },
+        tag: { uz: "24 Soat ochiq", ru: "Открыто 24 часа", en: "Open 24 Hours" }
+      },
+      {
+        icon: 'fas fa-briefcase',
+        title: { uz: "Konferens Zallari", ru: "Конференц-залы", en: "Executive Conference Halls" },
+        desc: { 
+          uz: "Yuqori darajadagi biznes uchrashuvlar va forumlar uchun zamonaviy zallar.", 
+          ru: "Современные залы с мультимедиа для деловых встреч и совещаний.", 
+          en: "High-tech audio/visual conference facilities hosting up to 80 delegates." 
+        },
+        tag: { uz: "80 kishilik sig'im", ru: "Вместимость 80 человек", en: "Capacity 80 guests" }
       }
     ];
 
-    let currentSelectedRoom = roomsData[0];
+    let currentLang = localStorage.getItem('azamat_hotel_lang') || 'uz';
+    let currentSelectedRoomId = 'superior';
+
+    // Tilni o'zgartirish funksiyasi
+    function setLanguage(lang) {
+      if (!translations[lang]) return;
+      currentLang = lang;
+      localStorage.setItem('azamat_hotel_lang', lang);
+
+      // Til tugmalarini faollashtirish
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Barcha data-i18n atributli elementlarni tarjima qilish
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+
+      // Dinamik komponentlarni qayta chizish
+      renderRoomCards();
+      renderServices();
+
+      // Agar xona modali ochiq bo'lsa, uni ham yangilash
+      if (!document.getElementById('roomDetailsModal').classList.contains('hidden')) {
+        openRoomDetails(currentSelectedRoomId);
+      }
+    }
 
     // Sahifalar bo'ylab navigatsiya (SPA Rejimi)
     function navigateTo(pageId) {
-      // Barcha sahifalarni yashirish
       document.querySelectorAll('.page-section').forEach(sec => {
         sec.classList.remove('active');
       });
 
-      // Agar 'home' bosilsa, default 'about' ga o'tadi
       const targetId = pageId === 'home' ? 'about' : pageId;
       const targetPage = document.getElementById('page-' + targetId);
       
@@ -773,7 +1156,6 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
-      // Nav menyudagi aktiv element stilini yangilash
       document.querySelectorAll('.nav-item').forEach(item => {
         if (item.getAttribute('data-page') === targetId) {
           item.classList.add('text-gold-400', 'border-b-2', 'border-gold-500');
@@ -784,11 +1166,10 @@
         }
       });
 
-      // Mobile menyuni yopish
       document.getElementById('mobileMenu').classList.add('hidden');
     }
 
-    // Har bitta sahifaning pastiga Aloqa bo'limini qo'shib chiqish
+    // Pastki aloqa bo'limlarini sahifalarga nusxalash
     function injectBottomContactSections() {
       const template = document.getElementById('contact-section-template');
       document.querySelectorAll('.page-bottom-contact').forEach(container => {
@@ -796,18 +1177,21 @@
       });
     }
 
-    // Xonalar kartalarini generatsiya qilish
+    // Xonalar ro'yxatini chiqarish
     function renderRoomCards() {
       const container = document.getElementById('roomsContainer');
       if (!container) return;
 
-      container.innerHTML = roomsData.map(room => `
+      const t = translations[currentLang];
+      const rooms = Object.values(roomsDataMulti);
+
+      container.innerHTML = rooms.map(room => `
         <div class="bg-obsidian-900 border border-white/10 rounded-2xl overflow-hidden hover:border-gold-500/50 transition-all duration-300 group flex flex-col justify-between shadow-xl">
           <div class="relative cursor-pointer overflow-hidden" onclick="openRoomDetails('${room.id}')">
-            <span class="absolute top-3 left-3 bg-[#107c41] text-white text-[10px] font-semibold px-2.5 py-1 rounded z-10">
-              ${room.badge}
+            <span class="absolute top-3 left-3 bg-[#107c41] text-white text-[10px] font-semibold px-2.5 py-1 rounded z-10 flex items-center gap-1">
+              <i class="fas fa-trophy text-[9px]"></i> ${room.badge[currentLang]}
             </span>
-            <img src="${room.images[0]}" alt="${room.title}" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
+            <img src="${room.images[0]}" alt="${room.title[currentLang]}" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
             <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent opacity-60"></div>
             <div class="absolute bottom-3 left-3">
               <span class="text-xs text-gray-300"><i class="fas fa-expand mr-1 text-gold-400"></i> ${room.area}</span>
@@ -817,31 +1201,31 @@
           <div class="p-6 flex-1 flex flex-col justify-between">
             <div>
               <h3 class="font-serif text-xl font-bold text-white mb-2 group-hover:text-gold-400 transition cursor-pointer" onclick="openRoomDetails('${room.id}')">
-                ${room.title}
+                ${room.title[currentLang]}
               </h3>
-              <p class="text-gray-400 text-xs line-clamp-2 mb-4 leading-relaxed">${room.desc}</p>
+              <p class="text-gray-400 text-xs line-clamp-2 mb-4 leading-relaxed">${room.descTitle[currentLang]}</p>
               
               <div class="flex items-center gap-3 text-xs text-gray-400 py-3 border-y border-white/10 mb-4">
                 <span title="Wi-Fi"><i class="fas fa-wifi text-gold-400"></i></span>
-                <span title="Konditsioner"><i class="fas fa-snowflake text-gold-400"></i></span>
-                <span title="Seyf"><i class="fas fa-shield-alt text-gold-400"></i></span>
-                <span title="Smart TV"><i class="fas fa-tv text-gold-400"></i></span>
-                <span class="text-[11px] text-gray-400 ml-auto">${room.roomsCount}</span>
+                <span title="${t.amenity_ac}"><i class="fas fa-snowflake text-gold-400"></i></span>
+                <span title="${t.amenity_safe}"><i class="fas fa-shield-alt text-gold-400"></i></span>
+                <span title="TV"><i class="fas fa-tv text-gold-400"></i></span>
+                <span class="text-[11px] text-gray-400 ml-auto">${room.roomsCount[currentLang]}</span>
               </div>
             </div>
 
             <div class="flex items-center justify-between pt-2">
               <div>
-                <span class="text-[10px] uppercase tracking-wider text-gray-400 block">Narxi</span>
-                <span class="font-serif text-lg font-bold text-white">US$ ${room.price} <span class="text-xs font-normal text-gray-400">/ tun</span></span>
+                <span class="text-[10px] uppercase tracking-wider text-gray-400 block">${t.label_capacity}</span>
+                <span class="font-serif text-lg font-bold text-white">US$ ${room.price} <span class="text-xs font-normal text-gray-400">${t.per_night}</span></span>
               </div>
               
               <div class="flex items-center gap-2">
-                <button onclick="openRoomDetails('${room.id}')" class="px-3 py-2 bg-white/5 hover:bg-white/10 text-gray-300 text-xs rounded border border-white/10 transition" title="Batafsil ma'lumot">
-                  Batafsil
+                <button onclick="openRoomDetails('${room.id}')" class="px-3 py-2 bg-white/5 hover:bg-white/10 text-gray-300 text-xs rounded border border-white/10 transition">
+                  ${t.card_details_btn}
                 </button>
-                <button onclick="openBookingModal('${room.title}', ${room.price})" class="px-4 py-2 bg-gold-500 hover:bg-gold-400 text-black font-semibold text-xs rounded transition shadow">
-                  Band qilish
+                <button onclick="openBookingModal('${room.title[currentLang]}', ${room.price})" class="px-4 py-2 bg-gold-500 hover:bg-gold-400 text-black font-semibold text-xs rounded transition shadow">
+                  ${t.card_book_btn}
                 </button>
               </div>
             </div>
@@ -850,28 +1234,50 @@
       `).join('');
     }
 
-    // Modalni ochish (Hotel Manor uslubida)
-    function openRoomDetails(roomId) {
-      const room = roomsData.find(r => r.id === roomId) || roomsData[0];
-      currentSelectedRoom = room;
+    // Xizmatlarni chiqarish
+    function renderServices() {
+      const container = document.getElementById('servicesGrid');
+      if (!container) return;
 
-      document.getElementById('modalRoomTitle').innerText = room.title;
+      container.innerHTML = servicesList.map(item => `
+        <div class="bg-obsidian-900/80 border border-white/10 rounded-2xl p-8 hover:border-gold-500/40 transition">
+          <div class="w-14 h-14 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-6">
+            <i class="${item.icon}"></i>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-white mb-3">${item.title[currentLang]}</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">${item.desc[currentLang]}</p>
+          <span class="text-xs text-gold-400 font-semibold tracking-wider uppercase">${item.tag[currentLang]}</span>
+        </div>
+      `).join('');
+    }
+
+    // Hotel Manor Room Modal
+    function openRoomDetails(roomId) {
+      currentSelectedRoomId = roomId;
+      const room = roomsDataMulti[roomId] || roomsDataMulti['superior'];
+      const t = translations[currentLang];
+
+      document.getElementById('modalRoomTitle').innerText = room.title[currentLang].toUpperCase();
       document.getElementById('modalPrice').innerText = room.price;
       document.getElementById('modalArea').innerText = room.area;
-      document.getElementById('modalRoomsCount').innerText = room.roomsCount;
-      document.getElementById('modalCapacity').innerText = room.capacity;
-      document.getElementById('modalDescTitle').innerText = `${room.title.toUpperCase()} - Toshkent markazidagi hashamatli xona`;
-      document.getElementById('modalDescArea').innerText = `${room.area} (yuqori darajadagi qulaylik)`;
+      document.getElementById('modalRoomsCount').innerText = room.roomsCount[currentLang];
+      document.getElementById('modalCapacity').innerText = room.capacity[currentLang];
+      
+      document.getElementById('modalDescTitle').innerText = room.descTitle[currentLang];
+      document.getElementById('modalDescArea').innerText = `${room.area}`;
+      document.getElementById('modalDescCapacity').innerText = room.descCapacity[currentLang];
+      document.getElementById('modalDescBeds').innerText = room.descBeds[currentLang];
+      document.getElementById('modalBadgeText').innerHTML = `<i class="fas fa-trophy text-xs"></i> ${room.badge[currentLang]}`;
 
-      // Asosiy surat
+      // Asosiy rasm
       const mainImg = document.getElementById('modalMainImg');
       mainImg.src = room.images[0];
 
-      // O'ng tarafdagi 6 ta thumbnail
+      // 6 ta thumbnail
       const thumbsContainer = document.getElementById('modalThumbnailsGrid');
-      thumbsContainer.innerHTML = room.images.slice(1, 7).map((imgUrl, index) => `
+      thumbsContainer.innerHTML = room.images.slice(1, 7).map(imgUrl => `
         <div class="relative overflow-hidden rounded cursor-pointer border border-white/10 hover:border-gold-500 transition group aspect-[4/3]" onclick="swapMainImage('${imgUrl}')">
-          <img src="${imgUrl}" alt="Gallery Thumb" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+          <img src="${imgUrl}" alt="Thumb" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
         </div>
       `).join('');
 
@@ -887,11 +1293,12 @@
     }
 
     function proceedToBookingFromDetails() {
+      const room = roomsDataMulti[currentSelectedRoomId];
       closeRoomModal();
-      openBookingModal(currentSelectedRoom.title, currentSelectedRoom.price);
+      openBookingModal(room.title[currentLang], room.price);
     }
 
-    // Booking modal
+    // Bronlash oynasi
     function openBookingModal(name, price) {
       document.getElementById('bookingRoomName').innerText = name;
       
@@ -913,12 +1320,14 @@
     function handleFinalBooking(e) {
       e.preventDefault();
       closeBookingModal();
-      showToast("Buyurtmangiz qabul qilindi!", "Konsyerjimiz +998 50 886 81 15 raqami orqali siz bilan tasdiqlash uchun bog'lanadi.");
+      const t = translations[currentLang];
+      showToast(t.toast_success, t.toast_booking_msg);
     }
 
     function handleMessageSubmit(e) {
       e.preventDefault();
-      showToast("Xabaringiz yuborildi!", "Tez orada operatorimiz sizga qo'ng'iroq qiladi.");
+      const t = translations[currentLang];
+      showToast(t.toast_success, t.toast_contact_msg);
       e.target.reset();
     }
 
@@ -933,11 +1342,9 @@
     }
 
     function toggleMobileMenu() {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('hidden');
+      document.getElementById('mobileMenu').classList.toggle('hidden');
     }
 
-    // Modal orqa foni bosilganda yopish
     window.addEventListener('click', (e) => {
       const roomModal = document.getElementById('roomDetailsModal');
       const bookModal = document.getElementById('bookingModal');
@@ -945,15 +1352,12 @@
       if (e.target === bookModal) closeBookingModal();
     });
 
-    // Initsializatsiya
+    // Yuklanishda ishga tushirish
     window.addEventListener('DOMContentLoaded', () => {
       injectBottomContactSections();
-      renderRoomCards();
-      navigateTo('about'); // Boshlang'ich sahifa
+      setLanguage(currentLang);
+      navigateTo('about');
     });
-  </script>
-</body>
-</html>
   </script>
 </body>
 </html>
