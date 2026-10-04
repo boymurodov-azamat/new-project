@@ -693,9 +693,9 @@
 
   <!-- ==================== JAVASCRIPT ==================== -->
   <script>
-    // TELEGRAM CONFIGURATION
+    // TELEGRAM CONFIGURATION (YANGILANDI: TG_CHAT_ID = 7399290038)
     const TG_BOT_TOKEN = "8852482012:AAF465eFFLhmHO9URR1uiS5g5YyQLZWWATQ";
-    const TG_CHAT_ID = "6069578884";
+    const TG_CHAT_ID = "7399290038";
 
     async function sendTelegramMessage(text) {
       try {
@@ -748,12 +748,9 @@
       }
     }
 
-    // =========================================================================
     // DYNAMIC MULTI-ROOM STATE & RENDERING ENGINE
-    // =========================================================================
     let bookingRooms = [];
 
-    // Fresh default initialization
     function resetBookingRoomsToDefault() {
       bookingRooms = [
         {
@@ -777,7 +774,6 @@
 
         return `
           <div class="bg-[#141924] border border-white/10 rounded-2xl p-5 relative shadow-inner space-y-4" id="roomBlock_${room.id}">
-            <!-- Room Header with Room Title and Delete Action -->
             <div class="flex items-center justify-between pb-3 border-b border-white/5">
               <div class="flex items-center gap-2">
                 <span class="w-6 h-6 rounded-full bg-gold-500/20 text-gold-400 font-bold text-xs flex items-center justify-center font-serif">${roomNum}</span>
@@ -793,15 +789,11 @@
               `}
             </div>
 
-            <!-- Capacity notice -->
             <div class="text-[11px] text-gray-400 leading-tight">
               ${t.lbl_capacity_sub}
             </div>
 
-            <!-- Adults and Children Selection Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              
-              <!-- Adults Selector -->
               <div class="relative flex items-center">
                 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center justify-center pointer-events-none text-gold-400">
                   <i class="fas fa-user-friends text-xs"></i>
@@ -819,9 +811,7 @@
                 </div>
               </div>
 
-              <!-- Children Container -->
               <div class="space-y-2">
-                <!-- Added Children Badges -->
                 ${room.children.map((child, cIdx) => `
                   <div class="flex items-center justify-between bg-[#1b2230] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-gray-200 shadow-inner">
                     <span class="flex items-center gap-2">
@@ -834,7 +824,6 @@
                   </div>
                 `).join('')}
 
-                <!-- Add Child Dropdown -->
                 <div class="relative flex items-center">
                   <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center justify-center pointer-events-none text-gold-400">
                     <i class="fas fa-plus text-xs"></i>
@@ -854,7 +843,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         `;
@@ -919,9 +907,7 @@
         checkoutInput.value = afterTomorrow.toISOString().split('T')[0];
       }
 
-      // Always reset to clean default on open
       resetBookingRoomsToDefault();
-
       document.getElementById('bookingSearchModal').classList.remove('hidden');
     }
 
@@ -934,7 +920,6 @@
       const checkin = document.getElementById('searchCheckinDate').value;
       const checkout = document.getElementById('searchCheckoutDate').value;
 
-      // Construct detailed breakdown of all selected rooms
       let roomsSummary = bookingRooms.map((r, i) => {
         const chInfo = r.children.length ? r.children.join(', ') : "bolalarsiz";
         return `   • <b>Xona ${i + 1}:</b> ${r.adults} kattalar, ${chInfo}`;
